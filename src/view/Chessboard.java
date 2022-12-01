@@ -37,7 +37,7 @@ public class Chessboard extends JComponent {
         SquareComponent.setSpacingLength(CHESS_SIZE / 12);
         System.out.printf("chessboard [%d * %d], chess size = %d\n", width, height, CHESS_SIZE);
 
-        initAllChessOnBoard();
+        initAllChessOnBoard();//Test
     }
 
     public SquareComponent[][] getChessComponents() {
