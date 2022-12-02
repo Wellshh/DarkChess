@@ -233,7 +233,7 @@ public class ChessGameFrame extends JFrame {
             list = chessboard.stack.pop();
             chessboard.loadGame(list);
             int scoreRed = Integer.parseInt(list.get(9));
-            Player.scoreRed = scoreRed;
+            Player.scoreRed = scoreRed;//因为scoreRed是静态变量，需要重置其值，不然会出现积分异常的问题
             labelScoreRed.setText(String.format("RED's score: %d", scoreRed));
 
             int scoreBlack = Integer.parseInt(list.get(10));
