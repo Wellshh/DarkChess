@@ -15,6 +15,9 @@ public class ChessComponent extends SquareComponent{
     protected ChessComponent(ChessboardPoint chessboardPoint, Point location, ChessColor chessColor, ClickController clickController, int size) {
         super(chessboardPoint, location, chessColor, clickController, size);
     }
+    protected ChessComponent(ChessboardPoint chessboardPoint,int x,int y ,ChessColor chessColor,ClickController clickController, int size){
+        super(chessboardPoint,x,y,chessColor,clickController,size);
+    }
 
     @Override
     protected void paintComponent(Graphics g) {

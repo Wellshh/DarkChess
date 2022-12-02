@@ -29,9 +29,11 @@ public class ChessGameFrame extends JFrame {
     private CheatingMode cheatingMode;
     JLabel cheatLabel = new JLabel();
 
+    public JPanel container = new JPanel();
+
     //private static JPanel jp = new JPanel();
 
-    Chessboard chessboard;
+     Chessboard chessboard;
 
     public ChessGameFrame(int width, int height) {
         setTitle("Dark Chess"); //设置标题
@@ -70,9 +72,9 @@ public class ChessGameFrame extends JFrame {
      */
     private void addChessboard() {
         chessboard = new Chessboard(CHESSBOARD_SIZE / 2, CHESSBOARD_SIZE);
-        chessboard.setOpaque(false);
+        chessboard.setOpaque(true);
         gameController = new GameController(chessboard);
-        chessboard.setLocation(HEIGHT / 10, HEIGHT / 10);
+        chessboard.setLocation(HEIGHT / 4+40, HEIGHT / 10);
         add(chessboard);
     }
 
@@ -81,20 +83,20 @@ public class ChessGameFrame extends JFrame {
      */
     private void addLabel() {
         labelTurn = new JLabel();
-        labelTurn.setLocation(WIDTH * 3 / 5, HEIGHT / 10);
+        labelTurn.setLocation(WIDTH/100000, HEIGHT / 100000);
         labelTurn.setSize(200, 60);
-        labelTurn.setFont(new Font("Rockwell", Font.ITALIC, 20));
+        labelTurn.setFont(new Font("Rockwell", Font.ITALIC, 30));
         add(labelTurn);
 
         labelScoreRed = new JLabel("RED's score: 0");
-        labelScoreRed.setLocation(WIDTH * 3 / 5,HEIGHT / 10 + 100);
+        labelScoreRed.setLocation(WIDTH / 10000+50,HEIGHT / 50+50);
         labelScoreRed.setSize(200, 60);
         labelScoreRed.setFont(new Font("Rockwell", Font.ITALIC, 20));
         //labelScoreRed.setOpaque(false);
         add(labelScoreRed);
 
         labelScoreBlack = new JLabel("BLACK's score: 0");
-        labelScoreBlack.setLocation(WIDTH * 3 / 5,HEIGHT / 10 + 150);
+        labelScoreBlack.setLocation(WIDTH-200,HEIGHT / 50 + 50);
         labelScoreBlack.setSize(200, 60);
         labelScoreBlack.setFont(new Font("Rockwell", Font.ITALIC, 20));
         //labelScoreBlack.setOpaque(false);
@@ -120,7 +122,7 @@ public class ChessGameFrame extends JFrame {
     private void addStartButton() {
         JButton button = new JButton("Start the game.");
         button.addActionListener((e) -> JOptionPane.showMessageDialog(this, "Welcome, chess player!"));
-        button.setLocation(WIDTH * 3 / 5, HEIGHT / 10 + 240);
+        button.setLocation(WIDTH/10000+200, HEIGHT / 10000);
         button.setSize(180, 45);
         button.setFont(new Font("Rockwell", Font.BOLD, 15));
         add(button);
@@ -131,7 +133,7 @@ public class ChessGameFrame extends JFrame {
      */
     private void addRestartButton() {
         JButton button = new JButton("Restart");
-        button.setLocation(WIDTH * 3 / 5, HEIGHT /10 + 300);
+        button.setLocation(WIDTH/10000+400, HEIGHT /100000);
         button.setSize(180, 45);
         button.setFont(new Font("Rockwell", Font.BOLD, 15));
         button.addActionListener(e -> {
@@ -151,7 +153,7 @@ public class ChessGameFrame extends JFrame {
      */
     private void addLoadButton() {
         JButton button = new JButton("Load");
-        button.setLocation(WIDTH * 3 / 5, HEIGHT / 10 + 360);
+        button.setLocation(WIDTH/10000+600, HEIGHT /10000);
         button.setSize(180, 45);
         button.setFont(new Font("Rockwell", Font.BOLD, 15));
         //button.setBackground(Color.LIGHT_GRAY);
@@ -169,7 +171,7 @@ public class ChessGameFrame extends JFrame {
      */
     private void addSaveButton() {
         JButton button = new JButton("Save");
-        button.setLocation(WIDTH*3/5,HEIGHT/10 + 420);
+        button.setLocation(WIDTH/10000+800,HEIGHT/10000);
         button.setSize(180,45);
         button.setFont(new Font("Rockwell",Font.BOLD,15));
         add(button);
@@ -192,7 +194,7 @@ public class ChessGameFrame extends JFrame {
 
     private void addCheatButton() {
         JButton button = new JButton("Cheating Mode");
-        button.setLocation(WIDTH * 3 / 5, HEIGHT / 10 + 480);
+        button.setLocation(WIDTH/10000+1000, HEIGHT /10000);
         button.setSize(180, 45);
         button.setFont(new Font("Rockwell", Font.BOLD, 15));
         //button.setBackground(Color.LIGHT_GRAY);
@@ -223,7 +225,7 @@ public class ChessGameFrame extends JFrame {
     }
     private void addRegretButton(){
         JButton button = new JButton("Regret");
-        button.setLocation(WIDTH * 3 / 5, HEIGHT / 10 + 540);
+        button.setLocation(WIDTH/10000+400, HEIGHT / 100000+50);
         button.setSize(180,45);
         button.setFont(new Font("Rockwell",Font.BOLD,15));
         add(button);

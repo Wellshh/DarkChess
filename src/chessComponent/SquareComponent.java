@@ -87,6 +87,17 @@ public abstract class SquareComponent extends JComponent {
         this.isReversal = false;
         clickControllerCheat = new ClickControllerCheat(clickController.getChessboard());
     }
+    protected SquareComponent(ChessboardPoint chessboardPoint,int x,int y ,ChessColor chessColor,ClickController clickController, int size){
+        enableEvents(AWTEvent.MOUSE_EVENT_MASK);
+        //鼠标触发事件
+        setLocation(x + 700,y);
+        setSize(size, size);
+        this.chessboardPoint = chessboardPoint;
+        this.chessColor = chessColor;
+        this.selected = false;
+        this.clickController = clickController;
+        this.isReversal = false;
+        clickControllerCheat = new ClickControllerCheat(clickController.getChessboard());    }//添加一个新的构造器方便后续吃掉棋子后在棋盘两侧添加棋子
 
     public boolean isReversal() {
         return isReversal;

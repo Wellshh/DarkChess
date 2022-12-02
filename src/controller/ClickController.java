@@ -8,6 +8,7 @@ import model.Player;
 import view.ChessGameFrame;
 import view.Chessboard;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -265,7 +266,15 @@ public class ClickController {
 
     public void swapPlayer() {
         chessboard.setCurrentColor(chessboard.getCurrentColor() == ChessColor.BLACK ? ChessColor.RED : ChessColor.BLACK);
-        ChessGameFrame.getLabelTurn().setText(String.format("%s's TURN", chessboard.getCurrentColor().getName()));//每次操作完记录当前棋局的情况利用convertTolist
+        ChessGameFrame.getLabelTurn().setText(String.format("%s's TURN", chessboard.getCurrentColor().getName()));
+        Color color;
+        if(chessboard.getCurrentColor() == ChessColor.BLACK){
+             color = Color.black;
+        }
+        else{
+             color = Color.RED;
+        }
+        ChessGameFrame.getLabelTurn().setForeground(color);//每次操作完记录当前棋局的情况利用convertTolist
 //        List<String> list = new ArrayList<>();
 //        list = GameController.convertToList(chessboard);
 //        chessboard.stack.push(list);
