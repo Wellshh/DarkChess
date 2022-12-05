@@ -15,7 +15,7 @@ import java.util.Stack;
  * SquareComponent[][]: 4*8个方块格子组件
  */
 public class Chessboard extends JComponent {
-    public Stack<List<String>> stack = new Stack<>();//哥哥
+    public Stack<List<String>> stack = new Stack<>();
 
 
     private static final int ROW_SIZE = 8;
