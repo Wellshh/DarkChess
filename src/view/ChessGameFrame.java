@@ -2,7 +2,6 @@ package view;
 
 import controller.ClickController;
 import controller.GameController;
-import model.CheatingMode;
 import model.ChessColor;
 import model.Player;
 
@@ -25,8 +24,6 @@ public class ChessGameFrame extends JFrame {
     public final int CHESSBOARD_SIZE; //棋盘高度
     private GameController gameController;
     private static JLabel labelTurn, labelTime, labelScoreRed, labelScoreBlack;
-
-    private CheatingMode cheatingMode;
     JLabel cheatLabel = new JLabel();
 
     public JPanel container = new JPanel();
