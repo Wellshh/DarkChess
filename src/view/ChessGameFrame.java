@@ -24,8 +24,10 @@ public class ChessGameFrame extends JFrame {
     public final int CHESSBOARD_SIZE; //棋盘高度
     private GameController gameController;
     private static JLabel labelTurn, labelTime, labelScoreRed, labelScoreBlack;
-    JLabel cheatLabel = new JLabel();
-     Chessboard chessboard;
+    JLabel cheatLabel = new JLabel(), AILabel = new JLabel();
+    Chessboard chessboard;
+
+    private static int checkCheat = 0, checkAI = 0;
 
     public ChessGameFrame(int width, int height) {
         setTitle("Dark Chess"); //设置标题
@@ -39,7 +41,7 @@ public class ChessGameFrame extends JFrame {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE); //设置程序关闭按键，如果点击右上方的叉就游戏全部关闭了
         setLayout(null);
 
-        //addBackground();
+        addAIButton();
 
         addChessboard();
 
@@ -101,6 +103,35 @@ public class ChessGameFrame extends JFrame {
         return labelScoreBlack;
     }
 
+    public static int getCheckAI() {
+        return checkAI;
+    }
+
+    /**
+     * 加入AI按钮
+     */
+
+    private void addAIButton() {
+        JButton button = new JButton("AI");
+        button.setLocation(600, 50);
+        button.setSize(180, 45);
+        button.setFont(new Font("Rockwell", Font.BOLD, 15));
+        button.addActionListener(e -> {
+            if(checkAI == 0){
+                System.out.println("Enter AI mode");
+                AILabel.setText("AI Mode on");
+                String st = JOptionPane.showInputDialog("Enter the level"); //输入难度等级
+                int hardLevel = Integer.parseInt(st);
+                checkAI = 1;
+            }
+            else {
+                AILabel.setText("");
+                checkAI = 0;
+            }
+        });
+        add(button);
+    }
+
     /**
      * 在游戏窗体中增加一个按钮，如果按下的话就会显示start
      */
@@ -108,7 +139,7 @@ public class ChessGameFrame extends JFrame {
     private void addStartButton() {
         JButton button = new JButton("Start the game.");
         button.addActionListener((e) -> JOptionPane.showMessageDialog(this, "Welcome, chess player!"));
-        button.setLocation(WIDTH/10000+200, HEIGHT / 10000);
+        button.setLocation(WIDTH/1000+200, HEIGHT / 10000);
         button.setSize(180, 45);
         button.setFont(new Font("Rockwell", Font.BOLD, 15));
         add(button);
@@ -172,15 +203,13 @@ public class ChessGameFrame extends JFrame {
     /**
      * 加入作弊模式按钮
      */
-    private static int checkCheat = 0;
-
     public static int getCheckCheat() {
         return checkCheat;
     }
 
     private void addCheatButton() {
         JButton button = new JButton("Cheating Mode");
-        button.setLocation(WIDTH/10000+1000, HEIGHT /10000);
+        button.setLocation(WIDTH/10000+800, HEIGHT /10000+50);
         button.setSize(180, 45);
         button.setFont(new Font("Rockwell", Font.BOLD, 15));
         //button.setBackground(Color.LIGHT_GRAY);
@@ -229,9 +258,6 @@ public class ChessGameFrame extends JFrame {
             labelScoreBlack.setText(String.format("BLACK's score: %d", scoreBlack));
 
             ClickController.cnt = Integer.parseInt(list.get(11));
-
-
-
         });
     }
 

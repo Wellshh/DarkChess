@@ -1,6 +1,5 @@
 package controller;
 
-
 import chessComponent.SquareComponent;
 import chessComponent.EmptySlotComponent;
 import model.ChessColor;
@@ -26,6 +25,8 @@ public class ClickController {
     }
 
     public static int cnt = 0;
+
+    private AIController aiController;
 
     public Chessboard getChessboard() {
         return chessboard;
@@ -70,6 +71,11 @@ public class ClickController {
                 Player.checkWinner();
                 first.setSelected(false);
                 first = null;//每次操作之后把first设为null
+
+                if(ChessGameFrame.getCheckAI() == 1){
+                    aiController =new AIController(chessboard);
+                }
+
             }
         }
     }
@@ -238,6 +244,11 @@ public class ClickController {
             chessboard.stack.push(list);
             System.out.println(Arrays.toString(list.toArray()));
             chessboard.clickController.swapPlayer();
+
+            if(ChessGameFrame.getCheckAI() == 1){
+                aiController = new AIController(chessboard);
+            }
+
             return false;
         }
         return squareComponent.getChessColor() == chessboard.getCurrentColor();
