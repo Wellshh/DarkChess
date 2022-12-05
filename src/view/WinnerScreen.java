@@ -16,7 +16,7 @@ public class WinnerScreen extends JFrame {
 
     private final int HEIGHT;
 
-    public WinnerScreen(int width, int height){
+    public WinnerScreen(int width, int height) {
         WIDTH = width;
         HEIGHT = height;
         setTitle("Winner Screen");
@@ -68,7 +68,7 @@ public class WinnerScreen extends JFrame {
         button.setSize(150, 35);
         button.setFont(new Font("Rockwell", Font.BOLD, 15));
         button.addActionListener(e -> {
-            ChessGameFrame chessGameFrame = new ChessGameFrame(720, 720);
+            ChessGameFrame chessGameFrame = new ChessGameFrame(1000, 1000);
             chessGameFrame.setVisible(true);
             this.dispose();
         });

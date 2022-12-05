@@ -25,11 +25,6 @@ public class ChessGameFrame extends JFrame {
     private GameController gameController;
     private static JLabel labelTurn, labelTime, labelScoreRed, labelScoreBlack;
     JLabel cheatLabel = new JLabel();
-
-    public JPanel container = new JPanel();
-
-    //private static JPanel jp = new JPanel();
-
      Chessboard chessboard;
 
     public ChessGameFrame(int width, int height) {
@@ -56,13 +51,7 @@ public class ChessGameFrame extends JFrame {
         addCheatingLabel();
         addSaveButton();
         addRegretButton();
-
-//        jp.setLocation(0,0);
-//        jp.setSize(720, 720);
-//        jp.setLayout(null);
-//        add(jp);
     }
-
 
     /**
      * 在游戏窗体中添加棋盘
@@ -228,7 +217,7 @@ public class ChessGameFrame extends JFrame {
         add(button);
         button.addActionListener(e -> {
             repaint();
-            List<String> list = new ArrayList<>();
+            List<String> list;
             list = chessboard.stack.pop();
             chessboard.loadGame(list);
             int scoreRed = Integer.parseInt(list.get(9));
@@ -256,19 +245,5 @@ public class ChessGameFrame extends JFrame {
         cheatLabel.setFont(new Font("Rockwell", Font.BOLD, 15));
         add(cheatLabel);
     }
-
-
-//    public void addBackground() {
-//        ImageIcon img = new ImageIcon("D:/JAVA product/Final Project/img.jpg");
-//        JLabel background = new JLabel(img);
-//        background.setBounds(0,0,720,720);
-//        JPanel jp1 = new JPanel();
-//        jp1.add(background);
-//        jp1.setLocation(0,0);
-//        jp1.setSize(720,720);
-//        jp1.setLayout(null);
-//        jp1.setOpaque(false);
-//        add(jp1);
-//    }
 
 }

@@ -35,7 +35,7 @@ public class ClickController {
         cnt++;
         if (!(squareComponent.getChessColor() == ChessColor.BLACK) && cnt == 1) {
             System.out.println(cnt);
-            List<String> list = new ArrayList<>();
+            List<String> list;
             list = GameController.convertToList(chessboard);
             chessboard.stack.push(list);
             System.out.println(Arrays.toString(list.toArray()));
@@ -60,7 +60,7 @@ public class ClickController {
                 closeOptions(squareComponent);
             } else if (handleSecond(squareComponent)) {
                 closeOptions(first);
-                List<String> list = new ArrayList<>();
+                List<String> list;
                 list = GameController.convertToList(chessboard);
                 chessboard.stack.push(list);
                 System.out.println(Arrays.toString(list.toArray()));
@@ -146,7 +146,6 @@ public class ClickController {
 
     /**
      * 选择的棋子可行走的提示
-     *
      * @param chess
      */
     public void showOptions(SquareComponent chess) {
@@ -188,7 +187,6 @@ public class ClickController {
 
     /**
      * 关闭选择的棋子可行走的提示
-     *
      * @param chess
      */
     public void closeOptions(SquareComponent chess) {
@@ -235,12 +233,11 @@ public class ClickController {
             squareComponent.setReversal(true);
             System.out.printf("onClick to reverse a chess [%d,%d]\n", squareComponent.getChessboardPoint().getX(), squareComponent.getChessboardPoint().getY());
             squareComponent.repaint();
-            List<String> list = new ArrayList<>();
+            List<String> list;
             list = GameController.convertToList(chessboard);
             chessboard.stack.push(list);
             System.out.println(Arrays.toString(list.toArray()));
             chessboard.clickController.swapPlayer();
-//            System.out.println(1);
             return false;
         }
         return squareComponent.getChessColor() == chessboard.getCurrentColor();
