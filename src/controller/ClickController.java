@@ -72,10 +72,6 @@ public class ClickController {
                 first.setSelected(false);
                 first = null;//每次操作之后把first设为null
 
-                if(ChessGameFrame.getCheckAI() == 1){
-                    aiController =new AIController(chessboard);
-                }
-
             }
         }
     }
@@ -244,10 +240,6 @@ public class ClickController {
             chessboard.stack.push(list);
             System.out.println(Arrays.toString(list.toArray()));
             chessboard.clickController.swapPlayer();
-
-            if(ChessGameFrame.getCheckAI() == 1){
-                aiController = new AIController(chessboard);
-            }
 
             return false;
         }

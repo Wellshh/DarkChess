@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.Stack;
 
+
 /**
  * 这个类表示棋盘组建，其包含：
  * SquareComponent[][]: 4*8个方块格子组件
@@ -26,13 +27,16 @@ public class Chessboard extends JComponent {
     //todo: you can change the initial player
     private ChessColor currentColor = ChessColor.BLACK;
 
+    private ChessGameFrame chessGameFrame;
+
 
     //all chessComponents in this chessboard are shared only one model controller
     public final ClickController clickController = new ClickController(this);
     private final int CHESS_SIZE;
 
 
-    public Chessboard(int width, int height) {
+    public Chessboard(int width, int height, ChessGameFrame chessGameFrame) {
+        this.chessGameFrame = chessGameFrame;
         setLayout(null); // Use absolute layout.
         setSize(width + 2, height - 1);
         CHESS_SIZE = (height - 6) / 8;
@@ -81,11 +85,10 @@ public class Chessboard extends JComponent {
             else {
                 Player.changeScoreBlack( chess2.getScore() );
             }
-//            JButton button2 = new JButton();
-//            ChessGameFrame.blackPanel.add(button2);
-
-          FakeChessComponent chess3 = new FakeChessComponent("yi",chess2.getChessColor(),clickController,CHESS_SIZE);
+            FakeChessComponent chess3 = new FakeChessComponent("yi",chess2.getChessColor(),clickController,CHESS_SIZE);
+            chess3.setVisible(true);
             ChessGameFrame.blackPanel.add(chess3);
+
             remove(chess2);
             add(chess2 = new EmptySlotComponent(chess2.getChessboardPoint(), chess2.getLocation(), clickController, CHESS_SIZE));//移除组件后把底下的格子的添上
         }

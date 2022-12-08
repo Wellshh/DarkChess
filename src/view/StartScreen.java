@@ -14,7 +14,6 @@ public class StartScreen extends JFrame {
     private final int HEIGHT; //开始界面高度
 
 
-
     public StartScreen( int width, int height) {
         WIDTH = width;
         HEIGHT = height;
@@ -44,4 +43,5 @@ public class StartScreen extends JFrame {
         });
         add(button);
     }
+
 }

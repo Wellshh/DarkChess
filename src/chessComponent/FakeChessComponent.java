@@ -6,7 +6,6 @@ import model.ChessColor;
 import java.awt.*;
 
 public class FakeChessComponent extends SquareComponent{
-    public String name;
 
     public  FakeChessComponent(String name, ChessColor chessColor, ClickController clickController, int size) {
         super(name, chessColor, clickController, size);

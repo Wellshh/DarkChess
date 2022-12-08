@@ -1,5 +1,6 @@
 package view;
 
+import chessComponent.FakeChessComponent;
 import controller.ClickController;
 import controller.GameController;
 import model.ChessColor;
@@ -63,8 +64,8 @@ public class ChessGameFrame extends JFrame {
     /*在游戏窗体中添加装棋子的面板
      *  */
     private void addPanel() {
-        redPanel = new JPanel(new FlowLayout());
-        blackPanel = new JPanel(new FlowLayout());
+        redPanel = new JPanel(null);
+        blackPanel = new JPanel(null);
         getContentPane().add(redPanel);
         getContentPane().add(blackPanel);
 //       redPanel.setBorder(BorderFactory.createBevelBorder(100,Color.RED,Color.BLUE));//给面板添加边框
@@ -74,14 +75,13 @@ public class ChessGameFrame extends JFrame {
         blackPanel.setLocation(WIDTH * 7 / 10-8, HEIGHT * 1 / 7-20);
         redPanel.setLocation(WIDTH/10000-10, HEIGHT/7-20);
 
-
     }
 
     /**
      * 在游戏窗体中添加棋盘
      */
     private void addChessboard() {
-        chessboard = new Chessboard(CHESSBOARD_SIZE / 2, CHESSBOARD_SIZE);
+        chessboard = new Chessboard(CHESSBOARD_SIZE / 2, CHESSBOARD_SIZE, this);
         chessboard.setOpaque(true);
         gameController = new GameController(chessboard);
         chessboard.setLocation(HEIGHT / 4 + 40, HEIGHT / 10);
