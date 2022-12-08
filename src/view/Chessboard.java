@@ -1,6 +1,7 @@
 package view;
 
 import chessComponent.*;
+import controller.GameController;
 import model.*;
 import controller.ClickController;
 
@@ -80,9 +81,16 @@ public class Chessboard extends JComponent {
             else {
                 Player.changeScoreBlack( chess2.getScore() );
             }
+//            JButton button2 = new JButton();
+//            ChessGameFrame.blackPanel.add(button2);
+
+          FakeChessComponent chess3 = new FakeChessComponent("yi",chess2.getChessColor(),clickController,CHESS_SIZE);
+            ChessGameFrame.blackPanel.add(chess3);
             remove(chess2);
 
-            add(chess2 = new EmptySlotComponent(chess2.getChessboardPoint(), chess2.getLocation(), clickController, CHESS_SIZE));//移除组件后把底下的格子得添上
+
+
+            add(chess2 = new EmptySlotComponent(chess2.getChessboardPoint(), chess2.getLocation(), clickController, CHESS_SIZE));//移除组件后把底下的格子的添上
         }
         chess1.swapLocation(chess2);//把chess1组件换到chess2空格子的位置，数组上也换了位置
         int row1 = chess1.getChessboardPoint().getX(), col1 = chess1.getChessboardPoint().getY();

@@ -18,6 +18,7 @@ import java.awt.event.MouseEvent;
  * 2. ChessComponent: 表示非空棋子
  */
 public abstract class SquareComponent extends JComponent {
+    public String name;
 
     private static final Color squareColor = new Color(250, 180, 90);
     protected static int spacingLength;
@@ -75,6 +76,14 @@ public abstract class SquareComponent extends JComponent {
     private final ClickController clickController;
 
     private final ClickControllerCheat clickControllerCheat;
+    protected SquareComponent(String name,ChessColor chessColor,ClickController clickController,int size){
+        this.clickController = clickController;
+        clickControllerCheat = new ClickControllerCheat(clickController.getChessboard());
+        this.chessColor = chessColor;
+        this.name = name;
+        setSize(size,size);
+    }
+
 
     protected SquareComponent(ChessboardPoint chessboardPoint, Point location, ChessColor chessColor, ClickController clickController, int size) {
         enableEvents(AWTEvent.MOUSE_EVENT_MASK);   //鼠标触发事件
@@ -216,7 +225,7 @@ public abstract class SquareComponent extends JComponent {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponents(g);
-        System.out.printf("repaint chess [%d,%d]\n", chessboardPoint.getX(), chessboardPoint.getY());
+//        System.out.printf("repaint chess [%d,%d]\n", chessboardPoint.getX(), chessboardPoint.getY());
         g.setColor(squareColor);
         g.fillRect(1, 1, this.getWidth() - 2, this.getHeight() - 2);
     }

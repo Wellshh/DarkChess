@@ -282,10 +282,6 @@ public class ClickController {
         else{
              color = Color.RED;
         }
-        ChessGameFrame.getLabelTurn().setForeground(color);//每次操作完记录当前棋局的情况利用convertTolist
-//        List<String> list = new ArrayList<>();
-//        list = GameController.convertToList(chessboard);
-//        chessboard.stack.push(list);
-//        System.out.println(Arrays.toString(list.toArray()));
+        ChessGameFrame.getLabelTurn().setForeground(color);
     }
 }
