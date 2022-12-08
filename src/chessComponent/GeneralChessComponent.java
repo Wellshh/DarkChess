@@ -15,7 +15,7 @@ public class GeneralChessComponent extends ChessComponent {
         super(chessboardPoint, location, chessColor, clickController, size);
         rank = 6;
         score = 30;
-        if (this.getChessColor() == ChessColor.RED) {
+        if (this.getChessColor() == ChessColor.RED) {//
             name = "帥";
             code = "06";
         } else {
