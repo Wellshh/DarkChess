@@ -284,28 +284,44 @@ public class ClickController {
         }
         ChessGameFrame.getLabelTurn().setForeground(color);
 
-        AIController ai = new AIController(chessboard, chessboard.getCurrentColor());
-        int[] q= ai.aiPlayer();
-        int[] t=Arrays.copyOf(q,q.length);
-        if(t.length==3) {
-            chessboard.getChessComponents()[t[1]][t[2]].setReversal(true);
-            chessboard.getChessComponents()[t[1]][t[2]].repaint();
-        }
-        else {
-            chessboard.getChessComponents()[t[3]][t[4]].setReversal(true);
-            SquareComponent chess1 = chessboard.getChessComponents()[t[1]][t[2]];
-            SquareComponent chess2 = chessboard.getChessComponents()[t[3]][t[4]];
-            chessboard.swapChessComponents(chess1, chess2);
+        if(ChessGameFrame.getCheckAI()!=0){
+            Thread t = new Thread(() -> {
+                try {
+                    Thread.sleep(1000); //1000 milliseconds
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                AIController ai = new AIController(chessboard, chessboard.getCurrentColor(), ChessGameFrame.getCheckAI());
+                int[] q= ai.aiPlayer();
+                int[] k=Arrays.copyOf(q,q.length);
+                if(k.length==3) {
+                    chessboard.getChessComponents()[k[1]][k[2]].setReversal(true);
+                    chessboard.getChessComponents()[k[1]][k[2]].repaint();
+                }
+                else {
+                    chessboard.getChessComponents()[k[3]][k[4]].setReversal(true);
+                    SquareComponent chess1 = chessboard.getChessComponents()[k[1]][k[2]];
+                    SquareComponent chess2 = chessboard.getChessComponents()[k[3]][k[4]];
+                    chessboard.swapChessComponents(chess1, chess2);
+                }
+                chessboard.setCurrentColor(chessboard.getCurrentColor() == ChessColor.BLACK ? ChessColor.RED : ChessColor.BLACK);
+                ChessGameFrame.getLabelTurn().setText(String.format("%s's TURN", chessboard.getCurrentColor().getName()));
+                Color color1;
+                if(chessboard.getCurrentColor() == ChessColor.BLACK) {
+                    color1 = Color.black;
+                }
+                else {
+                    color1 = Color.RED;
+                }
+                ChessGameFrame.getLabelTurn().setForeground(color1);
+                // your code after delay here
+            });
+            t.start();
         }
 
-        chessboard.setCurrentColor(chessboard.getCurrentColor() == ChessColor.BLACK ? ChessColor.RED : ChessColor.BLACK);
-        ChessGameFrame.getLabelTurn().setText(String.format("%s's TURN", chessboard.getCurrentColor().getName()));
-        if(chessboard.getCurrentColor() == ChessColor.BLACK) {
-            color = Color.black;
-        }
-        else {
-            color = Color.RED;
-        }
-        ChessGameFrame.getLabelTurn().setForeground(color);
+
+
+
+
     }
 }

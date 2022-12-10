@@ -146,8 +146,7 @@ public class ChessGameFrame extends JFrame {
                 System.out.println("Enter AI mode");
                 AILabel.setText("AI Mode on");
                 String st = JOptionPane.showInputDialog("Enter the level"); //输入难度等级
-                int hardLevel = Integer.parseInt(st);
-                checkAI = 1;
+                checkAI = Integer.parseInt(st);
             } else {
                 AILabel.setText("");
                 checkAI = 0;

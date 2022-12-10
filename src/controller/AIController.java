@@ -18,17 +18,18 @@ public class AIController {
 
     Chessboard chessboard;
 
-    private int color;
+    private int color,dep;
 
     int[][][] chess = new int[10][10][4]; //0位：颜色 0红 1黑；1位：翻开状态 0 未翻开 1 翻开；2位：棋子编号；3位：分数
 
-    public AIController(Chessboard chessboard, ChessColor chessColor) {
+    public AIController(Chessboard chessboard, ChessColor chessColor,int dep) {
         if(chessColor==ChessColor.RED) {
             color=0;
         }
         else {
             color=1;
         }
+        this.dep = dep;
         this.chessboard = chessboard;
         SquareComponent[][] chessCom = chessboard.getChessComponents();
         //构造棋盘
@@ -149,7 +150,7 @@ public class AIController {
             return rev;
         }
         else {
-            System.out.println(1);
+            //System.out.println(1);
             if(!ableToRev(chess)) {
                 while(true) {
                     //System.out.println(1);
@@ -184,7 +185,7 @@ public class AIController {
     }
 
     public int Dfs(int[][][] chess, int layer, int a, int b, boolean isAI) {
-        if(layer == 5) {
+        if(layer == dep) {
             //System.out.println(scoreCount(chess));
             return scoreCount(chess);
         }
