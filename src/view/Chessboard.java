@@ -29,11 +29,9 @@ public class Chessboard extends JComponent {
 
     private ChessGameFrame chessGameFrame;
 
-
     //all chessComponents in this chessboard are shared only one model controller
     public final ClickController clickController = new ClickController(this);
     private final int CHESS_SIZE;
-
 
     public Chessboard(int width, int height, ChessGameFrame chessGameFrame) {
         this.chessGameFrame = chessGameFrame;
@@ -44,6 +42,7 @@ public class Chessboard extends JComponent {
         System.out.printf("chessboard [%d * %d], chess size = %d\n", width, height, CHESS_SIZE);
 
         initAllChessOnBoard();//Test
+
     }
 
     public SquareComponent[][] getChessComponents() {
@@ -87,8 +86,13 @@ public class Chessboard extends JComponent {
             }
             FakeChessComponent chess3 = new FakeChessComponent("yi",chess2.getChessColor(),clickController,CHESS_SIZE);
             chess3.setVisible(true);
-            ChessGameFrame.blackPanel.add(chess3);
-
+            chessGameFrame.redPanel.add(chess3);
+            JButton button = new JButton("01");
+            button.setLocation(0,0);
+            button.setSize(50,50);
+            chessGameFrame.redPanel.add(button);
+            chess3.setLocation(0,0);
+            chessGameFrame.redPanel.add(chess3);
             remove(chess2);
             add(chess2 = new EmptySlotComponent(chess2.getChessboardPoint(), chess2.getLocation(), clickController, CHESS_SIZE));//移除组件后把底下的格子的添上
         }
@@ -353,6 +357,7 @@ public class Chessboard extends JComponent {
                 }
             }
         }
+
         repaint();
         ChessGameFrame.getLabelScoreRed().repaint();
         ChessGameFrame.getLabelScoreBlack().repaint();

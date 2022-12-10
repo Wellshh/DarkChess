@@ -17,6 +17,11 @@ public class EmptySlotComponent extends SquareComponent {
         code = "30";
     }
 
+    public EmptySlotComponent(ChessboardPoint chessboardPoint, Point location, int size) {
+        super(chessboardPoint, location, ChessColor.NONE, null, size);
+        isReversal = true;
+    }
+
     @Override
     protected void paintComponent(Graphics g) {
 

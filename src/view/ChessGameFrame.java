@@ -27,8 +27,11 @@ public class ChessGameFrame extends JFrame {
     private static JLabel labelTurn, labelTime, labelScoreRed, labelScoreBlack;
     JLabel cheatLabel = new JLabel(), AILabel = new JLabel();
     Chessboard chessboard;
-    public static JPanel redPanel, blackPanel;
+    public JPanel redPanel, blackPanel;
 
+    public JPanel getRedPanel() {
+        return redPanel;
+    }
 
     private static int checkCheat = 0, checkAI = 0;
 
@@ -61,20 +64,20 @@ public class ChessGameFrame extends JFrame {
         addRegretButton();
     }
 
-    /*在游戏窗体中添加装棋子的面板
-     *  */
+    /**
+     * 在游戏窗体中添加装棋子的面板
+     */
     private void addPanel() {
-        redPanel = new JPanel(null);
-        blackPanel = new JPanel(null);
-        getContentPane().add(redPanel);
-        getContentPane().add(blackPanel);
-//       redPanel.setBorder(BorderFactory.createBevelBorder(100,Color.RED,Color.BLUE));//给面板添加边框
+        redPanel = new JPanel(new FlowLayout());
+        blackPanel = new JPanel(new FlowLayout());
+        redPanel.setBorder(BorderFactory.createBevelBorder(100,Color.RED,Color.BLUE));//给面板添加边框
         blackPanel.setSize(310, 900);
         redPanel.setSize(300, 900);
-//        blackPanel.setBorder(BorderFactory.createBevelBorder(100,Color.RED,Color.BLUE));
+        blackPanel.setBorder(BorderFactory.createBevelBorder(100,Color.RED,Color.BLUE));
         blackPanel.setLocation(WIDTH * 7 / 10-8, HEIGHT * 1 / 7-20);
-        redPanel.setLocation(WIDTH/10000-10, HEIGHT/7-20);
-
+        redPanel.setLocation(0, HEIGHT/7-20);
+        getContentPane().add(redPanel);
+        getContentPane().add(blackPanel);
     }
 
     /**

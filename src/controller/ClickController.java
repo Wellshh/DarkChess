@@ -268,12 +268,17 @@ public class ClickController {
         chessboard.setCurrentColor(chessboard.getCurrentColor() == ChessColor.BLACK ? ChessColor.RED : ChessColor.BLACK);
         ChessGameFrame.getLabelTurn().setText(String.format("%s's TURN", chessboard.getCurrentColor().getName()));
         Color color;
-        if(chessboard.getCurrentColor() == ChessColor.BLACK){
+        if(chessboard.getCurrentColor() == ChessColor.BLACK) {
              color = Color.black;
         }
-        else{
+        else {
              color = Color.RED;
         }
+
+        int checkR = 0, checkS = 0, ans1 = -1000, ans2 = -1000;
+        int x0, y0, x1, y1, x2, y2;
+        AIController ai = new AIController(chessboard, chessboard.getCurrentColor());
+
         ChessGameFrame.getLabelTurn().setForeground(color);
     }
 }
