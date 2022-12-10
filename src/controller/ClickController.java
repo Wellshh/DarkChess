@@ -40,7 +40,16 @@ public class ClickController {
             list = GameController.convertToList(chessboard);
             chessboard.stack.push(list);
             System.out.println(Arrays.toString(list.toArray()));
-            swapPlayer();
+            chessboard.setCurrentColor(chessboard.getCurrentColor() == ChessColor.BLACK ? ChessColor.RED : ChessColor.BLACK);
+            ChessGameFrame.getLabelTurn().setText(String.format("%s's TURN", chessboard.getCurrentColor().getName()));
+            Color color;
+            if(chessboard.getCurrentColor() == ChessColor.BLACK) {
+                color = Color.black;
+            }
+            else {
+                color = Color.RED;
+            }
+            ChessGameFrame.getLabelTurn().setForeground(color);
         }
         //判断第一次点击
         //handleFirst是选中某个棋子，条件是是否与当前要求的颜色相同
@@ -279,6 +288,7 @@ public class ClickController {
         int[] q= ai.aiPlayer();
         int[] t=Arrays.copyOf(q,q.length);
         if(t.length==3) {
+            System.out.println(1);
             chessboard.getChessComponents()[t[1]][t[2]].setReversal(true);
             chessboard.getChessComponents()[t[1]][t[2]].repaint();
         }
