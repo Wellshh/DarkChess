@@ -177,13 +177,18 @@ public class ChessGameFrame extends JFrame {
         button.setSize(180, 45);
         button.setFont(new Font("Rockwell", Font.BOLD, 15));
         button.addActionListener(e -> {
-//            remove(chessboard);
-            repaint();
+            this.dispose();
+            ChessGameFrame chessGameFrame = new ChessGameFrame(1000, 1000);
+            chessGameFrame.setVisible(true);
             Player.changeScoreBlack(-Player.scoreBlack);
             Player.changeScoreRed(-Player.scoreRed);
-            labelTurn.setText("");
-            ClickController.cnt = 0;
-            addChessboard();
+//            remove(chessboard);
+//            repaint();
+//            Player.changeScoreBlack(-Player.scoreBlack);
+//            Player.changeScoreRed(-Player.scoreRed);
+//            labelTurn.setText("");
+//            ClickController.cnt = 0;
+//            addChessboard();
         });
         add(button);
     }
