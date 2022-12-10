@@ -68,7 +68,6 @@ public class ClickController {
                 //repaint in swap chess method.
                 chessboard.swapChessComponents(first, squareComponent);
                 chessboard.clickController.swapPlayer();
-                Player.checkWinner();
                 first.setSelected(false);
                 first = null;//每次操作之后把first设为null
 
@@ -274,11 +273,30 @@ public class ClickController {
         else {
              color = Color.RED;
         }
+        ChessGameFrame.getLabelTurn().setForeground(color);
 
-        int checkR = 0, checkS = 0, ans1 = -1000, ans2 = -1000;
-        int x0, y0, x1, y1, x2, y2;
         AIController ai = new AIController(chessboard, chessboard.getCurrentColor());
+        int[] q= ai.aiPlayer();
+        int[] t=Arrays.copyOf(q,q.length);
+        if(t.length==3) {
+            chessboard.getChessComponents()[t[1]][t[2]].setReversal(true);
+            chessboard.getChessComponents()[t[1]][t[2]].repaint();
+        }
+        else {
+            chessboard.getChessComponents()[t[3]][t[4]].setReversal(true);
+            SquareComponent chess1 = chessboard.getChessComponents()[t[1]][t[2]];
+            SquareComponent chess2 = chessboard.getChessComponents()[t[3]][t[4]];
+            chessboard.swapChessComponents(chess1, chess2);
+        }
 
+        chessboard.setCurrentColor(chessboard.getCurrentColor() == ChessColor.BLACK ? ChessColor.RED : ChessColor.BLACK);
+        ChessGameFrame.getLabelTurn().setText(String.format("%s's TURN", chessboard.getCurrentColor().getName()));
+        if(chessboard.getCurrentColor() == ChessColor.BLACK) {
+            color = Color.black;
+        }
+        else {
+            color = Color.RED;
+        }
         ChessGameFrame.getLabelTurn().setForeground(color);
     }
 }
