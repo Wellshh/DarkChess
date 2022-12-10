@@ -103,6 +103,8 @@ public class AIController {
                                     swapChess(chess,i,j,m,n);
                                     chess[i][j][0]=-1;
                                     int val = Dfs(chess,1, a, 1000, false);
+                                    System.out.printf("%d %d %d %d\n",i,j,m,n);
+                                    System.out.printf("%d %d\n",swa[0],val);
                                     //System.out.println(val);
                                     a=Math.max(a,val);
                                     chess[i][j][0] = -1;
@@ -125,8 +127,73 @@ public class AIController {
 
             }
         }
-        if(rev[0]>swa[0] && ableToRev(chess)) {
-            if(rev[0]==0) {
+        if(rev[0]>swa[0]) {
+            return rev;
+        }
+        else if(rev[0]<swa[0]) {
+            return swa;
+        }
+        else {
+            if(ableToMove(chess) && ableToRev(chess)) {
+                Random random = new Random();
+                int ch = random.nextInt(2);
+                if(ch==0) {
+                    while(true) {
+                        System.out.println(1);
+                        Random ran = new Random();
+                        swa[1]= ran.nextInt(9);
+                        swa[2]=ran.nextInt(5);
+                        while(chess[swa[1]][swa[2]][0]!=color || chess[swa[1]][swa[2]][1] == 0) {
+                            swa[1]= ran.nextInt(8);
+                            swa[2]=ran.nextInt(4);
+                        }
+                        for(int i=0;i<8;i++) {
+                            for(int j=0;j<4;j++) {
+                                if(checkDestination(swa[1],swa[2],i,j) && chess[swa[1]][swa[2]][0] != chess[i][j][0]) {
+                                    swa[3]=i;
+                                    swa[4]=j;
+                                    System.out.printf("%d %d %d %d\n",swa[1],swa[2],swa[3],swa[4]);
+                                    return swa;
+                                }
+                            }
+                        }
+                    }
+                }
+                else {
+                    Random ran = new Random();
+                    rev[1]= ran.nextInt(8);
+                    rev[2]=ran.nextInt(4);
+                    while(chess[rev[1]][rev[2]][0]==-1 || chess[rev[1]][rev[2]][1]==1) {
+                        //System.out.println(1);
+                        rev[1]= ran.nextInt(8);
+                        rev[2]=ran.nextInt(4);
+                    }
+                    return rev;
+                }
+            }
+            else if(ableToMove(chess)) {
+                while(true) {
+                    System.out.println(1);
+                    Random ran = new Random();
+                    swa[1]= ran.nextInt(9);
+                    swa[2]=ran.nextInt(5);
+                    while(chess[swa[1]][swa[2]][0]!=color || chess[swa[1]][swa[2]][1] == 0) {
+                        swa[1]= ran.nextInt(8);
+                        swa[2]=ran.nextInt(4);
+                    }
+                    for(int i=0;i<8;i++) {
+                        for(int j=0;j<4;j++) {
+                            if(checkDestination(swa[1],swa[2],i,j) && chess[swa[1]][swa[2]][0] != chess[i][j][0]) {
+                                swa[3]=i;
+                                swa[4]=j;
+                                System.out.printf("%d %d %d %d\n",swa[1],swa[2],swa[3],swa[4]);
+                                return swa;
+                            }
+                        }
+                    }
+                }
+            }
+            else {
                 Random ran = new Random();
                 rev[1]= ran.nextInt(8);
                 rev[2]=ran.nextInt(4);
@@ -135,52 +202,8 @@ public class AIController {
                     rev[1]= ran.nextInt(8);
                     rev[2]=ran.nextInt(4);
                 }
+                return rev;
             }
-            return rev;
-        }
-        else if(ableToRev(chess) && !ableToMove(chess)) {
-            Random ran = new Random();
-            rev[1]= ran.nextInt(8);
-            rev[2]=ran.nextInt(4);
-            while(chess[rev[1]][rev[2]][0]==-1 || chess[rev[1]][rev[2]][1]==1) {
-                //System.out.println(1);
-                rev[1]= ran.nextInt(8);
-                rev[2]=ran.nextInt(4);
-            }
-            return rev;
-        }
-        else {
-            //System.out.println(1);
-            if(!ableToRev(chess)) {
-                while(true) {
-                    //System.out.println(1);
-                    Random ran = new Random();
-                    swa[1]= ran.nextInt(8);
-                    swa[2]=ran.nextInt(4);
-                    while(chess[swa[1]][swa[2]][0]!=color) {
-                        swa[1]= ran.nextInt(8);
-                        swa[2]=ran.nextInt(4);
-                    }
-                    int check = 0;
-                    for(int i=0;i<8;i++) {
-                        for(int j=0;j<4;j++) {
-                            if(checkDestination(swa[1],swa[2],i,j)) {
-                                swa[3]=i;
-                                swa[4]=j;
-                                check=1;
-                                break;
-                            }
-                        }
-                        if(check == 1) {
-                            break;
-                        }
-                    }
-                    if(check==1) {
-                        break;
-                    }
-                }
-            }
-            return swa;
         }
     }
 
@@ -298,7 +321,7 @@ public class AIController {
 
     public boolean checkDestination(int x1, int y1, int x2, int y2) {
 
-        if(x1!=x2 && y1!=y2) {
+        if((x1!=x2 && y1!=y2) || (x1==x2 && y1==y2)) {
             return false;
         }
         if(chess[x1][y1][2] ==1) {
@@ -321,11 +344,11 @@ public class AIController {
         }
         else if(chess[x1][y1][2]==0) {
             return ((chess[x2][y2][0]==-1)||((chess[x1][y1][2]>=chess[x2][y2][2] || chess[x2][y2][2] == 6) && chess[x1][y1][0]!=chess[x2][y2][0]))
-                    && Math.abs(x1-x2)+Math.abs(y1-y2)==1 && chess[x2][y2][1]==1;
+                    && Math.abs(x1-x2)+Math.abs(y1-y2)==1 && (chess[x2][y2][1]==1 || chess[x2][y2][0] == -1);
         }
         else {
             return ((chess[x2][y2][0]==-1)||(chess[x1][y1][2]>=chess[x2][y2][2] && chess[x1][y1][0]!=chess[x2][y2][0]))
-                    && Math.abs(x1-x2)+Math.abs(y1-y2)==1 && chess[x2][y2][1]==1;
+                    && Math.abs(x1-x2)+Math.abs(y1-y2)==1 && (chess[x2][y2][1]==1 || chess[x2][y2][0] == -1);
         }
     }
 
@@ -352,8 +375,9 @@ public class AIController {
             for(int j=0;j<4;j++) {
                 for(int p=0;p<8;p++) {
                     for(int q=0;q<8;q++) {
-                        if(chess[i][j][1]==1) {
+                        if(chess[i][j][1]==1 && chess[i][j][0]==color) {
                             if(checkDestination(i,j,p,q) && (i!=p || j!=q)) {
+                                System.out.printf("%d %d %d %d\n",i,j,p,q);
                                 return true;
                             }
                         }
