@@ -82,6 +82,7 @@ public class AIController {
                 if(chess[i][j][1] == 0) {
                     chess[i][j][1] = 1;
                     int val = Dfs(chess,1, a, 1000, false);
+                    System.out.println(val);
                     a=Math.max(a,val);
                     if(rev[0] < val) {
                         rev[0] = val;
@@ -102,6 +103,8 @@ public class AIController {
                                     swapChess(chess,i,j,m,n);
                                     chess[i][j][0]=-1;
                                     int val = Dfs(chess,1, a, 1000, false);
+                                    System.out.println(val);
+                                    //System.out.println(val);
                                     a=Math.max(a,val);
                                     chess[i][j][0] = -1;
                                     if(swa[0]<val) {
@@ -123,12 +126,13 @@ public class AIController {
 
             }
         }
-        if(rev[0]>=swa[0]) {
+        if(rev[0]>=swa[0] && ableToRev(chess)) {
             if(rev[0]==0) {
                 Random ran = new Random();
                 rev[1]= ran.nextInt(8);
                 rev[2]=ran.nextInt(4);
-                while(chess[rev[1]][rev[2]][0]==-1 || chess[rev[1]][rev[2]][1]==1 || chess[rev[1]][rev[2]][0]==color) {
+                while(chess[rev[1]][rev[2]][0]==-1 || chess[rev[1]][rev[2]][1]==1) {
+                    System.out.println(1);
                     rev[1]= ran.nextInt(8);
                     rev[2]=ran.nextInt(4);
                 }
@@ -136,12 +140,42 @@ public class AIController {
             return rev;
         }
         else {
+            if(!ableToRev(chess)) {
+                while(true) {
+                    //System.out.println(1);
+                    Random ran = new Random();
+                    swa[1]= ran.nextInt(8);
+                    swa[2]=ran.nextInt(4);
+                    while(chess[swa[1]][swa[2]][0]!=color) {
+                        swa[1]= ran.nextInt(8);
+                        swa[2]=ran.nextInt(4);
+                    }
+                    int check = 0;
+                    for(int i=0;i<8;i++) {
+                        for(int j=0;j<4;j++) {
+                            if(checkDestination(swa[1],swa[2],i,j)) {
+                                swa[3]=i;
+                                swa[4]=j;
+                                check=1;
+                                break;
+                            }
+                        }
+                        if(check == 1) {
+                            break;
+                        }
+                    }
+                    if(check==1) {
+                        break;
+                    }
+                }
+            }
             return swa;
         }
     }
 
     public int Dfs(int[][][] chess, int layer, int a, int b, boolean isAI) {
         if(layer == 3) {
+            System.out.println(scoreCount(chess));
             return scoreCount(chess);
         }
         if(isAI) {
@@ -201,10 +235,10 @@ public class AIController {
                         }
                     }
                     //移动棋子
-                    if(chess[i][j][1]==1){
+                    if(chess[i][j][1]==1 && chess[i][j][0]==1-color){
                         for(int m=0;m<8;m++){
                             for(int n=0;n<4;n++){
-                                if((m!=i || n!=j) && chess[i][j][0]!=color) {
+                                if((m!=i || n!=j)) {
                                     if(checkDestination(i,j,m,n)) {
                                         int col = chess[m][n][0];
                                         int re=chess[m][n][1];
@@ -236,7 +270,7 @@ public class AIController {
                 if(chess[i][j][0] == 1) {
                     scoreRed -= chess[i][j][3];
                 }
-                else {
+                else if(chess[i][j][0] == 0){
                     scoreBlack -= chess[i][j][3];
                 }
             }
@@ -274,8 +308,12 @@ public class AIController {
             }
             return cnt==1;
         }
+        else if(chess[x1][y1][2]==0) {
+            return ((chess[x2][y2][0]==-1)||((chess[x1][y1][2]>=chess[x2][y2][2] || chess[x2][y2][2] == 6) && chess[x1][y1][0]!=chess[x2][y2][0]))
+                    && Math.abs(x1-x2)+Math.abs(y1-y2)==1 && chess[x2][y2][1]==1;
+        }
         else {
-            return ((chess[x2][y2][0]==-1)||(chess[x1][y1][3]>=chess[x2][y2][3] && chess[x1][y1][0]!=chess[x2][y2][0]))
+            return ((chess[x2][y2][0]==-1)||(chess[x1][y1][2]>=chess[x2][y2][2] && chess[x1][y1][0]!=chess[x2][y2][0]))
                     && Math.abs(x1-x2)+Math.abs(y1-y2)==1 && chess[x2][y2][1]==1;
         }
     }
@@ -285,5 +323,16 @@ public class AIController {
         int[] t2=Arrays.copyOf(chess[x2][y2],4);
         chess[x1][y1] = Arrays.copyOf(t2,4);
         chess[x2][y2] = Arrays.copyOf(t1,4);
+    }
+
+    public boolean ableToRev(int[][][] chess) {
+        for(int i=0;i<8;i++) {
+            for(int j=0;j<4;j++) {
+                if(chess[i][j][1]!=1 && chess[i][j][0]!=-1) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }

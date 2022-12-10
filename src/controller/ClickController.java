@@ -288,7 +288,6 @@ public class ClickController {
         int[] q= ai.aiPlayer();
         int[] t=Arrays.copyOf(q,q.length);
         if(t.length==3) {
-            System.out.println(1);
             chessboard.getChessComponents()[t[1]][t[2]].setReversal(true);
             chessboard.getChessComponents()[t[1]][t[2]].repaint();
         }
