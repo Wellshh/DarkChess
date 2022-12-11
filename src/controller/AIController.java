@@ -58,7 +58,12 @@ public class AIController {
                 chess[i][j][2]=chessCom[i][j].getRank();
 
                 //存储棋子分数
-                chess[i][j][3] = chessCom[i][j].getScore();
+                if(chess[i][j][2]!=1) {
+                    chess[i][j][3] = chessCom[i][j].getScore();
+                }
+                else {
+                    chess[i][j][3] = chessCom[i][j].getScore() + 3;
+                }
             }
         }
 
@@ -126,7 +131,7 @@ public class AIController {
                         }
                     }
                 }
-                System.out.printf("%d %d\n",rev[0],swa[0]);
+                //System.out.printf("%d %d\n",rev[0],swa[0]);
 
             }
         }
@@ -205,7 +210,7 @@ public class AIController {
                     //翻棋子
                     if(chess[i][j][1] == 0) {
                         chess[i][j][1] = 1;
-                        a=Math.max(a,Dfs(chess,layer+1, t, b, false));
+                        a=Math.max(a,Dfs(chess,layer+1, a, b, false));
                         chess[i][j][1] = 0;
                         if(a>b) {
                             return a;
@@ -221,7 +226,7 @@ public class AIController {
                                         int re = chess[m][n][1];
                                         swapChess(chess,i,j,m,n);
                                         chess[i][j][0] = -1;
-                                        a=Math.max(a,Dfs(chess,layer+1, t, b, false));
+                                        a=Math.max(a,Dfs(chess,layer+1, a, b, false));
                                         chess[i][j][0]=col;
                                         chess[i][j][1]=re;
                                         swapChess(chess,m,n,i,j);
@@ -247,7 +252,7 @@ public class AIController {
                     //翻棋子
                     if(chess[i][j][1] == 0) {
                         chess[i][j][1] = 1;
-                        b=Math.min(b,Dfs(chess,layer+1, a, t, true));
+                        b=Math.min(b,Dfs(chess,layer+1, a, b, true));
                         chess[i][j][1] = 0;
                         if(a>b) {
                             return b;
@@ -263,7 +268,7 @@ public class AIController {
                                         int re=chess[m][n][1];
                                         swapChess(chess,i,j,m,n);
                                         chess[i][j][0] = -1;
-                                        b=Math.min(b,Dfs(chess,layer+1, a, t, true));
+                                        b=Math.min(b,Dfs(chess,layer+1, a, b, true));
                                         chess[i][j][0]=col;
                                         chess[i][j][1]=re;
                                         swapChess(chess,m,n,i,j);
@@ -325,7 +330,7 @@ public class AIController {
                     }
                 }
             }
-            return cnt==1;
+            return cnt==1 && chess[x2][y2][0]!=-1;
         }
         else if(chess[x1][y1][2]==0) {
             return ((chess[x2][y2][0]==-1)||((chess[x1][y1][2]>=chess[x2][y2][2] || chess[x2][y2][2] == 6) && chess[x1][y1][0]!=chess[x2][y2][0]))
