@@ -74,6 +74,8 @@ public class AIController {
     int[] swa = new int[5];
     public int[] aiPlayer() {
         int a = -1000,b;
+        rev[0]=-1000;
+        swa[0]=-1000;
         for(int i=0;i<8;i++) {
             for(int j=0;j<4;j++) {
                 if(chess[i][j][0] == -1) {
@@ -82,7 +84,7 @@ public class AIController {
                 //翻棋子
                 if(chess[i][j][1] == 0) {
                     chess[i][j][1] = 1;
-                    int val = Dfs(chess,1, a, 1000, false);
+                    int val = Dfs(chess,1, -1000, 1000, false);
                     a=Math.max(a,val);
                     if(rev[0] < val) {
                         rev[0] = val;
@@ -102,9 +104,9 @@ public class AIController {
                                     chess[m][n][1]=1;
                                     swapChess(chess,i,j,m,n);
                                     chess[i][j][0]=-1;
-                                    int val = Dfs(chess,1, a, 1000, false);
-                                    System.out.printf("%d %d %d %d\n",i,j,m,n);
-                                    System.out.printf("%d %d\n",swa[0],val);
+                                    int val = Dfs(chess,1, -1000, 1000, false);
+                                    //System.out.printf("%d %d %d %d\n",i,j,m,n);
+                                    //System.out.printf("%d %d\n",swa[0],val);
                                     //System.out.println(val);
                                     a=Math.max(a,val);
                                     chess[i][j][0] = -1;
@@ -124,54 +126,34 @@ public class AIController {
                         }
                     }
                 }
+                System.out.printf("%d %d\n",rev[0],swa[0]);
 
             }
         }
+        System.out.printf("%d %d %d\n",rev[0],rev[1],rev[2]);
+        System.out.printf("%d %d %d %d %d\n",swa[0],swa[1],swa[2],swa[3],swa[4]);
         if(rev[0]>swa[0]) {
+            System.out.println("rev");
             return rev;
         }
         else if(rev[0]<swa[0]) {
+            System.out.println("swa");
             return swa;
         }
         else {
             if(ableToMove(chess) && ableToRev(chess)) {
+                System.out.println("ran");
                 Random random = new Random();
                 int ch = random.nextInt(2);
                 if(ch==0) {
-                    while(true) {
-                        System.out.println(1);
-                        Random ran = new Random();
-                        swa[1]= ran.nextInt(9);
-                        swa[2]=ran.nextInt(5);
-                        while(chess[swa[1]][swa[2]][0]!=color || chess[swa[1]][swa[2]][1] == 0) {
-                            swa[1]= ran.nextInt(8);
-                            swa[2]=ran.nextInt(4);
-                        }
-                        for(int i=0;i<8;i++) {
-                            for(int j=0;j<4;j++) {
-                                if(checkDestination(swa[1],swa[2],i,j) && chess[swa[1]][swa[2]][0] != chess[i][j][0]) {
-                                    swa[3]=i;
-                                    swa[4]=j;
-                                    System.out.printf("%d %d %d %d\n",swa[1],swa[2],swa[3],swa[4]);
-                                    return swa;
-                                }
-                            }
-                        }
-                    }
+                    return swa;
                 }
                 else {
-                    Random ran = new Random();
-                    rev[1]= ran.nextInt(8);
-                    rev[2]=ran.nextInt(4);
-                    while(chess[rev[1]][rev[2]][0]==-1 || chess[rev[1]][rev[2]][1]==1) {
-                        //System.out.println(1);
-                        rev[1]= ran.nextInt(8);
-                        rev[2]=ran.nextInt(4);
-                    }
                     return rev;
                 }
             }
             else if(ableToMove(chess)) {
+                System.out.println("ran swa");
                 while(true) {
                     System.out.println(1);
                     Random ran = new Random();
@@ -194,6 +176,7 @@ public class AIController {
                 }
             }
             else {
+                System.out.println("ran rev");
                 Random ran = new Random();
                 rev[1]= ran.nextInt(8);
                 rev[2]=ran.nextInt(4);
@@ -213,6 +196,7 @@ public class AIController {
             return scoreCount(chess);
         }
         if(isAI) {
+            int t=a;
             for(int i=0;i<8;i++) {
                 for(int j=0;j<4;j++) {
                     if(chess[i][j][0] == -1) {
@@ -221,7 +205,7 @@ public class AIController {
                     //翻棋子
                     if(chess[i][j][1] == 0) {
                         chess[i][j][1] = 1;
-                        a=Math.max(a,Dfs(chess,layer+1, a, b, false));
+                        a=Math.max(a,Dfs(chess,layer+1, t, b, false));
                         chess[i][j][1] = 0;
                         if(a>b) {
                             return a;
@@ -237,7 +221,7 @@ public class AIController {
                                         int re = chess[m][n][1];
                                         swapChess(chess,i,j,m,n);
                                         chess[i][j][0] = -1;
-                                        a=Math.max(a,Dfs(chess,layer+1, a, b, false));
+                                        a=Math.max(a,Dfs(chess,layer+1, t, b, false));
                                         chess[i][j][0]=col;
                                         chess[i][j][1]=re;
                                         swapChess(chess,m,n,i,j);
@@ -254,6 +238,7 @@ public class AIController {
             return a;
         }
         else {
+            int t=b;
             for(int i=0;i<8;i++) {
                 for(int j=0;j<4;j++) {
                     if(chess[i][j][0] == -1) {
@@ -262,7 +247,7 @@ public class AIController {
                     //翻棋子
                     if(chess[i][j][1] == 0) {
                         chess[i][j][1] = 1;
-                        b=Math.min(b,Dfs(chess,layer+1, a, b, true));
+                        b=Math.min(b,Dfs(chess,layer+1, a, t, true));
                         chess[i][j][1] = 0;
                         if(a>b) {
                             return b;
@@ -278,7 +263,7 @@ public class AIController {
                                         int re=chess[m][n][1];
                                         swapChess(chess,i,j,m,n);
                                         chess[i][j][0] = -1;
-                                        b=Math.min(b,Dfs(chess,layer+1, a, b, true));
+                                        b=Math.min(b,Dfs(chess,layer+1, a, t, true));
                                         chess[i][j][0]=col;
                                         chess[i][j][1]=re;
                                         swapChess(chess,m,n,i,j);
@@ -377,7 +362,7 @@ public class AIController {
                     for(int q=0;q<8;q++) {
                         if(chess[i][j][1]==1 && chess[i][j][0]==color) {
                             if(checkDestination(i,j,p,q) && (i!=p || j!=q)) {
-                                System.out.printf("%d %d %d %d\n",i,j,p,q);
+                                //System.out.printf("%d %d %d %d\n",i,j,p,q);
                                 return true;
                             }
                         }
