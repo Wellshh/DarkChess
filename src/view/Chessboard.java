@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.Random;
 import java.util.Stack;
 
-
 /**
  * 这个类表示棋盘组建，其包含：
  * SquareComponent[][]: 4*8个方块格子组件
@@ -27,14 +26,13 @@ public class Chessboard extends JComponent {
     //todo: you can change the initial player
     private ChessColor currentColor = ChessColor.BLACK;
 
-    private ChessGameFrame chessGameFrame;
 
     //all chessComponents in this chessboard are shared only one model controller
     public final ClickController clickController = new ClickController(this);
     private final int CHESS_SIZE;
 
-    public Chessboard(int width, int height, ChessGameFrame chessGameFrame) {
-        this.chessGameFrame = chessGameFrame;
+
+    public Chessboard(int width, int height) {
         setLayout(null); // Use absolute layout.
         setSize(width + 2, height - 1);
         CHESS_SIZE = (height - 6) / 8;
@@ -42,7 +40,6 @@ public class Chessboard extends JComponent {
         System.out.printf("chessboard [%d * %d], chess size = %d\n", width, height, CHESS_SIZE);
 
         initAllChessOnBoard();//Test
-
     }
 
     public SquareComponent[][] getChessComponents() {
@@ -84,15 +81,11 @@ public class Chessboard extends JComponent {
             else {
                 Player.changeScoreBlack( chess2.getScore() );
             }
-            FakeChessComponent chess3 = new FakeChessComponent("yi",chess2.getChessColor(),clickController,CHESS_SIZE);
-            chess3.setVisible(true);
-            chessGameFrame.redPanel.add(chess3);
-            JButton button = new JButton("01");
-            button.setLocation(0,0);
-            button.setSize(50,50);
-            chessGameFrame.redPanel.add(button);
-            chess3.setLocation(0,0);
-            chessGameFrame.redPanel.add(chess3);
+//            JButton button2 = new JButton();
+//            ChessGameFrame.blackPanel.add(button2);
+
+          FakeChessComponent chess3 = new FakeChessComponent("yi",chess2.getChessColor(),clickController,CHESS_SIZE);
+            ChessGameFrame.blackPanel.add(chess3);
             remove(chess2);
             add(chess2 = new EmptySlotComponent(chess2.getChessboardPoint(), chess2.getLocation(), clickController, CHESS_SIZE));//移除组件后把底下的格子的添上
         }
@@ -105,8 +98,6 @@ public class Chessboard extends JComponent {
         //只重新绘制chess1 chess2，其他不变
         chess1.repaint();
         chess2.repaint();
-
-        Player.checkWinner();
 
     }
 
@@ -359,7 +350,6 @@ public class Chessboard extends JComponent {
                 }
             }
         }
-
         repaint();
         ChessGameFrame.getLabelScoreRed().repaint();
         ChessGameFrame.getLabelScoreBlack().repaint();

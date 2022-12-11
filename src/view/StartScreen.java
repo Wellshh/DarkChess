@@ -33,7 +33,7 @@ public class StartScreen extends JFrame {
         button.setSize(240, 60);
         button.setFont(new Font("Rockwell", Font.BOLD, 20));
         button.addActionListener(e -> {
-            ChessGameFrame chessGameFrame = new ChessGameFrame(1000, 1000);
+            ChessGameFrame chessGameFrame = new ChessGameFrame(800, 800);
             chessGameFrame.setVisible(true);
 
 //            WinnerScreen winnerScreen = new WinnerScreen(360, 360);

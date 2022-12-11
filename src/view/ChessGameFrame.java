@@ -27,7 +27,7 @@ public class ChessGameFrame extends JFrame {
     private static JLabel labelTurn, labelTime, labelScoreRed, labelScoreBlack;
     JLabel cheatLabel = new JLabel(), AILabel = new JLabel();
     Chessboard chessboard;
-    public JPanel redPanel, blackPanel;
+    public static  JPanel redPanel, blackPanel;
 
     public JPanel getRedPanel() {
         return redPanel;
@@ -72,10 +72,10 @@ public class ChessGameFrame extends JFrame {
         blackPanel = new JPanel(new FlowLayout());
         redPanel.setBorder(BorderFactory.createBevelBorder(100,Color.RED,Color.BLUE));//给面板添加边框
         blackPanel.setSize(310, 900);
-        redPanel.setSize(300, 900);
+        redPanel.setSize(240, 900);
         blackPanel.setBorder(BorderFactory.createBevelBorder(100,Color.RED,Color.BLUE));
-        blackPanel.setLocation(WIDTH * 7 / 10-8, HEIGHT * 1 / 7-20);
-        redPanel.setLocation(0, HEIGHT/7-20);
+        blackPanel.setLocation(WIDTH *7 / 10, HEIGHT * 1 / 7);
+        redPanel.setLocation(2, HEIGHT/7);
         getContentPane().add(redPanel);
         getContentPane().add(blackPanel);
     }
@@ -84,10 +84,10 @@ public class ChessGameFrame extends JFrame {
      * 在游戏窗体中添加棋盘
      */
     private void addChessboard() {
-        chessboard = new Chessboard(CHESSBOARD_SIZE / 2, CHESSBOARD_SIZE, this);
+        chessboard = new Chessboard(CHESSBOARD_SIZE / 2, CHESSBOARD_SIZE);
         chessboard.setOpaque(true);
         gameController = new GameController(chessboard);
-        chessboard.setLocation(HEIGHT / 4 + 40, HEIGHT / 10);
+        chessboard.setLocation(HEIGHT / 4 + 40, HEIGHT / 10+40);
         add(chessboard);
     }
 
@@ -109,7 +109,7 @@ public class ChessGameFrame extends JFrame {
         add(labelScoreRed);
 
         labelScoreBlack = new JLabel("BLACK's score: 0");
-        labelScoreBlack.setLocation(WIDTH - 200, HEIGHT / 50 + 55);
+        labelScoreBlack.setLocation(WIDTH - 200, HEIGHT / 50 + 57);
         labelScoreBlack.setSize(200, 60);
         labelScoreBlack.setFont(new Font("Rockwell", Font.ITALIC, 20));
         //labelScoreBlack.setOpaque(false);
