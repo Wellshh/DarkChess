@@ -389,6 +389,5 @@ public class Chessboard extends JComponent {
             color1 = Color.RED;
         }
         ChessGameFrame.getLabelTurn().setForeground(color1);
-
     }
 }

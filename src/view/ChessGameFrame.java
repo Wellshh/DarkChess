@@ -1,6 +1,8 @@
 package view;
 
 import chessComponent.FakeChessComponent;
+import chessComponent.SquareComponent;
+import controller.AIController;
 import controller.ClickController;
 import controller.GameController;
 import model.ChessColor;
@@ -208,6 +210,7 @@ public class ChessGameFrame extends JFrame {
             System.out.println("Click load");
             String path = JOptionPane.showInputDialog(this, "Input Path here");
             gameController.loadGameFromFile(path);
+            chessboard.stack.pop();
         });
     }
 
