@@ -180,7 +180,7 @@ public class ChessGameFrame extends JFrame {
         button.setFont(new Font("Rockwell", Font.BOLD, 15));
         button.addActionListener(e -> {
             this.dispose();
-            ChessGameFrame chessGameFrame = new ChessGameFrame(1000, 1000);
+            ChessGameFrame chessGameFrame = new ChessGameFrame(800, 800);
             chessGameFrame.setVisible(true);
             Player.changeScoreBlack(-Player.scoreBlack);
             Player.changeScoreRed(-Player.scoreRed);
@@ -261,6 +261,7 @@ public class ChessGameFrame extends JFrame {
                         if (chessboard.getChessComponents()[i][j].getCheckCheat() == 1) {
                             chessboard.getChessComponents()[i][j].setCheckCheat(0);
                             chessboard.getChessComponents()[i][j].setReversal(false);
+                            chessboard.getChessComponents()[i][j].setReversal("0");
                             chessboard.getChessComponents()[i][j].repaint();
                         }
                     }
