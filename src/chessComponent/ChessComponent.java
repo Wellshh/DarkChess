@@ -12,7 +12,7 @@ import java.awt.*;
 public class ChessComponent extends SquareComponent{
     protected String name;// 棋子名字：例如 兵，卒，士等
 
-    protected ChessComponent(ChessboardPoint chessboardPoint, Point location, ChessColor chessColor, ClickController clickController, int size) {
+    public ChessComponent(ChessboardPoint chessboardPoint, Point location, ChessColor chessColor, ClickController clickController, int size) {
         super(chessboardPoint, location, chessColor, clickController, size);
     }
     protected ChessComponent(ChessboardPoint chessboardPoint,int x,int y ,ChessColor chessColor,ClickController clickController, int size){

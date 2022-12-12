@@ -71,7 +71,7 @@ public class ChessGameFrame extends JFrame {
         redPanel = new JPanel(new FlowLayout());
         blackPanel = new JPanel(new FlowLayout());
         redPanel.setBorder(BorderFactory.createBevelBorder(100,Color.RED,Color.BLUE));//给面板添加边框
-        blackPanel.setSize(310, 900);
+        blackPanel.setSize(230, 900);
         redPanel.setSize(240, 900);
         blackPanel.setBorder(BorderFactory.createBevelBorder(100,Color.RED,Color.BLUE));
         blackPanel.setLocation(WIDTH *7 / 10, HEIGHT * 1 / 7);
