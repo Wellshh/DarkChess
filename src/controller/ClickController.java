@@ -35,10 +35,10 @@ public class ClickController {
     public void onClick(SquareComponent squareComponent) {//一次操作
         cnt++;
         if (!(squareComponent.getChessColor() == ChessColor.BLACK) && cnt == 1) {
-//            List<String> list;
-//            list = GameController.convertToList(chessboard);
-//            chessboard.stack.push(list);
-//            System.out.println(Arrays.toString(list.toArray()));
+            List<String> list;
+            list = GameController.convertToList(chessboard);
+            chessboard.stack.push(list);
+            System.out.println(Arrays.toString(list.toArray()));
             chessboard.setCurrentColor(chessboard.getCurrentColor() == ChessColor.BLACK ? ChessColor.RED : ChessColor.BLACK);
             ChessGameFrame.getLabelTurn().setText(String.format("%s's TURN", chessboard.getCurrentColor().getName()));
             Color color;

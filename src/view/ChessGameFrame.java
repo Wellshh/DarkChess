@@ -182,12 +182,12 @@ public class ChessGameFrame extends JFrame {
             chessGameFrame.setVisible(true);
             Player.changeScoreBlack(-Player.scoreBlack);
             Player.changeScoreRed(-Player.scoreRed);
+            ClickController.cnt = 0;
+            labelTurn.setText("");
 //            remove(chessboard);
 //            repaint();
 //            Player.changeScoreBlack(-Player.scoreBlack);
 //            Player.changeScoreRed(-Player.scoreRed);
-//            labelTurn.setText("");
-//            ClickController.cnt = 0;
 //            addChessboard();
         });
         add(button);

@@ -376,12 +376,21 @@ public class Chessboard extends JComponent {
         }
 
         int scoreRed = Integer.parseInt(chessData.get(9));
-        Player.changeScoreRed(scoreRed);
+        Player.changeScoreRed(-Player.scoreRed+scoreRed);
 
         int scoreBlack = Integer.parseInt(chessData.get(10));
-        Player.changeScoreBlack(scoreBlack);
+        Player.changeScoreBlack(-Player.scoreBlack+scoreBlack);
 
         ClickController.cnt = Integer.parseInt(chessData.get(11));
+
+        Color color1;
+        if(currentColor == ChessColor.BLACK) {
+            color1 = Color.black;
+        }
+        else {
+            color1 = Color.RED;
+        }
+        ChessGameFrame.getLabelTurn().setForeground(color1);
 
     }
 }

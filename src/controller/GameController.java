@@ -78,6 +78,7 @@ public class GameController {
         List<String> temp = new ArrayList<>();
         List<String> lines = new ArrayList<>();
         StringBuilder sb = new StringBuilder();
+        chessboard.stack.push(convertToList(chessboard));
         Stack<List<String>> stack;
         stack = stackCopy(chessboard.stack);
         while(!stack.empty()) {
