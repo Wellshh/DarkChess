@@ -318,10 +318,7 @@ public class ClickController {
             });
             t.start();
         }
-
-
-
-
+        Player.checkWinner();
 
     }
 }

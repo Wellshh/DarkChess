@@ -1,12 +1,14 @@
 package view;
 
 import chessComponent.*;
+import controller.AIController;
 import controller.GameController;
 import model.*;
 import controller.ClickController;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.Stack;
@@ -75,6 +77,7 @@ public class Chessboard extends JComponent {
     public void swapChessComponents(SquareComponent chess1, SquareComponent chess2) {
         // Note that chess1 has higher priority, 'destroys' chess2 if exists.
         FakeChessComponent chess3 = null;
+        int check = 0;
         if (!(chess2 instanceof EmptySlotComponent)) {
             if (chess2.getChessColor() == ChessColor.BLACK) {
                 Player.changeScoreRed(chess2.getScore());
@@ -86,6 +89,7 @@ public class Chessboard extends JComponent {
 
             chess3 = new FakeChessComponent("yi", chess2.getChessColor(), clickController, CHESS_SIZE);
             chess3.setReversal(true);
+            check = 1;
 //            chess3.setLocation(700,700);
             ChessGameFrame.blackPanel.add(chess3);
             System.out.println(chess3.getLocation());
@@ -105,8 +109,9 @@ public class Chessboard extends JComponent {
         //只重新绘制chess1 chess2，其他不变
         chess1.repaint();
         chess2.repaint();
-        chess3.repaint();
-
+        if(check ==1) {
+            chess3.repaint();
+        }
     }
 
 
@@ -272,6 +277,16 @@ public class Chessboard extends JComponent {
      * @param chessData
      */
     public void loadGame(List<String> chessData) {
+
+//        Thread t = new Thread(() -> {
+//            try {
+//                Thread.sleep(1000); //1000 milliseconds
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//            // your code after delay here
+//        });
+//        t.start();
 
         chessData.forEach(System.out::println);
         clickController.setFirst(null);
