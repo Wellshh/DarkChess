@@ -33,19 +33,39 @@ public class GameController {
     public List<String> loadGameFromFile(String path) {
         try {
             List<String> chessData = Files.readAllLines(Path.of(path));
-            int m=0,n=0;
             for(int i=0;i<chessData.size();i++) {
-                if(chessData.get(i).equals("change")) {
-                    List<String> chessDa = new ArrayList<>();
-                    n = i - 1;
-                    for (int j = m; j <= n; j++) {
-                        chessDa.add(chessData.get(j));
+                List<String> line = new ArrayList<>();
+                String s= chessData.get(i);
+                s=s.replace(" ","");
+                s=s.replace("[","");
+                s=s.replace("]","");
+                System.out.println(s);
+                String[] data = s.split(",");
+                int cnt=0;
+                for(int m=0;m<8;m++) {
+                    StringBuilder sb = new StringBuilder();
+                    for(int n=0;n<4;n++) {
+                        sb.append(data[cnt]).append(",");
+                        cnt++;
                     }
-                    chessDa.add("change");
-                    m = i + 1;
-                    chessboard.loadGame(chessDa);
-                    chessboard.stack.push(chessDa);
+                    sb.setLength(sb.length()-1);
+                    line.add(sb.toString());
                 }
+                line.add(data[32]);
+                line.add(data[33]);
+                line.add(data[34]);
+                line.add(data[35]);
+                chessboard.loadGame(line);
+                chessboard.stack.push(line);
+//                    List<String> chessDa = new ArrayList<>();
+//                    n = i - 1;
+//                    for (int j = m; j <= n; j++) {
+//                        chessDa.add(chessData.get(j));
+//                    }
+//                    chessDa.add("change");
+//                    m = i + 1;
+//                    chessboard.loadGame(chessDa);
+//                    chessboard.stack.push(chessDa);
             }
 
         } catch (IOException e) {
@@ -55,13 +75,17 @@ public class GameController {
     }
 
     public List<String> convertToList() {
+        List<String> temp = new ArrayList<>();
         List<String> lines = new ArrayList<>();
         StringBuilder sb = new StringBuilder();
         Stack<List<String>> stack;
         stack = stackCopy(chessboard.stack);
         while(!stack.empty()) {
             List<String> list = stack.pop();
-            lines.add(list.toString());
+            temp.add(list.toString());
+        }
+        for(int i=temp.size()-1;i>=0;i--) {
+            lines.add(temp.get(i));
         }
         return lines;
     }
@@ -96,7 +120,6 @@ public class GameController {
         lines.add(Integer.toString(Player.scoreRed));
         lines.add(Integer.toString(Player.scoreBlack));
         lines.add(Integer.toString(ClickController.cnt));
-        lines.add("change");
 
         return lines;
     }

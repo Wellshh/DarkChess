@@ -276,6 +276,7 @@ public class Chessboard extends JComponent {
 
         chessData.forEach(System.out::println);
         clickController.setFirst(null);
+
         for(int i=0;i<8;i++) {
             String[] chess = chessData.get(i).split(",");
             for(int j=0;j<4;j++) {
