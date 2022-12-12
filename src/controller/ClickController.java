@@ -35,7 +35,6 @@ public class ClickController {
     public void onClick(SquareComponent squareComponent) {//一次操作
         cnt++;
         if (!(squareComponent.getChessColor() == ChessColor.BLACK) && cnt == 1) {
-            System.out.println(cnt);
             List<String> list;
             list = GameController.convertToList(chessboard);
             chessboard.stack.push(list);
@@ -56,6 +55,7 @@ public class ClickController {
         //handleSecond是选中另一个棋子并进行“操作”，要求是其颜色要与第一次选中的棋子不相同（炮除外）
         if (first == null) {//判断该次点击是否为第一次点击，如果是第一次点击就把传入的棋子附到first
             if (handleFirst(squareComponent)) {//是否选择的是正确颜色的棋子
+                System.out.println(1);
                 squareComponent.setSelected(true);
                 first = squareComponent;
                 first.repaint();
