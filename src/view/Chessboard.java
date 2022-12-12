@@ -273,6 +273,7 @@ public class Chessboard extends JComponent {
      * @param chessData
      */
     public void loadGame(List<String> chessData) {
+
         chessData.forEach(System.out::println);
         clickController.setFirst(null);
         for(int i=0;i<8;i++) {
