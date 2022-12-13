@@ -3,8 +3,12 @@ package view;
 import controller.GameController;
 import model.Player;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.sql.SQLOutput;
 
 public class StartScreen extends JFrame {
@@ -13,8 +17,14 @@ public class StartScreen extends JFrame {
 
     private final int HEIGHT; //开始界面高度
 
+    {
+        BufferedImage image = ImageIO.read(new File("C:\\Users\\Wells\\IdeaProjects\\DarkChess\\src\\新建文件夹\\splash_big_logo.png"));
+//        ImageIO.write(image,"png",<)
 
-    public StartScreen( int width, int height) {
+    }
+
+
+    public StartScreen(int width, int height) throws IOException {
         WIDTH = width;
         HEIGHT = height;
         setTitle("Start Screen");

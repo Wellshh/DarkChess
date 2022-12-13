@@ -73,6 +73,8 @@ public class ChessGameFrame extends JFrame {
         redPanel = new JPanel(new FlowLayout());
         blackPanel = new JPanel(new FlowLayout());
         redPanel.setBorder(BorderFactory.createBevelBorder(100,Color.RED,Color.BLUE));//给面板添加边框
+        blackPanel.setOpaque(true);
+        redPanel.setOpaque(true);
         blackPanel.setSize(230, 900);
         redPanel.setSize(240, 900);
         blackPanel.setBorder(BorderFactory.createBevelBorder(100,Color.RED,Color.BLUE));
@@ -99,7 +101,7 @@ public class ChessGameFrame extends JFrame {
     private void addLabel() {
         labelTurn = new JLabel();
         labelTurn.setLocation(WIDTH / 100000, HEIGHT / 100000);
-        labelTurn.setSize(200, 60);
+        labelTurn.setSize(1000, 60);
         labelTurn.setFont(new Font("Rockwell", Font.ITALIC, 30));
         add(labelTurn);
 
@@ -140,8 +142,8 @@ public class ChessGameFrame extends JFrame {
 
     private void addAIButton() {
         JButton button = new JButton("AI");
-        button.setLocation(600, 50);
-        button.setSize(180, 45);
+        button.setLocation(320, 50);
+        button.setSize(120, 45);
         button.setFont(new Font("Rockwell", Font.BOLD, 15));
         button.addActionListener(e -> {
             if (checkAI == 0) {
@@ -162,10 +164,10 @@ public class ChessGameFrame extends JFrame {
      */
 
     private void addStartButton() {
-        JButton button = new JButton("Start the game.");
+        JButton button = new JButton("START");
         button.addActionListener((e) -> JOptionPane.showMessageDialog(this, "Welcome, chess player!"));
         button.setLocation(WIDTH / 1000 + 200, HEIGHT / 10000);
-        button.setSize(180, 45);
+        button.setSize(120, 45);
         button.setFont(new Font("Rockwell", Font.BOLD, 15));
         add(button);
     }
@@ -174,9 +176,9 @@ public class ChessGameFrame extends JFrame {
      * 加入重新开始按钮
      */
     private void addRestartButton() {
-        JButton button = new JButton("Restart");
-        button.setLocation(WIDTH / 10000 + 400, HEIGHT / 100000);
-        button.setSize(180, 45);
+        JButton button = new JButton("RESTART");
+        button.setLocation(WIDTH / 10000 + 320, HEIGHT / 100000);
+        button.setSize(120, 45);
         button.setFont(new Font("Rockwell", Font.BOLD, 15));
         button.addActionListener(e -> {
             this.dispose();
@@ -199,9 +201,9 @@ public class ChessGameFrame extends JFrame {
      * 加入从外部导入按钮
      */
     private void addLoadButton() {
-        JButton button = new JButton("Load");
-        button.setLocation(WIDTH / 10000 + 600, HEIGHT / 10000);
-        button.setSize(180, 45);
+        JButton button = new JButton("LOAD");
+        button.setLocation(WIDTH / 10000 + 440, HEIGHT / 10000);
+        button.setSize(120, 45);
         button.setFont(new Font("Rockwell", Font.BOLD, 15));
         //button.setBackground(Color.LIGHT_GRAY);
         add(button);
@@ -218,9 +220,9 @@ public class ChessGameFrame extends JFrame {
      * 保存
      */
     private void addSaveButton() {
-        JButton button = new JButton("Save");
-        button.setLocation(WIDTH / 10000 + 800, HEIGHT / 10000);
-        button.setSize(180, 45);
+        JButton button = new JButton("SAVE");
+        button.setLocation(WIDTH / 10000 + 560, HEIGHT / 10000);
+        button.setSize(120, 45);
         button.setFont(new Font("Rockwell", Font.BOLD, 15));
         add(button);
 
@@ -239,9 +241,9 @@ public class ChessGameFrame extends JFrame {
     }
 
     private void addCheatButton() {
-        JButton button = new JButton("Cheating Mode");
-        button.setLocation(WIDTH / 10000 + 800, HEIGHT / 10000 + 50);
-        button.setSize(180, 45);
+        JButton button = new JButton("CHEAT");
+        button.setLocation(WIDTH / 10000 + 680, HEIGHT / 10000);
+        button.setSize(120, 45);
         button.setFont(new Font("Rockwell", Font.BOLD, 15));
         //button.setBackground(Color.LIGHT_GRAY);
         add(button);
@@ -271,9 +273,9 @@ public class ChessGameFrame extends JFrame {
     }
 
     private void addRegretButton() {
-        JButton button = new JButton("Regret");
-        button.setLocation(WIDTH / 10000 + 400, HEIGHT / 100000 + 50);
-        button.setSize(180, 45);
+        JButton button = new JButton("REGRET");
+        button.setLocation(WIDTH / 10000 + 200, HEIGHT / 100000 + 50);
+        button.setSize(120, 45);
         button.setFont(new Font("Rockwell", Font.BOLD, 15));
         add(button);
         button.addActionListener(e -> {

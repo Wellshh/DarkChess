@@ -24,6 +24,11 @@ public class FakeChessComponent extends SquareComponent{
         //绘制棋子文字
         g.setColor(this.getChessColor().getColor());
         g.setFont(CHESS_FONT);
-        g.drawString(this.name, this.getWidth() / 4, this.getHeight() * 2 / 3);
+        g.drawString(this.name, getWidth() / 4, getHeight() * 2 / 3);
+        g.drawString("this.name", 50, 50);
+    }
+    @Override
+    public Dimension getPreferredSize() {
+        return new Dimension(30, 30);
     }
 }
