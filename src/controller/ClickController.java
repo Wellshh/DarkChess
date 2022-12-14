@@ -248,7 +248,7 @@ public class ClickController {
             chessboard.stack.push(list);
             System.out.println(Arrays.toString(list.toArray()));
             chessboard.clickController.swapPlayer();
-
+            squareComponent.repaint();
             return false;
         }
         return squareComponent.getChessColor() == chessboard.getCurrentColor();

@@ -4,19 +4,21 @@ import controller.ClickController;
 import model.ChessColor;
 import model.ChessboardPoint;
 
+import javax.swing.*;
 import java.awt.*;
 
 /**
  * 表示棋盘上非空棋子的格子，是所有非空棋子的父类
  */
-public class ChessComponent extends SquareComponent{
+public class ChessComponent extends SquareComponent {
     protected String name;// 棋子名字：例如 兵，卒，士等
 
     public ChessComponent(ChessboardPoint chessboardPoint, Point location, ChessColor chessColor, ClickController clickController, int size) {
         super(chessboardPoint, location, chessColor, clickController, size);
     }
-    protected ChessComponent(ChessboardPoint chessboardPoint,int x,int y ,ChessColor chessColor,ClickController clickController, int size){
-        super(chessboardPoint,x,y,chessColor,clickController,size);
+
+    protected ChessComponent(ChessboardPoint chessboardPoint, int x, int y, ChessColor chessColor, ClickController clickController, int size) {
+        super(chessboardPoint, x, y, chessColor, clickController, size);
     }
 
     @Override
@@ -25,7 +27,7 @@ public class ChessComponent extends SquareComponent{
         //绘制棋子填充色
         g.setColor(Color.ORANGE);
         g.fillOval(spacingLength, spacingLength, this.getWidth() - 2 * spacingLength, this.getHeight() - 2 * spacingLength);
-       //绘制棋子边框
+        //绘制棋子边框
         g.setColor(Color.DARK_GRAY);
         g.drawOval(spacingLength, spacingLength, getWidth() - 2 * spacingLength, getHeight() - 2 * spacingLength);
 
@@ -52,4 +54,17 @@ public class ChessComponent extends SquareComponent{
             g2.drawOval(spacingLength, spacingLength, getWidth() - 2 * spacingLength, getHeight() - 2 * spacingLength);
         }
     }
+
+    @Override
+    void addlabel(String filename,JLabel label) {
+        ImageIcon bg = new ImageIcon(filename);
+        ImageIcon imageIcon = new ImageIcon(filename);
+        Image temp = imageIcon.getImage().getScaledInstance(this.getWidth(), this.getHeight(), imageIcon.getImage().SCALE_DEFAULT);
+        imageIcon = new ImageIcon(temp);
+        label.setIcon(imageIcon);
+        label.setVisible(true);
+        add(label);
+        label.setSize(this.getWidth(), this.getHeight());
+    }
 }
+//}

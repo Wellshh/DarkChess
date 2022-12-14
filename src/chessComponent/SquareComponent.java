@@ -18,6 +18,9 @@ import java.awt.event.MouseEvent;
  * 2. ChessComponent: 表示非空棋子
  */
 public abstract class SquareComponent extends JComponent {
+    JLabel chessPicture = new JLabel();
+    JLabel movePicture = new JLabel();
+    JLabel optionPicture = new JLabel();
     public String name;
 
     private static final Color squareColor = new Color(250, 180, 90);
@@ -226,7 +229,19 @@ public abstract class SquareComponent extends JComponent {
     protected void paintComponent(Graphics g) {
         super.paintComponents(g);
 //        System.out.printf("repaint chess [%d,%d]\n", chessboardPoint.getX(), chessboardPoint.getY());
+//        JLabel label = new JLabel();
+//        addlabel("C:\\Users\\Wells\\IdeaProjects\\DarkChess\\src\\assets\\b6ee3de5e13755cf90a336b316d5b4b3.jpeg",label);
         g.setColor(squareColor);
         g.fillRect(1, 1, this.getWidth() - 2, this.getHeight() - 2);
+    }
+    void addlabel(String filename,JLabel label){
+        ImageIcon bg = new ImageIcon(filename);
+        ImageIcon imageIcon = new ImageIcon(filename);
+        Image temp = imageIcon.getImage().getScaledInstance(this.getWidth()+10,this.getHeight()+10,imageIcon.getImage().SCALE_DEFAULT);
+        imageIcon = new ImageIcon(temp);
+         label = new JLabel(imageIcon);
+        label.setVisible(true);
+        add(label);
+        label.setSize(this.getWidth(),this.getHeight());
     }
 }

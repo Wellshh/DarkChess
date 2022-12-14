@@ -17,13 +17,10 @@ public class StartScreen extends JFrame {
 
     private final int HEIGHT; //开始界面高度
 
-    {
-        BufferedImage image = ImageIO.read(new File("C:\\Users\\Wells\\IdeaProjects\\DarkChess\\src\\新建文件夹\\splash_big_logo.png"));
-//        ImageIO.write(image,"png",<)
-
-    }
 
 
+
+    //    JPanel panel = (JPanel) this.getContentPane();
     public StartScreen(int width, int height) throws IOException {
         WIDTH = width;
         HEIGHT = height;
@@ -35,6 +32,20 @@ public class StartScreen extends JFrame {
         setLayout(null);
 
         addStartButton();
+//        this.repaint();
+//        this.setContentPane(panel);
+//        MyCanvas canvas = new MyCanvas(ImageIO.read(new File("C:\\Users\\Wells\\IdeaProjects\\DarkChess\\src\\新建文件夹\\splash_big_logo.png")));
+//        add(canvas);
+//        ImageIcon bg = new ImageIcon("C:\\Users\\Wells\\IdeaProjects\\DarkChess\\src\\新建文件夹\\splash_big_logo.png");
+//        Image image = bg.getImage();
+//        Image smallerimage = image.getScaledInstance(720,720,Image.SCALE_SMOOTH);
+//        ImageIcon smallericon = new ImageIcon(smallerimage);
+//        JLabel label = new JLabel(smallericon);
+//        add(label);
+//        label.setText("yi");
+//        label.setVisible(true);
+        addlabel();
+
     }
 
     private void addStartButton() {
@@ -42,6 +53,8 @@ public class StartScreen extends JFrame {
         button.setLocation(WIDTH / 2 - 120, HEIGHT / 2 - 30);
         button.setSize(240, 60);
         button.setFont(new Font("Rockwell", Font.BOLD, 20));
+        button.setOpaque(false);
+        button.setContentAreaFilled(false);
         button.addActionListener(e -> {
             ChessGameFrame chessGameFrame = new ChessGameFrame(800, 800);
             chessGameFrame.setVisible(true);
@@ -53,5 +66,38 @@ public class StartScreen extends JFrame {
         });
         add(button);
     }
+    private void addlabel(){
+        ImageIcon bg = new ImageIcon("C:\\Users\\Wells\\IdeaProjects\\DarkChess\\src\\新建文件夹\\splash_big_logo.png");
+        Image image = bg.getImage();
+        Image smallerimage = image.getScaledInstance(720,720,Image.SCALE_SMOOTH);
+        ImageIcon smallericon = new ImageIcon(smallerimage);
+        JLabel label = new JLabel(smallericon);
+        label.setText("yi");
+        label.setVisible(true);
+        add(label);
+        label.setSize(720,720);
+    }
 
+
+//    public class MyCanvas extends Canvas {
+//        Image image;
+//
+//        MyCanvas(Image image) {
+//            this.image = image;
+//        }
+//
+//        //重写paint方法
+//        @Override
+//        public void paint(Graphics g) {
+//            super.paint(g);
+//            //调用Graphics画笔的drawImage()方法开始画图。
+//            g.drawImage(image, 0, 0, WIDTH, HEIGHT, null);
+//        }
+//
+//        @Override
+//        public Dimension getPreferredSize() {
+//            return new Dimension(WIDTH, HEIGHT);
+//        }
+//
+//    }
 }
