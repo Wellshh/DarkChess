@@ -49,8 +49,7 @@ public class ChessGameFrame extends JFrame {
     public MinisterChessComponent BLACKMinisterChessComponent;
     public SoldierChessComponent REDSoldierChessComponent;
     public SoldierChessComponent BLACKSoldierChessComponent;
-    public static JNumber 红士,黑士,红炮,黑炮,红车,黑车,红帅,黑帅,红马,黑马,红相,黑相,红兵,黑兵;
-
+    public static JNumber 红士, 黑士, 红炮, 黑炮, 红车, 黑车, 红帅, 黑帅, 红马, 黑马, 红相, 黑相, 红兵, 黑兵;
 
 
     public ChessGameFrame(int width, int height) {
@@ -312,11 +311,9 @@ public class ChessGameFrame extends JFrame {
             int scoreRed = Integer.parseInt(list.get(9));
             Player.scoreRed = scoreRed;//因为scoreRed是静态变量，需要重置其值，不然会出现积分异常的问题
             labelScoreRed.setText(String.format("RED's score: %d", scoreRed));
-
             int scoreBlack = Integer.parseInt(list.get(10));
             Player.scoreBlack = scoreBlack;
             labelScoreBlack.setText(String.format("BLACK's score: %d", scoreBlack));
-
             ClickController.cnt = Integer.parseInt(list.get(11));
         });
     }
@@ -401,97 +398,176 @@ public class ChessGameFrame extends JFrame {
         REDGeneralChessComponent.setEnabled(false);
         add(REDGeneralChessComponent);
     }
-    public void addBLACKGeneralChessComponent(){
+
+    public void addBLACKGeneralChessComponent() {
         BLACKGeneralChessComponent = new GeneralChessComponent(ChessColor.BLACK);
         BLACKGeneralChessComponent.setReversal(true);
-        BLACKGeneralChessComponent.setLocation(580,235);
-        BLACKGeneralChessComponent.setSize(30,30);
+        BLACKGeneralChessComponent.setLocation(580, 235);
+        BLACKGeneralChessComponent.setSize(30, 30);
         BLACKGeneralChessComponent.setVisible(true);
         BLACKGeneralChessComponent.setEnabled(false);
         add(BLACKGeneralChessComponent);
     }
-    public void addREDHorseChessComponent(){
+
+    public void addREDHorseChessComponent() {
         REDHorseChessComponent = new HorseChessComponent(ChessColor.RED);
         REDHorseChessComponent.setReversal(true);
-        REDHorseChessComponent.setLocation(0,270);
-        REDHorseChessComponent.setSize(30,30);
+        REDHorseChessComponent.setLocation(0, 270);
+        REDHorseChessComponent.setSize(30, 30);
         REDHorseChessComponent.setVisible(true);
         REDHorseChessComponent.setEnabled(false);
         add(REDHorseChessComponent);
     }
-    public void addBLACKHorseChessComponent(){
+
+    public void addBLACKHorseChessComponent() {
         BLACKHorseChessComponent = new HorseChessComponent(ChessColor.BLACK);
         BLACKHorseChessComponent.setReversal(true);
-        BLACKHorseChessComponent.setLocation(580,275);
-        BLACKHorseChessComponent.setSize(30,30);
+        BLACKHorseChessComponent.setLocation(580, 275);
+        BLACKHorseChessComponent.setSize(30, 30);
         BLACKHorseChessComponent.setVisible(true);
         BLACKHorseChessComponent.setEnabled(false);
         add(BLACKHorseChessComponent);
     }
-    public void addREDMinisterChessComponent(){
+
+    public void addREDMinisterChessComponent() {
         REDMinisterChessComponent = new MinisterChessComponent(ChessColor.RED);
         REDMinisterChessComponent.setReversal(true);
-        REDMinisterChessComponent.setLocation(0,310);
-        REDMinisterChessComponent.setSize(30,30);
+        REDMinisterChessComponent.setLocation(0, 310);
+        REDMinisterChessComponent.setSize(30, 30);
         REDMinisterChessComponent.setVisible(true);
         REDMinisterChessComponent.setEnabled(false);
         add(REDMinisterChessComponent);
     }
-    public void addBLACKMinisterChessComponent(){
+
+    public void addBLACKMinisterChessComponent() {
         BLACKMinisterChessComponent = new MinisterChessComponent(ChessColor.BLACK);
         BLACKMinisterChessComponent.setReversal(true);
-        BLACKMinisterChessComponent.setLocation(580,315);
-        BLACKMinisterChessComponent.setSize(30,30);
+        BLACKMinisterChessComponent.setLocation(580, 315);
+        BLACKMinisterChessComponent.setSize(30, 30);
         BLACKMinisterChessComponent.setVisible(true);
         BLACKMinisterChessComponent.setEnabled(false);
         add(BLACKMinisterChessComponent);
     }
-    public void addREDSoldierChessComponent(){
+
+    public void addREDSoldierChessComponent() {
         REDSoldierChessComponent = new SoldierChessComponent(ChessColor.RED);
         REDSoldierChessComponent.setReversal(true);
-        REDSoldierChessComponent.setLocation(0,350);
-        REDSoldierChessComponent.setSize(30,30);
+        REDSoldierChessComponent.setLocation(0, 350);
+        REDSoldierChessComponent.setSize(30, 30);
         REDSoldierChessComponent.setVisible(true);
         REDSoldierChessComponent.setEnabled(false);
         add(REDSoldierChessComponent);
     }
-    public void addBLACKSoldierChessComponent(){
+
+    public void addBLACKSoldierChessComponent() {
         BLACKSoldierChessComponent = new SoldierChessComponent(ChessColor.BLACK);
         BLACKSoldierChessComponent.setReversal(true);
-        BLACKSoldierChessComponent.setLocation(580,355);
-        BLACKSoldierChessComponent.setSize(30,30);
+        BLACKSoldierChessComponent.setLocation(580, 355);
+        BLACKSoldierChessComponent.setSize(30, 30);
         BLACKSoldierChessComponent.setVisible(true);
         BLACKSoldierChessComponent.setEnabled(false);
         add(BLACKSoldierChessComponent);
     }
-    public void addJNumber(){
+
+    public void addJNumber() {
         红士 = new JNumber();
-        红士.setText(String.format("* %d",红士.num));
-        红士.setFont(new Font("宋体",Font.BOLD,20));
+        红士.setText(String.format("* %d", 红士.num));
+        红士.setFont(new Font("宋体", Font.BOLD, 20));
         红士.setForeground(Color.RED);
-        红士.setLocation(40,100);
-        红士.setSize(50,50);
+        红士.setLocation(40, 100);
+        红士.setSize(50, 50);
         add(红士);
         黑士 = new JNumber();
-        黑士.setText(String.format("* %d",黑士.num));
-        黑士.setFont(new Font("宋体",Font.BOLD,20));
+        黑士.setText(String.format("* %d", 黑士.num));
+        黑士.setFont(new Font("宋体", Font.BOLD, 20));
         黑士.setForeground(Color.BLACK);
-        黑士.setLocation(620,105);
-        黑士.setSize(50,50);
+        黑士.setLocation(620, 105);
+        黑士.setSize(50, 50);
         add(黑士);
         红炮 = new JNumber();
-        红炮.setText(String.format("* %d",红炮.num));
-        红炮.setFont(new Font("宋体",Font.BOLD,20));
+        红炮.setText(String.format("* %d", 红炮.num));
+        红炮.setFont(new Font("宋体", Font.BOLD, 20));
         红炮.setForeground(Color.RED);
-        红炮.setLocation(40,140);
-        红炮.setSize(50,50);
+        红炮.setLocation(40, 140);
+        红炮.setSize(50, 50);
         add(红炮);
         黑炮 = new JNumber();
-        黑炮.setText(String.format("* %d",黑炮.num));
-        黑炮.setFont(new Font("宋体",Font.BOLD,20));
+        黑炮.setText(String.format("* %d", 黑炮.num));
+        黑炮.setFont(new Font("宋体", Font.BOLD, 20));
         黑炮.setForeground(Color.BLACK);
-        黑炮.setLocation(620,145);
-        黑炮.setSize(50,50);
+        黑炮.setLocation(620, 145);
+        黑炮.setSize(50, 50);
         add(黑炮);
+        红车 = new JNumber();
+        红车.setText(String.format("* %d", 红车.num));
+        红车.setFont(new Font("宋体", Font.BOLD, 20));
+        红车.setForeground(Color.RED);
+        红车.setLocation(40, 180);
+        红车.setSize(50, 50);
+        add(红车);
+        黑车 = new JNumber();
+        黑车.setText(String.format("* %d", 黑车.num));
+        黑车.setFont(new Font("宋体", Font.BOLD, 20));
+        黑车.setForeground(Color.BLACK);
+        黑车.setLocation(620, 185);
+        黑车.setSize(50, 50);
+        add(黑车);
+        红帅 = new JNumber();
+        红帅.setText(String.format("* %d", 红帅.num));
+        红帅.setFont(new Font("宋体", Font.BOLD, 20));
+        红帅.setForeground(Color.RED);
+        红帅.setLocation(40, 220);
+        红帅.setSize(50, 50);
+        add(红帅);
+        黑帅 = new JNumber();
+        黑帅.setText(String.format("* %d", 黑帅.num));
+        黑帅.setFont(new Font("宋体", Font.BOLD, 20));
+        黑帅.setForeground(Color.BLACK);
+        黑帅.setLocation(620, 225);
+        黑帅.setSize(50, 50);
+        add(黑帅);
+        红马 = new JNumber();
+        红马.setText(String.format("* %d", 红马.num));
+        红马.setFont(new Font("宋体", Font.BOLD, 20));
+        红马.setForeground(Color.RED);
+        红马.setLocation(40, 260);
+        红马.setSize(50, 50);
+        add(红马);
+        黑马 = new JNumber();
+        黑马.setText(String.format("* %d", 黑马.num));
+        黑马.setFont(new Font("宋体", Font.BOLD, 20));
+        黑马.setForeground(Color.BLACK);
+        黑马.setLocation(620, 265);
+        黑马.setSize(50, 50);
+        add(黑马);
+        红相 = new JNumber();
+        红相.setText(String.format("* %d", 红相.num));
+        红相.setFont(new Font("宋体", Font.BOLD, 20));
+        红相.setForeground(Color.RED);
+        红相.setLocation(40, 300);
+        红相.setSize(50, 50);
+        add(红相);
+        黑相 = new JNumber();
+        黑相.setText(String.format("* %d", 黑相.num));
+        黑相.setFont(new Font("宋体", Font.BOLD, 20));
+        黑相.setForeground(Color.BLACK);
+        黑相.setLocation(620, 305);
+        黑相.setSize(50, 50);
+        add(黑相);
+        红兵 = new JNumber();
+        红兵.setText(String.format("* %d", 红兵.num));
+        红兵.setFont(new Font("宋体", Font.BOLD, 20));
+        红兵.setForeground(Color.RED);
+        红兵.setLocation(40, 340);
+        红兵.setSize(50, 50);
+        add(红兵);
+        黑兵 = new JNumber();
+        黑兵.setText(String.format("* %d", 黑兵.num));
+        黑兵.setFont(new Font("宋体", Font.BOLD, 20));
+        黑兵.setForeground(Color.BLACK);
+        黑兵.setLocation(620, 345);
+        黑兵.setSize(50, 50);
+        add(黑兵);
     }
+
 }
