@@ -24,14 +24,13 @@ public class EmptySlotComponent extends SquareComponent {
 
     @Override
     protected void paintComponent(Graphics g) {
-
-        super.paintComponent(g);
-
-        if (ableToMove) {
-            g.setColor(Color.BLUE);
-            Graphics2D g2 = (Graphics2D) g;
-            g2.setStroke(new BasicStroke(4f));
-            g2.drawOval(spacingLength, spacingLength, getWidth() - 2 * spacingLength, getHeight() - 2 * spacingLength);
+//        super.paintComponent(g);
+        if(ableToMove){
+            addlabel("C:\\Users\\Wells\\IdeaProjects\\DarkChess\\src\\assets\\rect_blue.png",optionPicture);
+            optionPicture.setVisible(true);
+        }
+        else {
+            optionPicture.setVisible(false);
         }
     }
 

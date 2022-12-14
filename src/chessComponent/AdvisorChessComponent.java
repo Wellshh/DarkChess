@@ -1,6 +1,7 @@
 package chessComponent;
 
 import controller.ClickController;
+import controller.ClickControllerCheat;
 import model.ChessColor;
 import model.ChessboardPoint;
 
@@ -25,9 +26,14 @@ public class AdvisorChessComponent extends ChessComponent {
             code = "15";
         }
     }
+
+    public AdvisorChessComponent(ChessColor chessColor) {
+        super(chessColor);
+    }
+
     @Override
     public void paintComponent(Graphics g) {
-        super.paintComponent(g);
+//        super.paintComponent(g);
         if (isReversal()) {
             this.reversal = "1";
             if (this.getChessColor() == ChessColor.BLACK) {

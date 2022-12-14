@@ -76,9 +76,9 @@ public abstract class SquareComponent extends JComponent {
     /**
      * handle click event
      */
-    private final ClickController clickController;
+    private  ClickController clickController = null;
 
-    private final ClickControllerCheat clickControllerCheat;
+    private  ClickControllerCheat clickControllerCheat = null;
     protected SquareComponent(String name,ChessColor chessColor,ClickController clickController,int size){
         this.clickController = clickController;
         clickControllerCheat = new ClickControllerCheat(clickController.getChessboard());
@@ -99,18 +99,9 @@ public abstract class SquareComponent extends JComponent {
         this.isReversal = false;
         clickControllerCheat = new ClickControllerCheat(clickController.getChessboard());
     }
-    protected SquareComponent(ChessboardPoint chessboardPoint,int x,int y ,ChessColor chessColor,ClickController clickController, int size){
-        enableEvents(AWTEvent.MOUSE_EVENT_MASK);
-        //鼠标触发事件
-        setLocation(x + 700,y);
-        setSize(size, size);
-        this.chessboardPoint = chessboardPoint;
+    public SquareComponent(ChessColor chessColor){
         this.chessColor = chessColor;
-        this.selected = false;
-        this.clickController = clickController;
-        this.isReversal = false;
-        clickControllerCheat = new ClickControllerCheat(clickController.getChessboard());    }//添加一个新的构造器方便后续吃掉棋子后在棋盘两侧添加棋子
-
+    }
     public boolean isReversal() {
         return isReversal;
     }
@@ -239,7 +230,7 @@ public abstract class SquareComponent extends JComponent {
         ImageIcon imageIcon = new ImageIcon(filename);
         Image temp = imageIcon.getImage().getScaledInstance(this.getWidth()+10,this.getHeight()+10,imageIcon.getImage().SCALE_DEFAULT);
         imageIcon = new ImageIcon(temp);
-         label = new JLabel(imageIcon);
+        label.setIcon(imageIcon);
         label.setVisible(true);
         add(label);
         label.setSize(this.getWidth(),this.getHeight());

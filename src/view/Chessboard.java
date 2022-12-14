@@ -84,28 +84,25 @@ public class Chessboard extends JComponent {
             } else {
                 Player.changeScoreBlack(chess2.getScore());
             }
-//            JButton button2 = new JButton();
-//            ChessGameFrame.blackPanel.add(button2);
-
-            chess3 = new FakeChessComponent("yi", chess2.getChessColor(), clickController, CHESS_SIZE);
-            chess3.setReversal(true);
-            check = 1;
-//            chess3.setLocation(700,700);
-            ChessGameFrame.blackPanel.add(chess3);
-            System.out.println(chess3.getLocation());
-            System.out.println(chess2.getLocation());
-            SquareComponent chess4 = chess2;
-            ChessGameFrame.blackPanel.add(chess4);
-            chess3.repaint();
+//            chess3 = new FakeChessComponent("yi", chess2.getChessColor(), clickController, CHESS_SIZE);
+//            chess3.setReversal(true);
+//            check = 1;
+////            chess3.setLocation(700,700);
+//            ChessGameFrame.blackPanel.add(chess3);
+//            System.out.println(chess3.getLocation());
+//            System.out.println(chess2.getLocation());
+//            SquareComponent chess4 = chess2;
+//            ChessGameFrame.blackPanel.add(chess4);
+//            chess3.repaint();
             remove(chess2);
             add(chess2 = new EmptySlotComponent(chess2.getChessboardPoint(), chess2.getLocation(), clickController, CHESS_SIZE));//移除组件后把底下的格子的添上
+
         }
         chess1.swapLocation(chess2);//把chess1组件换到chess2空格子的位置，数组上也换了位置
          int row1 = chess1.getChessboardPoint().getX(), col1 = chess1.getChessboardPoint().getY();
          squareComponents[row1][col1] = chess1;
         int row2 = chess2.getChessboardPoint().getX(), col2 = chess2.getChessboardPoint().getY();
         squareComponents[row2][col2] = chess2;//归零,重新把数组填好
-
         //只重新绘制chess1 chess2，其他不变
         chess1.repaint();
         chess2.repaint();

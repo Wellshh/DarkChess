@@ -24,6 +24,10 @@ public class CannonChessComponent extends ChessComponent {
         }
     }
 
+    public CannonChessComponent(ChessColor chessColor) {
+        super(chessColor);
+    }
+
     @Override
     public boolean canMoveTo(SquareComponent[][] chessboard, ChessboardPoint destination){
         SquareComponent destinationChess1 = chessboard[destination.getX()][destination.getY()];
@@ -80,7 +84,7 @@ public class CannonChessComponent extends ChessComponent {
     }
     @Override
     public void paintComponent(Graphics g) {
-        super.paintComponent(g);
+//        super.paintComponent(g);
         if (isReversal()) {
             this.reversal = "1";
             if (this.getChessColor() == ChessColor.BLACK) {

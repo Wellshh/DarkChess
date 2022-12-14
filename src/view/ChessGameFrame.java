@@ -1,7 +1,6 @@
 package view;
 
-import chessComponent.FakeChessComponent;
-import chessComponent.SquareComponent;
+import chessComponent.*;
 import controller.AIController;
 import controller.ClickController;
 import controller.GameController;
@@ -29,13 +28,28 @@ public class ChessGameFrame extends JFrame {
     private static JLabel labelTurn, labelTime, labelScoreRed, labelScoreBlack;
     JLabel cheatLabel = new JLabel(), AILabel = new JLabel();
     Chessboard chessboard;
-    public static  JPanel redPanel, blackPanel;
+    public static JPanel redPanel, blackPanel;
 
     public JPanel getRedPanel() {
         return redPanel;
     }
 
     private static int checkCheat = 0, checkAI = 0;
+    public AdvisorChessComponent REDAdvisorChessComponent;
+    public AdvisorChessComponent BLACKAdvisorChessComponent;
+    public CannonChessComponent REDCannonChessComponent;
+    public CannonChessComponent BLACKCannonCHessComponent;
+    public ChariotChessComponent REDChariotChessComponent;
+    public ChariotChessComponent BLACKChariotChessComponent;
+    public GeneralChessComponent REDGeneralChessComponent;
+    public GeneralChessComponent BLACKGeneralChessComponent;
+    public HorseChessComponent REDHorseChessComponent;
+    public HorseChessComponent BLACKHorseChessComponent;
+    public MinisterChessComponent REDMinisterChessComponent;
+    public MinisterChessComponent BLACKMinisterChessComponent;
+    public SoldierChessComponent REDSoldierChessComponent;
+    public SoldierChessComponent BLACKSoldierChessComponent;
+    public static JNumber 红士,黑士,红炮,黑炮,红车,黑车,红帅,黑帅,红马,黑马,红相,黑相,红兵,黑兵;
 
 
 
@@ -50,11 +64,8 @@ public class ChessGameFrame extends JFrame {
         getContentPane().setBackground(Color.WHITE);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE); //设置程序关闭按键，如果点击右上方的叉就游戏全部关闭了
         setLayout(null);
-
         addAIButton();
-
         addChessboard();
-
         addLabel();
         addStartButton();
         addLoadButton();
@@ -62,8 +73,23 @@ public class ChessGameFrame extends JFrame {
         addCheatButton();
         addCheatingLabel();
         addSaveButton();
-        addPanel();
+//        addPanel();
         addRegretButton();
+        addREDAdvisorChessComponent();
+        addBLACKAdvisorChessComponent();
+        addREDCannonChessComponent();
+        addBLACKCannonChessComponent();
+        addREDChariotChessComponent();
+        addBLACKChariotChessComponent();
+        addREDGeneralChessComponent();
+        addBLACKGeneralChessComponent();
+        addREDHorseChessComponent();
+        addBLACKHorseChessComponent();
+        addREDMinisterChessComponent();
+        addBLACKMinisterChessComponent();
+        addREDSoldierChessComponent();
+        addBLACKSoldierChessComponent();
+        addJNumber();
     }
 
     /**
@@ -72,14 +98,14 @@ public class ChessGameFrame extends JFrame {
     private void addPanel() {
         redPanel = new JPanel(new FlowLayout());
         blackPanel = new JPanel(new FlowLayout());
-        redPanel.setBorder(BorderFactory.createBevelBorder(100,Color.RED,Color.BLUE));//给面板添加边框
+        redPanel.setBorder(BorderFactory.createBevelBorder(100, Color.RED, Color.BLUE));//给面板添加边框
         blackPanel.setOpaque(true);
         redPanel.setOpaque(true);
         blackPanel.setSize(230, 900);
         redPanel.setSize(240, 900);
-        blackPanel.setBorder(BorderFactory.createBevelBorder(100,Color.RED,Color.BLUE));
-        blackPanel.setLocation(WIDTH *7 / 10, HEIGHT * 1 / 7);
-        redPanel.setLocation(2, HEIGHT/7);
+        blackPanel.setBorder(BorderFactory.createBevelBorder(100, Color.RED, Color.BLUE));
+        blackPanel.setLocation(WIDTH * 7 / 10, HEIGHT * 1 / 7);
+        redPanel.setLocation(2, HEIGHT / 7);
         getContentPane().add(redPanel);
         getContentPane().add(blackPanel);
     }
@@ -91,7 +117,7 @@ public class ChessGameFrame extends JFrame {
         chessboard = new Chessboard(CHESSBOARD_SIZE / 2, CHESSBOARD_SIZE);
         chessboard.setOpaque(true);
         gameController = new GameController(chessboard);
-        chessboard.setLocation(HEIGHT / 4 + 40, HEIGHT / 10+40);
+        chessboard.setLocation(HEIGHT / 4 + 25, HEIGHT / 10 + 40);
         add(chessboard);
     }
 
@@ -306,4 +332,166 @@ public class ChessGameFrame extends JFrame {
         add(cheatLabel);
     }
 
+    public void addREDAdvisorChessComponent() {
+        REDAdvisorChessComponent = new AdvisorChessComponent(ChessColor.RED);
+        REDAdvisorChessComponent.setReversal(true);
+        REDAdvisorChessComponent.setLocation(0, 110);
+        REDAdvisorChessComponent.setSize(30, 30);
+        REDAdvisorChessComponent.setVisible(true);
+        REDAdvisorChessComponent.setEnabled(false);
+        add(REDAdvisorChessComponent);
+    }
+
+    public void addBLACKAdvisorChessComponent() {
+        BLACKAdvisorChessComponent = new AdvisorChessComponent(ChessColor.BLACK);
+        BLACKAdvisorChessComponent.setReversal(true);
+        BLACKAdvisorChessComponent.setLocation(580, 115);
+        BLACKAdvisorChessComponent.setSize(30, 30);
+        BLACKAdvisorChessComponent.setVisible(true);
+        BLACKAdvisorChessComponent.setEnabled(false);
+        add(BLACKAdvisorChessComponent);
+    }
+
+    public void addREDCannonChessComponent() {
+        REDCannonChessComponent = new CannonChessComponent(ChessColor.RED);
+        REDCannonChessComponent.setReversal(true);
+        REDCannonChessComponent.setLocation(0, 150);
+        REDCannonChessComponent.setSize(30, 30);
+        REDCannonChessComponent.setVisible(true);
+        REDCannonChessComponent.setEnabled(false);
+        add(REDCannonChessComponent);
+    }
+
+    public void addBLACKCannonChessComponent() {
+        BLACKCannonCHessComponent = new CannonChessComponent(ChessColor.BLACK);
+        BLACKCannonCHessComponent.setReversal(true);
+        BLACKCannonCHessComponent.setLocation(580, 155);
+        BLACKCannonCHessComponent.setSize(30, 30);
+        BLACKCannonCHessComponent.setVisible(true);
+        BLACKCannonCHessComponent.setEnabled(false);
+        add(BLACKCannonCHessComponent);
+    }
+
+    public void addREDChariotChessComponent() {
+        REDChariotChessComponent = new ChariotChessComponent(ChessColor.RED);
+        REDChariotChessComponent.setReversal(true);
+        REDChariotChessComponent.setLocation(0, 190);
+        REDChariotChessComponent.setSize(30, 30);
+        REDChariotChessComponent.setVisible(true);
+        REDChariotChessComponent.setEnabled(false);
+        add(REDChariotChessComponent);
+    }
+
+    public void addBLACKChariotChessComponent() {
+        BLACKChariotChessComponent = new ChariotChessComponent(ChessColor.BLACK);
+        BLACKChariotChessComponent.setReversal(true);
+        BLACKChariotChessComponent.setLocation(580, 195);
+        BLACKChariotChessComponent.setSize(30, 30);
+        BLACKChariotChessComponent.setVisible(true);
+        BLACKChariotChessComponent.setEnabled(false);
+        add(BLACKChariotChessComponent);
+    }
+
+    public void addREDGeneralChessComponent() {
+        REDGeneralChessComponent = new GeneralChessComponent(ChessColor.RED);
+        REDGeneralChessComponent.setReversal(true);
+        REDGeneralChessComponent.setLocation(0, 230);
+        REDGeneralChessComponent.setSize(30, 30);
+        REDGeneralChessComponent.setVisible(true);
+        REDGeneralChessComponent.setEnabled(false);
+        add(REDGeneralChessComponent);
+    }
+    public void addBLACKGeneralChessComponent(){
+        BLACKGeneralChessComponent = new GeneralChessComponent(ChessColor.BLACK);
+        BLACKGeneralChessComponent.setReversal(true);
+        BLACKGeneralChessComponent.setLocation(580,235);
+        BLACKGeneralChessComponent.setSize(30,30);
+        BLACKGeneralChessComponent.setVisible(true);
+        BLACKGeneralChessComponent.setEnabled(false);
+        add(BLACKGeneralChessComponent);
+    }
+    public void addREDHorseChessComponent(){
+        REDHorseChessComponent = new HorseChessComponent(ChessColor.RED);
+        REDHorseChessComponent.setReversal(true);
+        REDHorseChessComponent.setLocation(0,270);
+        REDHorseChessComponent.setSize(30,30);
+        REDHorseChessComponent.setVisible(true);
+        REDHorseChessComponent.setEnabled(false);
+        add(REDHorseChessComponent);
+    }
+    public void addBLACKHorseChessComponent(){
+        BLACKHorseChessComponent = new HorseChessComponent(ChessColor.BLACK);
+        BLACKHorseChessComponent.setReversal(true);
+        BLACKHorseChessComponent.setLocation(580,275);
+        BLACKHorseChessComponent.setSize(30,30);
+        BLACKHorseChessComponent.setVisible(true);
+        BLACKHorseChessComponent.setEnabled(false);
+        add(BLACKHorseChessComponent);
+    }
+    public void addREDMinisterChessComponent(){
+        REDMinisterChessComponent = new MinisterChessComponent(ChessColor.RED);
+        REDMinisterChessComponent.setReversal(true);
+        REDMinisterChessComponent.setLocation(0,310);
+        REDMinisterChessComponent.setSize(30,30);
+        REDMinisterChessComponent.setVisible(true);
+        REDMinisterChessComponent.setEnabled(false);
+        add(REDMinisterChessComponent);
+    }
+    public void addBLACKMinisterChessComponent(){
+        BLACKMinisterChessComponent = new MinisterChessComponent(ChessColor.BLACK);
+        BLACKMinisterChessComponent.setReversal(true);
+        BLACKMinisterChessComponent.setLocation(580,315);
+        BLACKMinisterChessComponent.setSize(30,30);
+        BLACKMinisterChessComponent.setVisible(true);
+        BLACKMinisterChessComponent.setEnabled(false);
+        add(BLACKMinisterChessComponent);
+    }
+    public void addREDSoldierChessComponent(){
+        REDSoldierChessComponent = new SoldierChessComponent(ChessColor.RED);
+        REDSoldierChessComponent.setReversal(true);
+        REDSoldierChessComponent.setLocation(0,350);
+        REDSoldierChessComponent.setSize(30,30);
+        REDSoldierChessComponent.setVisible(true);
+        REDSoldierChessComponent.setEnabled(false);
+        add(REDSoldierChessComponent);
+    }
+    public void addBLACKSoldierChessComponent(){
+        BLACKSoldierChessComponent = new SoldierChessComponent(ChessColor.BLACK);
+        BLACKSoldierChessComponent.setReversal(true);
+        BLACKSoldierChessComponent.setLocation(580,355);
+        BLACKSoldierChessComponent.setSize(30,30);
+        BLACKSoldierChessComponent.setVisible(true);
+        BLACKSoldierChessComponent.setEnabled(false);
+        add(BLACKSoldierChessComponent);
+    }
+    public void addJNumber(){
+        红士 = new JNumber();
+        红士.setText(String.format("* %d",红士.num));
+        红士.setFont(new Font("宋体",Font.BOLD,20));
+        红士.setForeground(Color.RED);
+        红士.setLocation(40,100);
+        红士.setSize(50,50);
+        add(红士);
+        黑士 = new JNumber();
+        黑士.setText(String.format("* %d",黑士.num));
+        黑士.setFont(new Font("宋体",Font.BOLD,20));
+        黑士.setForeground(Color.BLACK);
+        黑士.setLocation(620,105);
+        黑士.setSize(50,50);
+        add(黑士);
+        红炮 = new JNumber();
+        红炮.setText(String.format("* %d",红炮.num));
+        红炮.setFont(new Font("宋体",Font.BOLD,20));
+        红炮.setForeground(Color.RED);
+        红炮.setLocation(40,140);
+        红炮.setSize(50,50);
+        add(红炮);
+        黑炮 = new JNumber();
+        黑炮.setText(String.format("* %d",黑炮.num));
+        黑炮.setFont(new Font("宋体",Font.BOLD,20));
+        黑炮.setForeground(Color.BLACK);
+        黑炮.setLocation(620,145);
+        黑炮.setSize(50,50);
+        add(黑炮);
+    }
 }

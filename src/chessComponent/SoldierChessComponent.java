@@ -20,36 +20,37 @@ public class SoldierChessComponent extends ChessComponent {
             code = "10";
         }
     }
+
+    public SoldierChessComponent(ChessColor chessColor) {
+        super(chessColor);
+    }
+
     @Override
     public void paintComponent(Graphics g) {
-        super.paintComponent(g);
+//        super.paintComponent(g);
         if (isReversal()) {
             this.reversal = "1";
             if (this.getChessColor() == ChessColor.BLACK) {
-                addlabel("C:\\Users\\Wells\\IdeaProjects\\DarkChess\\src\\assets\\ipad_chess-zu3@2x.png",chessPicture);
+                addlabel("C:\\Users\\Wells\\IdeaProjects\\DarkChess\\src\\assets\\ipad_chess-zu3@2x.png", chessPicture);
+                chessPicture.setVisible(true);
+            } else {
+                addlabel("C:\\Users\\Wells\\IdeaProjects\\DarkChess\\src\\assets\\ipad_chess-bing-red3@2x.png", chessPicture);
                 chessPicture.setVisible(true);
             }
-            else {
-                addlabel("C:\\Users\\Wells\\IdeaProjects\\DarkChess\\src\\assets\\ipad_chess-bing-red3@2x.png",chessPicture);
-                chessPicture.setVisible(true);
-            }
-        }
-        else{
+        } else {
             this.reversal = "0";
             chessPicture.setVisible(false);
         }
-        if(isSelected()){
-            addlabel("C:\\Users\\Wells\\IdeaProjects\\DarkChess\\src\\assets\\rect_red.png",movePicture);
+        if (isSelected()) {
+            addlabel("C:\\Users\\Wells\\IdeaProjects\\DarkChess\\src\\assets\\rect_red.png", movePicture);
             movePicture.setVisible(true);
-        }
-        else{
+        } else {
             movePicture.setVisible(false);
         }
-        if(ableToMove){
-            addlabel("C:\\Users\\Wells\\IdeaProjects\\DarkChess\\src\\assets\\rect_blue.png",optionPicture);
+        if (ableToMove) {
+            addlabel("C:\\Users\\Wells\\IdeaProjects\\DarkChess\\src\\assets\\rect_blue.png", optionPicture);
             optionPicture.setVisible(true);
-        }
-        else {
+        } else {
             optionPicture.setVisible(false);
         }
     }

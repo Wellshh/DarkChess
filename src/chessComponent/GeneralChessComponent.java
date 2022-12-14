@@ -23,9 +23,14 @@ public class GeneralChessComponent extends ChessComponent {
             code = "16";
         }
     }
+
+    public GeneralChessComponent(ChessColor chessColor) {
+        super(chessColor);
+    }
+
     @Override
     public void paintComponent(Graphics g) {
-        super.paintComponent(g);
+//        super.paintComponent(g);
         if (isReversal()) {
             this.reversal = "1";
             if (this.getChessColor() == ChessColor.BLACK) {
