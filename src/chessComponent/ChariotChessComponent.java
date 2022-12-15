@@ -34,10 +34,10 @@ public class ChariotChessComponent extends ChessComponent {
         if (isReversal()) {
             this.reversal = "1";
             if (this.getChessColor() == ChessColor.BLACK) {
-                addlabel("C:\\Users\\Wells\\IdeaProjects\\DarkChess\\src\\assets\\ipad_chess-ju3@2x.png", chessPicture);
+                addlabel("src/assets/ipad_chess-ju3@2x.png", chessPicture);
                 chessPicture.setVisible(true);
             } else {
-                addlabel("C:\\Users\\Wells\\IdeaProjects\\DarkChess\\src\\assets\\ipad_chess-ju-red3@2x.png", chessPicture);
+                addlabel("src/assets/ipad_chess-ju-red3@2x.png", chessPicture);
                 chessPicture.setVisible(true);
             }
         } else {
@@ -45,13 +45,13 @@ public class ChariotChessComponent extends ChessComponent {
             chessPicture.setVisible(false);
         }
         if (isSelected()) {
-            addlabel("C:\\Users\\Wells\\IdeaProjects\\DarkChess\\src\\assets\\rect_red.png", movePicture);
+            addlabel("src/assets/rect_red.png", movePicture);
             movePicture.setVisible(true);
         } else {
             movePicture.setVisible(false);
         }
         if (ableToMove) {
-            addlabel("C:\\Users\\Wells\\IdeaProjects\\DarkChess\\src\\assets\\rect_blue.png", optionPicture);
+            addlabel("src/assets/rect_blue.png", optionPicture);
             optionPicture.setVisible(true);
         } else {
             optionPicture.setVisible(false);
