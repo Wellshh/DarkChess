@@ -1,5 +1,6 @@
 package view;
 
+import UI.AudioPlayer;
 import chessComponent.*;
 import controller.AIController;
 import controller.ClickController;
@@ -88,6 +89,7 @@ public class ChessGameFrame extends JFrame {
         addBLACKSoldierChessComponent();
         addJNumber();
         addChangeSkinButton();
+        addMusicButton();
         addlabel("src/assets/0cf21f8122dc4d5b4697deed6b70df4f.jpeg",BgLabel);
 
     }
@@ -357,6 +359,30 @@ public class ChessGameFrame extends JFrame {
            repaint();
         });
 
+    }
+    public void addMusicButton(){
+        JButton MusicButton = new JButton();
+        MusicButton.setLocation(650,500);
+        MusicButton.setSize(60,60);
+        ImageIcon icon = new ImageIcon("src/assets/类三/music.png");
+        Image temp = icon.getImage().getScaledInstance(75,75,icon.getImage().SCALE_AREA_AVERAGING);
+//        button.setOpaque(false);
+        icon = new ImageIcon(temp);
+        MusicButton.setIcon(icon);
+        add(MusicButton);
+        MusicButton.addActionListener(e -> {
+            System.out.println("shit");
+            Thread t = new Thread(() -> {
+                try {
+                    Thread.sleep(100); //1000 milliseconds
+                } catch (InterruptedException k) {
+                    k.printStackTrace();
+                }
+                AudioPlayer audioPlayer = new AudioPlayer();
+                audioPlayer.play("src/assets/类二/BackMusic.wav");
+            });
+            t.start();
+        });
     }
 
     /**
