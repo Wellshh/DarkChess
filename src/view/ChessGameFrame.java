@@ -13,6 +13,7 @@ import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 /**
  * 这个类表示游戏窗体，窗体上包含：
@@ -29,11 +30,6 @@ public class ChessGameFrame extends JFrame {
     JLabel cheatLabel = new JLabel(), AILabel = new JLabel();
     Chessboard chessboard;
     public static JPanel redPanel, blackPanel;
-
-    public JPanel getRedPanel() {
-        return redPanel;
-    }
-
     private static int checkCheat = 0, checkAI = 0;
     public AdvisorChessComponent REDAdvisorChessComponent;
     public AdvisorChessComponent BLACKAdvisorChessComponent;
@@ -50,6 +46,8 @@ public class ChessGameFrame extends JFrame {
     public SoldierChessComponent REDSoldierChessComponent;
     public SoldierChessComponent BLACKSoldierChessComponent;
     public static JNumber 红士, 黑士, 红炮, 黑炮, 红车, 黑车, 红帅, 黑帅, 红马, 黑马, 红相, 黑相, 红兵, 黑兵;
+    public JLabel RegretLabel = new JLabel();
+    public JLabel BgLabel = new JLabel();
 
 
     public ChessGameFrame(int width, int height) {
@@ -89,6 +87,9 @@ public class ChessGameFrame extends JFrame {
         addREDSoldierChessComponent();
         addBLACKSoldierChessComponent();
         addJNumber();
+        addChangeSkinButton();
+        addlabel("src/assets/0cf21f8122dc4d5b4697deed6b70df4f.jpeg",BgLabel);
+
     }
 
     /**
@@ -170,6 +171,7 @@ public class ChessGameFrame extends JFrame {
         button.setLocation(320, 50);
         button.setSize(120, 45);
         button.setFont(new Font("Rockwell", Font.BOLD, 15));
+        button.setContentAreaFilled(false);
         button.addActionListener(e -> {
             if (checkAI == 0) {
                 System.out.println("Enter AI mode");
@@ -190,10 +192,20 @@ public class ChessGameFrame extends JFrame {
 
     private void addStartButton() {
         JButton button = new JButton("START");
-        button.addActionListener((e) -> JOptionPane.showMessageDialog(this, "Welcome, chess player!"));
+        String message = "规则如下：\n" + "\n" + "首先，把棋子打乱反面向上摆放在4*8的棋盘中\n"+"然后，两个玩家摇骰子看谁大谁就是先手（先手就是第一个翻棋的人）；接着，翻出的棋子可以互吃；最后，棋子被吃完的那方就是失败了。\n"
+                +
+                "棋子等级：兵（卒）是等级最低的棋子，只能吃对方的将（帅）；\n"+
+                "炮可以吃任何棋子，但中间必须隔一个棋子；车可以吃除象（相）、士（仕）、将（帅）以外的棋子；马可以吃兵（卒）、炮；\n"
+                +"象（相）可以吃除士（仕）、将（帅）以外的棋子；士（仕）可以吃除将（帅）以外的棋子；将（帅）是等级最高的棋子，可以吃任何棋子，但不可以吃兵（卒）。";
+        button.addActionListener((e) -> JOptionPane.showMessageDialog(this, message));
         button.setLocation(WIDTH / 1000 + 200, HEIGHT / 10000);
         button.setSize(120, 45);
+        ImageIcon icon = new ImageIcon("src/assets/类三/ipad_tishi-btn@2x.png");
+        Image temp = icon.getImage().getScaledInstance(button.getWidth()+40,button.getHeight()+30,icon.getImage().SCALE_AREA_AVERAGING);
+        icon = new ImageIcon(temp);
+//        button.setIcon(icon);
         button.setFont(new Font("Rockwell", Font.BOLD, 15));
+        button.setContentAreaFilled(false);
         add(button);
     }
 
@@ -205,6 +217,11 @@ public class ChessGameFrame extends JFrame {
         button.setLocation(WIDTH / 10000 + 320, HEIGHT / 100000);
         button.setSize(120, 45);
         button.setFont(new Font("Rockwell", Font.BOLD, 15));
+        ImageIcon icon = new ImageIcon("src/assets/类三/ipad_restart-btn@2x.png");
+        Image temp = icon.getImage().getScaledInstance(button.getWidth()+40,button.getHeight()+30,icon.getImage().SCALE_AREA_AVERAGING);
+        icon = new ImageIcon(temp);
+//        button.setIcon(icon);
+        button.setContentAreaFilled(false);
         button.addActionListener(e -> {
             this.dispose();
             ChessGameFrame chessGameFrame = new ChessGameFrame(800, 800);
@@ -229,7 +246,12 @@ public class ChessGameFrame extends JFrame {
         JButton button = new JButton("LOAD");
         button.setLocation(WIDTH / 10000 + 440, HEIGHT / 10000);
         button.setSize(120, 45);
+        ImageIcon icon = new ImageIcon("src/assets/类三/ipad_load-new-fen-btn@2x.png");
+        Image temp = icon.getImage().getScaledInstance(button.getWidth()+40,button.getHeight()+30,icon.getImage().SCALE_AREA_AVERAGING);
+        icon = new ImageIcon(temp);
+//        button.setIcon(icon);
         button.setFont(new Font("Rockwell", Font.BOLD, 15));
+        button.setContentAreaFilled(false);
         //button.setBackground(Color.LIGHT_GRAY);
         add(button);
 
@@ -250,6 +272,7 @@ public class ChessGameFrame extends JFrame {
         button.setSize(120, 45);
         button.setFont(new Font("Rockwell", Font.BOLD, 15));
         add(button);
+        button.setContentAreaFilled(false);
 
         button.addActionListener(e -> {
             System.out.println("Click save");
@@ -272,6 +295,7 @@ public class ChessGameFrame extends JFrame {
         button.setFont(new Font("Rockwell", Font.BOLD, 15));
         //button.setBackground(Color.LIGHT_GRAY);
         add(button);
+        button.setContentAreaFilled(false);
 
 
         button.addActionListener(e -> {
@@ -303,6 +327,7 @@ public class ChessGameFrame extends JFrame {
         button.setSize(120, 45);
         button.setFont(new Font("Rockwell", Font.BOLD, 15));
         add(button);
+        button.setContentAreaFilled(false);
         button.addActionListener(e -> {
             repaint();
             List<String> list;
@@ -316,6 +341,22 @@ public class ChessGameFrame extends JFrame {
             labelScoreBlack.setText(String.format("BLACK's score: %d", scoreBlack));
             ClickController.cnt = Integer.parseInt(list.get(11));
         });
+    }
+    private void addChangeSkinButton(){
+        JButton button = new JButton("ChangSkin");
+        button.setLocation(440,50);
+        button.setSize(120,45);
+        button.setFont(new Font("Rockwell",Font.BOLD,15));
+        add(button);
+        button.setContentAreaFilled(false);
+        button.addActionListener(e -> {
+            Random r = new Random();
+            Random t = new Random();
+            ChessComponent.chessSkin = r.nextInt(3);
+            SquareComponent.ChessboardSkin = t.nextInt(3);
+           repaint();
+        });
+
     }
 
     /**
@@ -583,5 +624,24 @@ public class ChessGameFrame extends JFrame {
         黑兵.setSize(50, 50);
         add(黑兵);
     }
-
+    void addlabel(String filename, JLabel label,int width,int height) {
+        ImageIcon imageIcon = new ImageIcon(filename);
+        Image temp = imageIcon.getImage().getScaledInstance(width, height, imageIcon.getImage().SCALE_DEFAULT);
+        imageIcon = new ImageIcon(temp);
+        label.setIcon(imageIcon);
+        label.setVisible(true);
+        add(label);
+        label.setSize(width, height);
+    }
+    void addlabel(String filename, JLabel label) {
+        ImageIcon bg = new ImageIcon(filename);
+        ImageIcon imageIcon = new ImageIcon(filename);
+        Image temp = imageIcon.getImage().getScaledInstance(WIDTH, HEIGHT, imageIcon.getImage().SCALE_DEFAULT);
+        imageIcon = new ImageIcon(temp);
+        label.setIcon(imageIcon);
+        label.setVisible(true);
+        add(label);
+        label.setSize(this.getWidth(), this.getHeight());
+    }
 }
+

@@ -80,6 +80,7 @@ public abstract class SquareComponent extends JComponent {
     private ClickController clickController = null;
 
     private ClickControllerCheat clickControllerCheat = null;
+    public static int ChessboardSkin = 0;
 
     protected SquareComponent(String name, ChessColor chessColor, ClickController clickController, int size) {
         this.clickController = clickController;
@@ -222,9 +223,16 @@ public abstract class SquareComponent extends JComponent {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponents(g);
-        ImageIcon image = new ImageIcon("src/assets/b6ee3de5e13755cf90a336b316d5b4b3.jpeg");
-        image.setImage(image.getImage().getScaledInstance(this.getWidth(),this.getHeight(),Image.SCALE_AREA_AVERAGING));
-        g.drawImage(image.getImage(),0,0,this);
+        ImageIcon image = null;
+        if (ChessboardSkin == 0) {
+            image = new ImageIcon("src/assets/b6ee3de5e13755cf90a336b316d5b4b3.jpeg");
+        }
+        else if(ChessboardSkin == 1){
+            image = new ImageIcon("src/assets/类二/ipad_chessboard@2x.png");
+        }
+        else {image = new ImageIcon("src/assets/类一/pop_common_bg.png");}
+        image.setImage(image.getImage().getScaledInstance(this.getWidth(), this.getHeight(), Image.SCALE_AREA_AVERAGING));
+        g.drawImage(image.getImage(), 0, 0, this);
 //        add(layeredPane);
 //        JLabel label = new JLabel();
 //        addlabel("C:\\Users\\Wells\\IdeaProjects\\DarkChess\\src\\assets\\b6ee3de5e13755cf90a336b316d5b4b3.jpeg",label);

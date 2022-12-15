@@ -33,35 +33,41 @@ public class AdvisorChessComponent extends ChessComponent {
 
     @Override
     public void paintComponent(Graphics g) {
-        if(hasGrid == true){
-        super.paintComponent(g);}
+        if (hasGrid == true) {
+            super.paintComponent(g);
+        }
         if (isReversal()) {
             this.reversal = "1";
             if (this.getChessColor() == ChessColor.BLACK) {
-                addlabel("src/assets/ipad_chess-shi3@2x.png",chessPicture);
+                if (chessSkin == 0) {
+                    addlabel("src/assets/ipad_chess-shi3@2x.png", chessPicture);
+                } else if (chessSkin == 1) {
+                    addlabel("src/assets/类一/qipan_hei_shi.png", chessPicture);
+                } else {
+                        addlabel("src/assets/类二/ipad_chess-shi4@2x.png", chessPicture);
+                }
+                chessPicture.setVisible(true);
+            } else {
+                if(chessSkin ==0){
+                addlabel("src/assets/ipad_chess-shi-red3@2x.png", chessPicture);}
+                else if(chessSkin ==1){addlabel("src/assets/类一/qipan_hong_shi.png",chessPicture);}
+                else{addlabel("src/assets/类二/ipad_chess-shi-red4@2x.png",chessPicture);}
                 chessPicture.setVisible(true);
             }
-            else {
-                addlabel("src/assets/ipad_chess-shi-red3@2x.png",chessPicture);
-                chessPicture.setVisible(true);
-            }
-        }
-        else{
+        } else {
             this.reversal = "0";
             chessPicture.setVisible(false);
         }
-        if(isSelected()){
-            addlabel("src/assets/rect_red.png",movePicture);
+        if (isSelected()) {
+            addlabel("src/assets/rect_red.png", movePicture);
             movePicture.setVisible(true);
-        }
-        else{
+        } else {
             movePicture.setVisible(false);
         }
-        if(ableToMove){
-            addlabel("src/assets/rect_blue.png",optionPicture);
+        if (ableToMove) {
+            addlabel("src/assets/rect_blue.png", optionPicture);
             optionPicture.setVisible(true);
-        }
-        else {
+        } else {
             optionPicture.setVisible(false);
         }
     }

@@ -17,6 +17,8 @@ public class StartScreen extends JFrame {
 
     private final int HEIGHT; //开始界面高度
 
+    public JLabel StartLabel = new JLabel();
+
 
     public StartScreen(int width, int height) throws IOException {
         WIDTH = width;
@@ -27,33 +29,48 @@ public class StartScreen extends JFrame {
         getContentPane().setBackground(Color.WHITE);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE); //设置程序关闭按键，如果点击右上方的叉就游戏全部关闭了
         setLayout(null);
-
-        addStartButton();
         addlabel();
-
+        addStartButton();
+//        addRuleButton();
     }
 
     private void addStartButton() {
         JButton button = new JButton("Start the game.");
-        button.setLocation(WIDTH / 2 - 120, HEIGHT / 2 - 30);
+        button.setLocation(WIDTH / 2 - 120, HEIGHT / 2 +260);
         button.setSize(240, 60);
         button.setFont(new Font("Rockwell", Font.BOLD, 20));
-        button.setOpaque(false);
-        button.setContentAreaFilled(false);
+        ImageIcon icon = new ImageIcon("src/assets/类三/ipad_start-btn@2x.png");
+        Image temp = icon.getImage().getScaledInstance(310,120,icon.getImage().SCALE_AREA_AVERAGING);
+//        button.setOpaque(false);
+        icon = new ImageIcon(temp);
+        button.setIcon(icon);
+//        addlabel();
+//        ImageIcon bg = new ImageIcon("ipad_start-btn@2x.png");
+//        Image image = bg.getImage();
+//        Image smallerimage = image.getScaledInstance(button.getWidth(), button.getHeight(), Image.SCALE_SMOOTH);
+//        ImageIcon smallericon = new ImageIcon(smallerimage);
+//        button.setIcon(smallericon);
+//        button.setContentAreaFilled(false);
         button.addActionListener(e -> {
             ChessGameFrame chessGameFrame = new ChessGameFrame(800, 800);
             chessGameFrame.setVisible(true);
-
-//            WinnerScreen winnerScreen = new WinnerScreen(360, 360);
-//            winnerScreen.setVisible(true);
-
             this.dispose();
         });
         add(button);
     }
+    public void addRuleButton(){
+        JButton jButton = new JButton();
+        jButton.setLocation(WIDTH / 2+120, HEIGHT / 2 +260);
+        jButton.setSize(240,60);
+        ImageIcon icon = new ImageIcon("src/assets/类三/ipad_tishi-btn@2x.png");
+        Image temp = icon.getImage().getScaledInstance(310,80,icon.getImage().SCALE_AREA_AVERAGING);
+        icon = new ImageIcon(temp);
+        jButton.setIcon(icon);
+        add(jButton);
+    }
 
     private void addlabel() {
-        ImageIcon bg = new ImageIcon("C:\\Users\\Wells\\IdeaProjects\\DarkChess\\src\\新建文件夹\\splash_big_logo.png");
+        ImageIcon bg = new ImageIcon("src/assets/类三/Default.png");
         Image image = bg.getImage();
         Image smallerimage = image.getScaledInstance(720, 720, Image.SCALE_SMOOTH);
         ImageIcon smallericon = new ImageIcon(smallerimage);
@@ -63,27 +80,18 @@ public class StartScreen extends JFrame {
         add(label);
         label.setSize(720, 720);
     }
+    void addlabel(String filename, JLabel label,int width,int height) {
+        ImageIcon imageIcon = new ImageIcon(filename);
+        Image temp = imageIcon.getImage().getScaledInstance(width, height, imageIcon.getImage().SCALE_DEFAULT);
+        imageIcon = new ImageIcon(temp);
+        label.setIcon(imageIcon);
+        label.setVisible(true);
+        add(label);
+        label.setSize(width, height);
+    }
 
 
-//    public class MyCanvas extends Canvas {
-//        Image image;
-//
-//        MyCanvas(Image image) {
-//            this.image = image;
-//        }
-//
-//        //重写paint方法
-//        @Override
-//        public void paint(Graphics g) {
-//            super.paint(g);
-//            //调用Graphics画笔的drawImage()方法开始画图。
-//            g.drawImage(image, 0, 0, WIDTH, HEIGHT, null);
-//        }
-//
-//        @Override
-//        public Dimension getPreferredSize() {
-//            return new Dimension(WIDTH, HEIGHT);
-//        }
-//
-//    }
+
+
+
 }

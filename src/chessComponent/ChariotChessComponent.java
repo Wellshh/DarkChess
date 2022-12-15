@@ -35,10 +35,16 @@ public class ChariotChessComponent extends ChessComponent {
         if (isReversal()) {
             this.reversal = "1";
             if (this.getChessColor() == ChessColor.BLACK) {
-                addlabel("src/assets/ipad_chess-ju3@2x.png", chessPicture);
+                if(chessSkin == 0){
+                addlabel("src/assets/ipad_chess-ju3@2x.png", chessPicture);}
+                else if(chessSkin ==1){addlabel("src/assets/类一/qipan_hei_che.png",chessPicture);}
+                else {addlabel("src/assets/类二/ipad_chess-ju4@2x.png",chessPicture);}
                 chessPicture.setVisible(true);
             } else {
-                addlabel("src/assets/ipad_chess-ju-red3@2x.png", chessPicture);
+                if(chessSkin == 0){
+                addlabel("src/assets/ipad_chess-ju-red3@2x.png", chessPicture);}
+                else if(chessSkin ==1){addlabel("src/assets/类一/qipan_hong_che.png",chessPicture);}
+                else{addlabel("src/assets/类二/ipad_chess-ju-red4@2x.png",chessPicture);}
                 chessPicture.setVisible(true);
             }
         } else {

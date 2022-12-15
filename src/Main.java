@@ -21,7 +21,7 @@ public class Main {
 //            AudioPlayer audioPlayer = new AudioPlayer();
 //            audioPlayer.play("C:\\Users\\Wells\\Music\\Ed Sheeran - Tides.wav");
         });
-        AudioPlayer audioPlayer = new AudioPlayer();
-        audioPlayer.play("src/view/Ed Sheeran - Tides.wav");
+//        AudioPlayer audioPlayer = new AudioPlayer();
+//        audioPlayer.play("src/view/Ed Sheeran - Tides.wav");
     }
 }

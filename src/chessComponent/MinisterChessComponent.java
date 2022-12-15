@@ -35,11 +35,17 @@ public class MinisterChessComponent extends ChessComponent {
         if (isReversal()) {
             this.reversal = "1";
             if (this.getChessColor() == ChessColor.BLACK) {
-                addlabel("src/assets/ipad_chess-xiang3@2x.png",chessPicture);
+                if(chessSkin == 0){
+                addlabel("src/assets/ipad_chess-xiang3@2x.png",chessPicture);}
+                else if(chessSkin == 1){addlabel("src/assets/类一/qipan_hei_xiang.png",chessPicture);}
+                else{addlabel("src/assets/类二/ipad_chess-xiang4@2x.png",chessPicture);}
                 chessPicture.setVisible(true);
             }
             else {
-                addlabel("src/assets/ipad_chess-xiang-red3@2x.png",chessPicture);
+                if(chessSkin == 0){
+                addlabel("src/assets/ipad_chess-xiang-red3@2x.png",chessPicture);}
+                else if(chessSkin == 1){addlabel("src/assets/类一/qipan_hong_xiang.png",chessPicture);}
+                else {addlabel("src/assets/类二/ipad_chess-xiang-red4@2x.png",chessPicture);}
                 chessPicture.setVisible(true);
             }
         }

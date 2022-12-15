@@ -13,6 +13,7 @@ import java.awt.*;
  */
 public class ChessComponent extends SquareComponent {
     public boolean hasGrid = true;
+    public static int chessSkin = 0;
     protected String name;// 棋子名字：例如 兵，卒，士等
 
     public ChessComponent(ChessboardPoint chessboardPoint, Point location, ChessColor chessColor, ClickController clickController, int size) {
