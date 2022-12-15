@@ -438,8 +438,8 @@ public class Chessboard extends JComponent {
         黑兵.changNumberofEatenChess();
         红兵.num = Integer.parseInt(chessData.get(25));
         红兵.changNumberofEatenChess();
-
-
+        ChessComponent.chessSkin = Integer.parseInt(chessData.get(26));
+        SquareComponent.ChessboardSkin = Integer.parseInt(chessData.get(27));
         Color color1;
         if (currentColor == ChessColor.BLACK) {
             color1 = Color.black;

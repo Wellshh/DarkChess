@@ -342,6 +342,7 @@ public class ChessGameFrame extends JFrame {
             Player.scoreBlack = scoreBlack;
             labelScoreBlack.setText(String.format("BLACK's score: %d", scoreBlack));
             ClickController.cnt = Integer.parseInt(list.get(11));
+            repaint();
         });
     }
     private void addChangeSkinButton(){
@@ -378,8 +379,7 @@ public class ChessGameFrame extends JFrame {
                 } catch (InterruptedException k) {
                     k.printStackTrace();
                 }
-                AudioPlayer audioPlayer = new AudioPlayer();
-                audioPlayer.play("src/assets/类二/BackMusic.wav");
+                AudioPlayer.playBgm("src/assets/类二/BackMusic.wav");
             });
             t.start();
         });

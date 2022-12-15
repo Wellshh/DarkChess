@@ -1,5 +1,6 @@
 package controller;
 
+import chessComponent.ChessComponent;
 import chessComponent.SquareComponent;
 import view.ChessGameFrame;
 import view.Chessboard;
@@ -71,6 +72,8 @@ public class GameController {
                 line.add(data[47]);
                 line.add(data[48]);
                 line.add(data[49]);
+               line.add(data[50]);
+               line.add(data[51]);
                 chessboard.loadGame(line);
                 chessboard.stack.push(line);
 //                    List<String> chessDa = new ArrayList<>();
@@ -149,6 +152,8 @@ public class GameController {
         lines.add(Integer.toString(红相.num));
         lines.add(Integer.toString(黑兵.num));
         lines.add(Integer.toString(红兵.num));
+        lines.add(Integer.toString(ChessComponent.chessSkin));
+        lines.add(Integer.toString(SquareComponent.ChessboardSkin));
         return lines;
     }
 
