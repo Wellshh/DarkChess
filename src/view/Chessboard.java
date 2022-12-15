@@ -157,6 +157,7 @@ public class Chessboard extends JComponent {
         //只重新绘制chess1 chess2，其他不变
         chess1.repaint();
         chess2.repaint();
+        Player.checkWinner();
         if (check == 1) {
             chess3.repaint();
         }

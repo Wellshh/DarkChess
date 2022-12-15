@@ -24,7 +24,7 @@ public class EmptySlotComponent extends SquareComponent {
 
     @Override
     protected void paintComponent(Graphics g) {
-//        super.paintComponent(g);
+       super.paintComponent(g);
         if(ableToMove){
             addlabel("C:\\Users\\Wells\\IdeaProjects\\DarkChess\\src\\assets\\rect_blue.png",optionPicture);
             optionPicture.setVisible(true);

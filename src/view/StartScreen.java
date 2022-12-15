@@ -18,9 +18,6 @@ public class StartScreen extends JFrame {
     private final int HEIGHT; //开始界面高度
 
 
-
-
-    //    JPanel panel = (JPanel) this.getContentPane();
     public StartScreen(int width, int height) throws IOException {
         WIDTH = width;
         HEIGHT = height;
@@ -32,18 +29,6 @@ public class StartScreen extends JFrame {
         setLayout(null);
 
         addStartButton();
-//        this.repaint();
-//        this.setContentPane(panel);
-//        MyCanvas canvas = new MyCanvas(ImageIO.read(new File("C:\\Users\\Wells\\IdeaProjects\\DarkChess\\src\\新建文件夹\\splash_big_logo.png")));
-//        add(canvas);
-//        ImageIcon bg = new ImageIcon("C:\\Users\\Wells\\IdeaProjects\\DarkChess\\src\\新建文件夹\\splash_big_logo.png");
-//        Image image = bg.getImage();
-//        Image smallerimage = image.getScaledInstance(720,720,Image.SCALE_SMOOTH);
-//        ImageIcon smallericon = new ImageIcon(smallerimage);
-//        JLabel label = new JLabel(smallericon);
-//        add(label);
-//        label.setText("yi");
-//        label.setVisible(true);
         addlabel();
 
     }
@@ -66,16 +51,17 @@ public class StartScreen extends JFrame {
         });
         add(button);
     }
-    private void addlabel(){
+
+    private void addlabel() {
         ImageIcon bg = new ImageIcon("C:\\Users\\Wells\\IdeaProjects\\DarkChess\\src\\新建文件夹\\splash_big_logo.png");
         Image image = bg.getImage();
-        Image smallerimage = image.getScaledInstance(720,720,Image.SCALE_SMOOTH);
+        Image smallerimage = image.getScaledInstance(720, 720, Image.SCALE_SMOOTH);
         ImageIcon smallericon = new ImageIcon(smallerimage);
         JLabel label = new JLabel(smallericon);
         label.setText("yi");
         label.setVisible(true);
         add(label);
-        label.setSize(720,720);
+        label.setSize(720, 720);
     }
 
 

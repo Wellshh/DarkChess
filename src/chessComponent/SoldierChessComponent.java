@@ -27,7 +27,8 @@ public class SoldierChessComponent extends ChessComponent {
 
     @Override
     public void paintComponent(Graphics g) {
-//        super.paintComponent(g);
+        if(hasGrid == true){
+            super.paintComponent(g);}
         if (isReversal()) {
             this.reversal = "1";
             if (this.getChessColor() == ChessColor.BLACK) {

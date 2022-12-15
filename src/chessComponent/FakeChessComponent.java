@@ -14,7 +14,7 @@ public class FakeChessComponent extends SquareComponent{
     @Override
     public void paintComponent(Graphics g) {
         System.out.println("Asdfasd");
-//        super.paintComponent(g);
+        super.paintComponent(g);
         //绘制棋子填充色
         g.setColor(Color.ORANGE);
         g.fillOval(spacingLength, spacingLength, this.getWidth() - 2 * spacingLength, this.getHeight() - 2 * spacingLength);

@@ -68,7 +68,7 @@ public class WinnerScreen extends JFrame {
         button.setSize(150, 35);
         button.setFont(new Font("Rockwell", Font.BOLD, 15));
         button.addActionListener(e -> {
-            ChessGameFrame chessGameFrame = new ChessGameFrame(1000, 1000);
+            ChessGameFrame chessGameFrame = new ChessGameFrame(800, 800);
             chessGameFrame.setVisible(true);
             this.dispose();
         });

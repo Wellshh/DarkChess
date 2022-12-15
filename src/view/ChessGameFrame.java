@@ -331,6 +331,7 @@ public class ChessGameFrame extends JFrame {
 
     public void addREDAdvisorChessComponent() {
         REDAdvisorChessComponent = new AdvisorChessComponent(ChessColor.RED);
+        REDAdvisorChessComponent.hasGrid = false;
         REDAdvisorChessComponent.setReversal(true);
         REDAdvisorChessComponent.setLocation(0, 110);
         REDAdvisorChessComponent.setSize(30, 30);
@@ -341,6 +342,7 @@ public class ChessGameFrame extends JFrame {
 
     public void addBLACKAdvisorChessComponent() {
         BLACKAdvisorChessComponent = new AdvisorChessComponent(ChessColor.BLACK);
+        BLACKAdvisorChessComponent.hasGrid = false;
         BLACKAdvisorChessComponent.setReversal(true);
         BLACKAdvisorChessComponent.setLocation(580, 115);
         BLACKAdvisorChessComponent.setSize(30, 30);
@@ -351,6 +353,7 @@ public class ChessGameFrame extends JFrame {
 
     public void addREDCannonChessComponent() {
         REDCannonChessComponent = new CannonChessComponent(ChessColor.RED);
+        REDCannonChessComponent.hasGrid = false;
         REDCannonChessComponent.setReversal(true);
         REDCannonChessComponent.setLocation(0, 150);
         REDCannonChessComponent.setSize(30, 30);
@@ -361,6 +364,7 @@ public class ChessGameFrame extends JFrame {
 
     public void addBLACKCannonChessComponent() {
         BLACKCannonCHessComponent = new CannonChessComponent(ChessColor.BLACK);
+        BLACKCannonCHessComponent.hasGrid = false;
         BLACKCannonCHessComponent.setReversal(true);
         BLACKCannonCHessComponent.setLocation(580, 155);
         BLACKCannonCHessComponent.setSize(30, 30);
@@ -371,6 +375,7 @@ public class ChessGameFrame extends JFrame {
 
     public void addREDChariotChessComponent() {
         REDChariotChessComponent = new ChariotChessComponent(ChessColor.RED);
+        REDChariotChessComponent.hasGrid = false;
         REDChariotChessComponent.setReversal(true);
         REDChariotChessComponent.setLocation(0, 190);
         REDChariotChessComponent.setSize(30, 30);
@@ -381,6 +386,7 @@ public class ChessGameFrame extends JFrame {
 
     public void addBLACKChariotChessComponent() {
         BLACKChariotChessComponent = new ChariotChessComponent(ChessColor.BLACK);
+        BLACKChariotChessComponent.hasGrid = false;
         BLACKChariotChessComponent.setReversal(true);
         BLACKChariotChessComponent.setLocation(580, 195);
         BLACKChariotChessComponent.setSize(30, 30);
@@ -391,6 +397,7 @@ public class ChessGameFrame extends JFrame {
 
     public void addREDGeneralChessComponent() {
         REDGeneralChessComponent = new GeneralChessComponent(ChessColor.RED);
+        REDGeneralChessComponent.hasGrid = false;
         REDGeneralChessComponent.setReversal(true);
         REDGeneralChessComponent.setLocation(0, 230);
         REDGeneralChessComponent.setSize(30, 30);
@@ -401,6 +408,7 @@ public class ChessGameFrame extends JFrame {
 
     public void addBLACKGeneralChessComponent() {
         BLACKGeneralChessComponent = new GeneralChessComponent(ChessColor.BLACK);
+        BLACKGeneralChessComponent.hasGrid = false;
         BLACKGeneralChessComponent.setReversal(true);
         BLACKGeneralChessComponent.setLocation(580, 235);
         BLACKGeneralChessComponent.setSize(30, 30);
@@ -411,6 +419,7 @@ public class ChessGameFrame extends JFrame {
 
     public void addREDHorseChessComponent() {
         REDHorseChessComponent = new HorseChessComponent(ChessColor.RED);
+        REDHorseChessComponent.hasGrid = false;
         REDHorseChessComponent.setReversal(true);
         REDHorseChessComponent.setLocation(0, 270);
         REDHorseChessComponent.setSize(30, 30);
@@ -421,6 +430,7 @@ public class ChessGameFrame extends JFrame {
 
     public void addBLACKHorseChessComponent() {
         BLACKHorseChessComponent = new HorseChessComponent(ChessColor.BLACK);
+        BLACKHorseChessComponent.hasGrid = false;
         BLACKHorseChessComponent.setReversal(true);
         BLACKHorseChessComponent.setLocation(580, 275);
         BLACKHorseChessComponent.setSize(30, 30);
@@ -431,6 +441,7 @@ public class ChessGameFrame extends JFrame {
 
     public void addREDMinisterChessComponent() {
         REDMinisterChessComponent = new MinisterChessComponent(ChessColor.RED);
+        REDMinisterChessComponent.hasGrid = false;
         REDMinisterChessComponent.setReversal(true);
         REDMinisterChessComponent.setLocation(0, 310);
         REDMinisterChessComponent.setSize(30, 30);
@@ -441,6 +452,7 @@ public class ChessGameFrame extends JFrame {
 
     public void addBLACKMinisterChessComponent() {
         BLACKMinisterChessComponent = new MinisterChessComponent(ChessColor.BLACK);
+        BLACKMinisterChessComponent.hasGrid = false;
         BLACKMinisterChessComponent.setReversal(true);
         BLACKMinisterChessComponent.setLocation(580, 315);
         BLACKMinisterChessComponent.setSize(30, 30);
@@ -451,6 +463,7 @@ public class ChessGameFrame extends JFrame {
 
     public void addREDSoldierChessComponent() {
         REDSoldierChessComponent = new SoldierChessComponent(ChessColor.RED);
+        REDSoldierChessComponent.hasGrid = false;
         REDSoldierChessComponent.setReversal(true);
         REDSoldierChessComponent.setLocation(0, 350);
         REDSoldierChessComponent.setSize(30, 30);
@@ -461,6 +474,7 @@ public class ChessGameFrame extends JFrame {
 
     public void addBLACKSoldierChessComponent() {
         BLACKSoldierChessComponent = new SoldierChessComponent(ChessColor.BLACK);
+        BLACKSoldierChessComponent.hasGrid = false;
         BLACKSoldierChessComponent.setReversal(true);
         BLACKSoldierChessComponent.setLocation(580, 355);
         BLACKSoldierChessComponent.setSize(30, 30);

@@ -18,6 +18,7 @@ import java.awt.event.MouseEvent;
  * 2. ChessComponent: 表示非空棋子
  */
 public abstract class SquareComponent extends JComponent {
+    private JLayeredPane layeredPane;
     JLabel chessPicture = new JLabel();
     JLabel movePicture = new JLabel();
     JLabel optionPicture = new JLabel();
@@ -76,15 +77,17 @@ public abstract class SquareComponent extends JComponent {
     /**
      * handle click event
      */
-    private  ClickController clickController = null;
+    private ClickController clickController = null;
 
-    private  ClickControllerCheat clickControllerCheat = null;
-    protected SquareComponent(String name,ChessColor chessColor,ClickController clickController,int size){
+    private ClickControllerCheat clickControllerCheat = null;
+
+    protected SquareComponent(String name, ChessColor chessColor, ClickController clickController, int size) {
         this.clickController = clickController;
         clickControllerCheat = new ClickControllerCheat(clickController.getChessboard());
         this.chessColor = chessColor;
         this.name = name;
-        setSize(size,size);
+        setSize(size, size);
+        setLayout(new GridLayout(1, 1));
     }
 
 
@@ -99,9 +102,11 @@ public abstract class SquareComponent extends JComponent {
         this.isReversal = false;
         clickControllerCheat = new ClickControllerCheat(clickController.getChessboard());
     }
-    public SquareComponent(ChessColor chessColor){
+
+    public SquareComponent(ChessColor chessColor) {
         this.chessColor = chessColor;
     }
+
     public boolean isReversal() {
         return isReversal;
     }
@@ -154,7 +159,6 @@ public abstract class SquareComponent extends JComponent {
      * @param another 主要用于和另外一个棋子交换位置
      *                <br>
      *                调用时机是在移动棋子的时候，将操控的棋子和对应的空位置棋子(EmptySlotComponent)做交换
-     *
      */
     public void swapLocation(SquareComponent another) {
         ChessboardPoint chessboardPoint1 = getChessboardPoint(), chessboardPoint2 = another.getChessboardPoint();
@@ -175,10 +179,9 @@ public abstract class SquareComponent extends JComponent {
         super.processMouseEvent(e);
         if (e.getID() == MouseEvent.MOUSE_PRESSED) {
             System.out.printf("Click [%d,%d]\n", chessboardPoint.getX(), chessboardPoint.getY());
-            if(ChessGameFrame.getCheckCheat() == 0){
+            if (ChessGameFrame.getCheckCheat() == 0) {
                 clickController.onClick(this);
-            }
-            else {
+            } else {
                 clickControllerCheat.onClick(this);
             }
         }
@@ -194,11 +197,10 @@ public abstract class SquareComponent extends JComponent {
     //todo: Override this method for Cannon
     public boolean canMoveTo(SquareComponent[][] chessboard, ChessboardPoint destination) {
         SquareComponent destinationChess = chessboard[destination.getX()][destination.getY()];
-        if( (destinationChess instanceof EmptySlotComponent && checkPlace(destination)) || destinationChess.isReversal() &&
-                ( rank >= destinationChess.getRank() && checkPlace(destination)) || (rank == 0 && destinationChess.getRank() == 6)) {
+        if ((destinationChess instanceof EmptySlotComponent && checkPlace(destination)) || destinationChess.isReversal() &&
+                (rank >= destinationChess.getRank() && checkPlace(destination)) || (rank == 0 && destinationChess.getRank() == 6)) {
             return true;
-        }
-        else {
+        } else {
             System.out.println("invalid operation");
             return false;
         }
@@ -206,12 +208,13 @@ public abstract class SquareComponent extends JComponent {
 
     /**
      * 检查目标旗子位置是否合法
+     *
      * @param destination
      * @return
      */
     public boolean checkPlace(ChessboardPoint destination) {
-        int x1 = chessboardPoint.getX(), y1=chessboardPoint.getY();
-        int x2 = destination.getX(), y2=destination.getY();
+        int x1 = chessboardPoint.getX(), y1 = chessboardPoint.getY();
+        int x2 = destination.getX(), y2 = destination.getY();
         return Math.abs(x1 - x2) + Math.abs(y1 - y2) == 1;
     }
 
@@ -219,20 +222,24 @@ public abstract class SquareComponent extends JComponent {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponents(g);
-//        System.out.printf("repaint chess [%d,%d]\n", chessboardPoint.getX(), chessboardPoint.getY());
+        ImageIcon image = new ImageIcon("src/assets/b6ee3de5e13755cf90a336b316d5b4b3.jpeg");
+        image.setImage(image.getImage().getScaledInstance(this.getWidth(),this.getHeight(),Image.SCALE_AREA_AVERAGING));
+        g.drawImage(image.getImage(),0,0,this);
+//        add(layeredPane);
 //        JLabel label = new JLabel();
 //        addlabel("C:\\Users\\Wells\\IdeaProjects\\DarkChess\\src\\assets\\b6ee3de5e13755cf90a336b316d5b4b3.jpeg",label);
-        g.setColor(squareColor);
-        g.fillRect(1, 1, this.getWidth() - 2, this.getHeight() - 2);
+//        g.setColor(Color.WHITE);
+//        g.fillRect(1, 1, this.getWidth() - 2, this.getHeight() - 2);
     }
-    void addlabel(String filename,JLabel label){
+
+    void addlabel(String filename, JLabel label) {
         ImageIcon bg = new ImageIcon(filename);
         ImageIcon imageIcon = new ImageIcon(filename);
-        Image temp = imageIcon.getImage().getScaledInstance(this.getWidth()+10,this.getHeight()+10,imageIcon.getImage().SCALE_DEFAULT);
+        Image temp = imageIcon.getImage().getScaledInstance(this.getWidth() + 10, this.getHeight() + 10, imageIcon.getImage().SCALE_DEFAULT);
         imageIcon = new ImageIcon(temp);
         label.setIcon(imageIcon);
         label.setVisible(true);
         add(label);
-        label.setSize(this.getWidth(),this.getHeight());
+        label.setSize(this.getWidth(), this.getHeight());
     }
 }
