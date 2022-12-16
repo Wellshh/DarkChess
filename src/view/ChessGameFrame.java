@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 /**
  * 这个类表示游戏窗体，窗体上包含：
@@ -49,6 +50,7 @@ public class ChessGameFrame extends JFrame {
     public static JNumber 红士, 黑士, 红炮, 黑炮, 红车, 黑车, 红帅, 黑帅, 红马, 黑马, 红相, 黑相, 红兵, 黑兵;
     public JLabel RegretLabel = new JLabel();
     public JLabel BgLabel = new JLabel();
+    public static int BgCount = 0;
 
 
     public ChessGameFrame(int width, int height) {
@@ -90,6 +92,7 @@ public class ChessGameFrame extends JFrame {
         addJNumber();
         addChangeSkinButton();
         addMusicButton();
+        addRevisionButton();
         addlabel("src/assets/0cf21f8122dc4d5b4697deed6b70df4f.jpeg",BgLabel);
 
     }
@@ -336,12 +339,12 @@ public class ChessGameFrame extends JFrame {
             list = chessboard.stack.pop();
             chessboard.loadGame(list);
             int scoreRed = Integer.parseInt(list.get(9));
-            Player.scoreRed = scoreRed;//因为scoreRed是静态变量，需要重置其值，不然会出现积分异常的问题
-            labelScoreRed.setText(String.format("RED's score: %d", scoreRed));
-            int scoreBlack = Integer.parseInt(list.get(10));
-            Player.scoreBlack = scoreBlack;
-            labelScoreBlack.setText(String.format("BLACK's score: %d", scoreBlack));
-            ClickController.cnt = Integer.parseInt(list.get(11));
+//            Player.scoreRed = scoreRed;//因为scoreRed是静态变量，需要重置其值，不然会出现积分异常的问题
+//            labelScoreRed.setText(String.format("RED's score: %d", scoreRed));
+//            int scoreBlack = Integer.parseInt(list.get(10));
+//            Player.scoreBlack = scoreBlack;
+//            labelScoreBlack.setText(String.format("BLACK's score: %d", scoreBlack));
+//            ClickController.cnt = Integer.parseInt(list.get(11));
             repaint();
         });
     }
@@ -355,8 +358,14 @@ public class ChessGameFrame extends JFrame {
         button.addActionListener(e -> {
             Random r = new Random();
             Random t = new Random();
+            Random s = new Random();
             ChessComponent.chessSkin = r.nextInt(3);
             SquareComponent.ChessboardSkin = t.nextInt(3);
+            BgCount = s.nextInt(3);
+            if(BgCount ==0){
+                addlabel("src/assets/0cf21f8122dc4d5b4697deed6b70df4f.jpeg",BgLabel);}
+            else if(BgCount==1){addlabel("src/assets/b62a82c49d08c91d4426e82ef9206d96.jpeg",BgLabel);}
+            else {addlabel("src/assets/72e7b8b668635736c7c35acb95eea199.jpeg",BgLabel);}
            repaint();
         });
 
@@ -384,6 +393,27 @@ public class ChessGameFrame extends JFrame {
             t.start();
         });
 
+    }
+    public void addRevisionButton(){
+        JButton button = new JButton("REVISION");
+        button.setLocation(560,50);
+        button.setFont(new Font("Rockwell",Font.BOLD,15));
+        button.setSize(120,45);
+        button.setContentAreaFilled(false);
+        add(button);
+        button.addActionListener(e -> {
+//            while(chessboard.stack.isEmpty()==false)
+                try {
+                    while(chessboard.stack.isEmpty() == false){
+                    List<String> list;
+                    list = chessboard.stack.pop();
+                    chessboard.loadGame(list);
+                    Thread.currentThread().sleep(1000);}
+                } catch (InterruptedException ex) {
+                    throw new RuntimeException(ex);
+                }
+//            }
+        });
     }
 
     /**
