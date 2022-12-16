@@ -404,11 +404,13 @@ public class ChessGameFrame extends JFrame {
         button.addActionListener(e -> {
 //            while(chessboard.stack.isEmpty()==false)
                 try {
-                    while(chessboard.stack.isEmpty() == false){
-                    List<String> list;
-                    list = chessboard.stack.pop();
-                    chessboard.loadGame(list);
-                    Thread.currentThread().sleep(1000);}
+                    while(!chessboard.stack.isEmpty()){
+                        List<String> list;
+                        list = chessboard.stack.pop();
+                        chessboard.loadGame(list);
+                        //System.out.printf("                       %d", chessboard.stack.capacity());
+                        Thread.currentThread().sleep(1000);
+                    }
                 } catch (InterruptedException ex) {
                     throw new RuntimeException(ex);
                 }

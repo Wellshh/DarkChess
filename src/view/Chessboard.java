@@ -326,6 +326,8 @@ public class Chessboard extends JComponent {
 //            // your code after delay here
 //        });
 //        t.start();
+
+
         chessData.forEach(System.out::println);
         clickController.setFirst(null);
         for (int i = 0; i < 8; i++) {
@@ -396,9 +398,18 @@ public class Chessboard extends JComponent {
                 }
             }
         }
-        repaint();
+
+        //repaint();
         ChessGameFrame.getLabelScoreRed().repaint();
         ChessGameFrame.getLabelScoreBlack().repaint();
+
+        for(int i=0;i<8;i++) {
+            for(int j=0;j<4;j++) {
+                int x = getChessComponents()[i][j].getX(), y = getChessComponents()[i][j].getY();
+                int width = getChessComponents()[i][j].getWidth(), height = getChessComponents()[i][j].getHeight();
+                paintImmediately(x, y, width, height);
+            }
+        }
 
         if (chessData.get(8).equals("0")) {
             currentColor = ChessColor.RED;
