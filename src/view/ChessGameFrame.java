@@ -383,6 +383,7 @@ public class ChessGameFrame extends JFrame {
             });
             t.start();
         });
+
     }
 
     /**

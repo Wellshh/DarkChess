@@ -1,5 +1,6 @@
 package chessComponent;
 
+import UI.AudioPlayer;
 import controller.ClickController;
 import controller.ClickControllerCheat;
 import model.ChessColor;
@@ -180,6 +181,15 @@ public abstract class SquareComponent extends JComponent {
         super.processMouseEvent(e);
         if (e.getID() == MouseEvent.MOUSE_PRESSED) {
             System.out.printf("Click [%d,%d]\n", chessboardPoint.getX(), chessboardPoint.getY());
+            Thread t = new Thread(() -> {
+                try {
+                    Thread.sleep(0); //1000 milliseconds
+                } catch (InterruptedException k) {
+                    k.printStackTrace();
+                }
+                AudioPlayer.playSound("src/assets/类二/CLICK.WAV");
+            });
+            t.start();
             if (ChessGameFrame.getCheckCheat() == 0) {
                 clickController.onClick(this);
             } else {

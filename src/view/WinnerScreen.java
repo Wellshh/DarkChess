@@ -1,5 +1,6 @@
 package view;
 
+import UI.AudioPlayer;
 import controller.GameController;
 import model.Player;
 
@@ -29,6 +30,15 @@ public class WinnerScreen extends JFrame {
         addWinnerLabel();
         addSureButton();
         addRestartButton();
+        Thread t = new Thread(() -> {
+            try {
+                Thread.sleep(0); //1000 milliseconds
+            } catch (InterruptedException k) {
+                k.printStackTrace();
+            }
+            AudioPlayer.playSound("src/assets/类二/Win.wav");
+        });
+        t.start();
     }
 
     public void addWinnerLabel() {

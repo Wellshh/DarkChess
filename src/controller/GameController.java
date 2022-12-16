@@ -30,28 +30,29 @@ public class GameController {
     public GameController(Chessboard chessboard) {
         this.chessboard = chessboard;
     }
+
     public Player player1 = new Player();
     public Player player2 = new Player();
 
     public List<String> loadGameFromFile(String path) {
         try {
             List<String> chessData = Files.readAllLines(Path.of(path));
-            for(int i=0;i<chessData.size();i++) {
+            for (int i = 0; i < chessData.size(); i++) {
                 List<String> line = new ArrayList<>();
-                String s= chessData.get(i);
-                s=s.replace(" ","");
-                s=s.replace("[","");
-                s=s.replace("]","");
+                String s = chessData.get(i);
+                s = s.replace(" ", "");
+                s = s.replace("[", "");
+                s = s.replace("]", "");
                 System.out.println(s);
                 String[] data = s.split(",");
-                int cnt=0;
-                for(int m=0;m<8;m++) {
+                int cnt = 0;
+                for (int m = 0; m < 8; m++) {
                     StringBuilder sb = new StringBuilder();
-                    for(int n=0;n<4;n++) {
+                    for (int n = 0; n < 4; n++) {
                         sb.append(data[cnt]).append(",");
                         cnt++;
                     }
-                    sb.setLength(sb.length()-1);
+                    sb.setLength(sb.length() - 1);
                     line.add(sb.toString());
                 }
                 line.add(data[32]);
@@ -72,8 +73,8 @@ public class GameController {
                 line.add(data[47]);
                 line.add(data[48]);
                 line.add(data[49]);
-               line.add(data[50]);
-               line.add(data[51]);
+                line.add(data[50]);
+                line.add(data[51]);
                 chessboard.loadGame(line);
                 chessboard.stack.push(line);
 //                    List<String> chessDa = new ArrayList<>();
@@ -100,11 +101,11 @@ public class GameController {
         chessboard.stack.push(convertToList(chessboard));
         Stack<List<String>> stack;
         stack = stackCopy(chessboard.stack);
-        while(!stack.empty()) {
+        while (!stack.empty()) {
             List<String> list = stack.pop();
             temp.add(list.toString());
         }
-        for(int i=temp.size()-1;i>=0;i--) {
+        for (int i = temp.size() - 1; i >= 0; i--) {
             lines.add(temp.get(i));
         }
         return lines;
@@ -160,11 +161,11 @@ public class GameController {
     public Stack<List<String>> stackCopy(Stack<List<String>> stack) {
         Stack<List<String>> temp = new Stack<>();
         Stack<List<String>> copy = new Stack<>();
-        while(!stack.empty()) {
+        while (!stack.empty()) {
             List<String> list = stack.pop();
             temp.push(list);
         }
-        while(!temp.empty()) {
+        while (!temp.empty()) {
             List<String> list = temp.pop();
             stack.push(list);
             copy.push(list);

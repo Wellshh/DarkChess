@@ -1,5 +1,6 @@
 package view;
 
+import UI.AudioPlayer;
 import controller.GameController;
 import model.Player;
 
@@ -54,6 +55,7 @@ public class StartScreen extends JFrame {
         button.addActionListener(e -> {
             ChessGameFrame chessGameFrame = new ChessGameFrame(800, 800);
             chessGameFrame.setVisible(true);
+            AudioPlayer.playSound("src/assets/类二/StartGame.wav");
             this.dispose();
         });
         add(button);
