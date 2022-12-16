@@ -196,7 +196,7 @@ public class ChessGameFrame extends JFrame {
      */
 
     private void addStartButton() {
-        JButton button = new JButton("START");
+        JButton button = new JButton("RULE");
         String message = "规则如下：\n" + "\n" + "首先，把棋子打乱反面向上摆放在4*8的棋盘中\n"+"然后，两个玩家摇骰子看谁大谁就是先手（先手就是第一个翻棋的人）；接着，翻出的棋子可以互吃；最后，棋子被吃完的那方就是失败了。\n"
                 +
                 "棋子等级：兵（卒）是等级最低的棋子，只能吃对方的将（帅）；\n"+
@@ -402,15 +402,22 @@ public class ChessGameFrame extends JFrame {
         button.setContentAreaFilled(false);
         add(button);
         button.addActionListener(e -> {
+            List<String> currentStatus = GameController.convertToList(chessboard);
+            chessboard.reverseStack.push(currentStatus);//需要多记录一次当前棋盘的状态，不然会和悔棋一样复盘到上一次
+            while(!chessboard.stack.isEmpty()){
+                List<String> list = chessboard.stack.pop();
+                chessboard.reverseStack.push(list);
+            }
 //            while(chessboard.stack.isEmpty()==false)
                 try {
-                    while(!chessboard.stack.isEmpty()){
+                    while(!chessboard.reverseStack.isEmpty()){
                         List<String> list;
-                        list = chessboard.stack.pop();
+                        list = chessboard.reverseStack.pop();
                         chessboard.loadGame(list);
                         //System.out.printf("                       %d", chessboard.stack.capacity());
                         Thread.currentThread().sleep(1000);
                     }
+//                    Thread.currentThread().sleep(1000);
                 } catch (InterruptedException ex) {
                     throw new RuntimeException(ex);
                 }

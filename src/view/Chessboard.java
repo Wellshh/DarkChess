@@ -24,6 +24,7 @@ import static view.ChessGameFrame.*;
  */
 public class Chessboard extends JComponent {
     public Stack<List<String>> stack = new Stack<>();
+    public Stack<List<String>> reverseStack = new Stack<>();
 
 
     private static final int ROW_SIZE = 8;
