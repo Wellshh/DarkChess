@@ -400,7 +400,7 @@ public class Chessboard extends JComponent {
             }
         }
 
-        //repaint();
+        repaint();
         ChessGameFrame.getLabelScoreRed().repaint();
         ChessGameFrame.getLabelScoreBlack().repaint();
 

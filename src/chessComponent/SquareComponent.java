@@ -1,10 +1,12 @@
 package chessComponent;
 
+import Socket.*;
 import UI.AudioPlayer;
 import controller.ClickController;
 import controller.ClickControllerCheat;
 import model.ChessColor;
 import model.ChessboardPoint;
+import net.sf.json.JSONObject;
 import view.ChessGameFrame;
 import view.Chessboard;
 
@@ -192,6 +194,11 @@ public abstract class SquareComponent extends JComponent {
             t.start();
             if (ChessGameFrame.getCheckCheat() == 0) {
                 clickController.onClick(this);
+                JSONObject info = new JSONObject();
+                info.put("op",1);
+                info.put("x",this.getChessboardPoint().getX());
+                info.put("y",this.getChessboardPoint().getY());
+                Client.sendInfo(info);
             } else {
                 clickControllerCheat.onClick(this);
             }

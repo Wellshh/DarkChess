@@ -1,5 +1,6 @@
 package view;
 
+import Socket.Client;
 import UI.AudioPlayer;
 import chessComponent.*;
 import controller.AIController;
@@ -7,6 +8,7 @@ import controller.ClickController;
 import controller.GameController;
 import model.ChessColor;
 import model.Player;
+import net.sf.json.JSONObject;
 
 import javax.swing.*;
 import java.awt.*;
@@ -95,6 +97,12 @@ public class ChessGameFrame extends JFrame {
         addRevisionButton();
         addlabel("src/assets/0cf21f8122dc4d5b4697deed6b70df4f.jpeg",BgLabel);
 
+        new Client(chessboard);
+        JSONObject info = new JSONObject();
+        info.put("op",0);
+        System.out.println(GameController.convertToList(chessboard));
+        info.put("ini",GameController.convertToList(chessboard));
+        Client.sendInfo(info);
     }
 
     /**
