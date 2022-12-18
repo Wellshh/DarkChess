@@ -271,10 +271,7 @@ public class ChessGameFrame extends JFrame {
         button.addActionListener(e -> {
             System.out.println("Click load");
             String path = JOptionPane.showInputDialog(this, "Input Path here");
-            try{
-            gameController.loadGameFromFile(path);}
-            catch(Exception k){
-                JOptionPane.showMessageDialog(this,"101");}
+            gameController.loadGameFromFile(path);
             chessboard.stack.pop();
         });
     }

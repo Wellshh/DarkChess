@@ -40,6 +40,7 @@ public class Chessboard extends JComponent {
     private final int CHESS_SIZE;
 
 
+
     public Chessboard(int width, int height) {
         setLayout(null); // Use absolute layout.
         setSize(width + 2, height - 1);
@@ -317,17 +318,9 @@ public class Chessboard extends JComponent {
      * @param chessData
      */
     public void loadGame(List<String> chessData) {
-//        Thread t = new Thread(() -> {
-//            try {
-//                Thread.sleep(1000); //1000 milliseconds
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-//            // your code after delay here
-//        });
-//        t.start();
-
-
+        int RedAdvisorCnt = 0,RedCannonCnt = 0,RedChariotCnt = 0,RedGeneralCnt = 0,RedHorseCnt = 0,RedMinisterCnt = 0,RedSoldierCnt = 0,Red = 0;
+        int BlackAdvisorCnt = 0,BlackCannonCnt = 0,BlackChariotCnt = 0,BlackGeneralCnt = 0,BlackHorseCnt = 0,BlackMinisterCnt = 0,BlackSoldierCnt = 0,Black = 0;
+        int EmptyCnt = 0,total = 0;
         chessData.forEach(System.out::println);
         clickController.setFirst(null);
         for (int i = 0; i < 8; i++) {
@@ -339,20 +332,26 @@ public class Chessboard extends JComponent {
                     SquareComponent squareComponent;
                     if (k == '6') {
                         squareComponent = new GeneralChessComponent(new ChessboardPoint(i, j), calculatePoint(i, j), color, clickController, CHESS_SIZE);
+                        Red++;RedGeneralCnt++;total++;
                     } else if (k == '5') {
+                        Red++;RedAdvisorCnt++;total++;
                         squareComponent = new AdvisorChessComponent(new ChessboardPoint(i, j), calculatePoint(i, j), color, clickController, CHESS_SIZE);
                     } else if (k == '4') {
+                        Red++;RedMinisterCnt++;total++;
                         squareComponent = new MinisterChessComponent(new ChessboardPoint(i, j), calculatePoint(i, j), color, clickController, CHESS_SIZE);
                     } else if (k == '3') {
+                        Red++;RedChariotCnt++;total++;
                         squareComponent = new ChariotChessComponent(new ChessboardPoint(i, j), calculatePoint(i, j), color, clickController, CHESS_SIZE);
                     } else if (k == '2') {
+                        Red++;RedHorseCnt++;total++;
                         squareComponent = new HorseChessComponent(new ChessboardPoint(i, j), calculatePoint(i, j), color, clickController, CHESS_SIZE);
                     } else if (k == '0') {
+                        Red++;RedSoldierCnt++;total++;
                         squareComponent = new SoldierChessComponent(new ChessboardPoint(i, j), calculatePoint(i, j), color, clickController, CHESS_SIZE);
                     } else {
+                        Red++;RedCannonCnt++;total++;
                         squareComponent = new CannonChessComponent(new ChessboardPoint(i, j), calculatePoint(i, j), color, clickController, CHESS_SIZE);
                     }
-
                     if (chess[j].charAt(2) == '0') {
                         squareComponent.setReversal(false);
                         squareComponent.setReversal("0");
@@ -367,21 +366,27 @@ public class Chessboard extends JComponent {
                     ChessColor color = ChessColor.BLACK;
                     SquareComponent squareComponent;
                     if (k == '6') {
+                        Black++;BlackGeneralCnt++;total++;
                         squareComponent = new GeneralChessComponent(new ChessboardPoint(i, j), calculatePoint(i, j), color, clickController, CHESS_SIZE);
                     } else if (k == '5') {
+                        Black++;BlackAdvisorCnt++;total++;
                         squareComponent = new AdvisorChessComponent(new ChessboardPoint(i, j), calculatePoint(i, j), color, clickController, CHESS_SIZE);
                     } else if (k == '4') {
+                        Black++;BlackMinisterCnt++;total++;
                         squareComponent = new MinisterChessComponent(new ChessboardPoint(i, j), calculatePoint(i, j), color, clickController, CHESS_SIZE);
                     } else if (k == '3') {
+                        Black++;BlackChariotCnt++;total++;
                         squareComponent = new ChariotChessComponent(new ChessboardPoint(i, j), calculatePoint(i, j), color, clickController, CHESS_SIZE);
                     } else if (k == '2') {
+                        Black++;BlackHorseCnt++;total++;
                         squareComponent = new HorseChessComponent(new ChessboardPoint(i, j), calculatePoint(i, j), color, clickController, CHESS_SIZE);
                     } else if (k == '0') {
+                        Black++;BlackSoldierCnt++;total++;
                         squareComponent = new SoldierChessComponent(new ChessboardPoint(i, j), calculatePoint(i, j), color, clickController, CHESS_SIZE);
                     } else {
+                        Black++;BlackCannonCnt++;total++;
                         squareComponent = new CannonChessComponent(new ChessboardPoint(i, j), calculatePoint(i, j), color, clickController, CHESS_SIZE);
                     }
-
                     if (chess[j].charAt(2) == '0') {
                         squareComponent.setReversal(false);
                         squareComponent.setReversal("0");
@@ -391,11 +396,16 @@ public class Chessboard extends JComponent {
                     }
                     squareComponent.setVisible(true);
                     putChessOnBoard(squareComponent);
-                } else {
+                } else if (chess[j].charAt(0) == '3') {
                     SquareComponent squareComponent = new EmptySlotComponent(new ChessboardPoint(i, j), calculatePoint(i, j), clickController, CHESS_SIZE);
+                    EmptyCnt++;
                     squareComponent.setVisible(true);
                     putChessOnBoard(squareComponent);
                 }
+                else if(chess[j].charAt(0) == '4'){JOptionPane.showMessageDialog(this,"错误类型：105\n"+"行棋步骤错误");
+                throw new RuntimeException("\"行棋步骤错误");}
+                else {JOptionPane.showMessageDialog(this,"错误类型：103\n"+"棋子并非红黑7种棋子或空棋子之一");
+                    throw new RuntimeException("\"错误类型：103\\n\"+\"棋子并非红黑7种棋子或空棋子之一");}
             }
         }
 
@@ -414,10 +424,11 @@ public class Chessboard extends JComponent {
         if (chessData.get(8).equals("0")) {
             currentColor = ChessColor.RED;
             ChessGameFrame.getLabelTurn().setText(String.format("%s's TURN", getCurrentColor().getName()));
-        } else {
+        } else if(chessData.get(8).equals("1")) {
             currentColor = ChessColor.BLACK;
             ChessGameFrame.getLabelTurn().setText(String.format("%s's TURN", getCurrentColor().getName()));
-        }
+        }else {JOptionPane.showMessageDialog(this,"错误类型：104\n导入数据只有棋盘，没有下一步行棋的方的提示\n");
+        throw new RuntimeException("导入数据只有棋盘，没有下一步行棋的方的提示\n" + "错误编码：104\n");}
 
         int scoreRed = Integer.parseInt(chessData.get(9));
         Player.changeScoreRed(-Player.scoreRed + scoreRed);
@@ -427,33 +438,37 @@ public class Chessboard extends JComponent {
 
         ClickController.cnt = Integer.parseInt(chessData.get(11));
         黑士.num = Integer.parseInt(chessData.get(12));
-        黑士.changNumberofEatenChess();
+        黑士.changNumberofEatenChess();total+=黑士.num;
         红士.num = Integer.parseInt(chessData.get(13));
-        红士.changNumberofEatenChess();
+        红士.changNumberofEatenChess();total+=红士.num;
         黑炮.num = Integer.parseInt(chessData.get(14));
-        黑炮.changNumberofEatenChess();
+        黑炮.changNumberofEatenChess();total+=黑炮.num;
         红炮.num = Integer.parseInt(chessData.get(15));
-        红炮.changNumberofEatenChess();
+        红炮.changNumberofEatenChess();total+=红炮.num;
         黑车.num = Integer.parseInt(chessData.get(16));
-        黑车.changNumberofEatenChess();
+        黑车.changNumberofEatenChess();total+=黑车.num;
         红车.num = Integer.parseInt(chessData.get(17));
-        红车.changNumberofEatenChess();
+        红车.changNumberofEatenChess();total+=红车.num;
         黑帅.num = Integer.parseInt(chessData.get(18));
-        黑帅.changNumberofEatenChess();
+        黑帅.changNumberofEatenChess();total+=黑帅.num;
         红帅.num = Integer.parseInt(chessData.get(19));
-        红帅.changNumberofEatenChess();
+        红帅.changNumberofEatenChess();total+=红帅.num;
         黑马.num = Integer.parseInt(chessData.get(20));
-        黑马.changNumberofEatenChess();
+        黑马.changNumberofEatenChess();total+=黑马.num;
         红马.num = Integer.parseInt(chessData.get(21));
-        红马.changNumberofEatenChess();
+        红马.changNumberofEatenChess();total+=红马.num;
         黑相.num = Integer.parseInt(chessData.get(22));
-        黑相.changNumberofEatenChess();
+        黑相.changNumberofEatenChess();total+=黑相.num;
         红相.num = Integer.parseInt(chessData.get(23));
-        红相.changNumberofEatenChess();
+        红相.changNumberofEatenChess();total+=红相.num;
         黑兵.num = Integer.parseInt(chessData.get(24));
-        黑兵.changNumberofEatenChess();
+        黑兵.changNumberofEatenChess();total+=黑兵.num;
         红兵.num = Integer.parseInt(chessData.get(25));
-        红兵.changNumberofEatenChess();
+        红兵.changNumberofEatenChess();total+=红兵.num;
+        if(total != 32||RedAdvisorCnt+红士.num!=2||BlackAdvisorCnt+黑士.num!=2||BlackCannonCnt+黑炮.num!=2||RedCannonCnt+红炮.num!=2||BlackChariotCnt+黑车.num!=2||RedCannonCnt+红炮.num!=2||BlackGeneralCnt+黑帅.num!=1||RedGeneralCnt+ 红帅.num!=1||BlackHorseCnt+ 黑马.num!=2||RedHorseCnt+红马.num!=2||BlackMinisterCnt+ 黑相.num!=2||RedMinisterCnt+红相.num!=2||BlackSoldierCnt+黑兵.num!=5||RedSoldierCnt+红兵.num!=5){
+            JOptionPane.showMessageDialog(this,"错误类型：103\n某个棋子数量不对\n");
+            throw new RuntimeException("错误类型：103\n某个棋子数量不对\n");
+        }
         ChessComponent.chessSkin = Integer.parseInt(chessData.get(26));
         SquareComponent.ChessboardSkin = Integer.parseInt(chessData.get(27));
         Color color1;

@@ -17,6 +17,8 @@ import java.util.Stack;
 
 import model.*;
 
+import javax.swing.*;
+
 import static view.ChessGameFrame.*;
 
 /**
@@ -34,12 +36,13 @@ public class GameController {
     public Player player1 = new Player();
     public Player player2 = new Player();
 
-    public List<String> loadGameFromFile(String path) {
+    public List<String> loadGameFromFile(String path)  {
         try {
-//            String string = path.substring(path.length()-3);
-//            if(!string.equals("txt")){
-//                throw new Exception("输入非法");
-//            }
+            String string = path.substring(path.length()-3);
+            if(!string.equals("txt")){
+                JOptionPane.showMessageDialog(chessboard,"错误类型：101\n" +"输入的文件类型不正确");
+                throw new RuntimeException("错误类型：101\\n\" +\"输入的文件类型不正确");
+            }
             List<String> chessData = Files.readAllLines(Path.of(path));
             for (int i = 0; i < chessData.size(); i++) {
                 List<String> line = new ArrayList<>();
@@ -50,14 +53,19 @@ public class GameController {
                 System.out.println(s);
                 String[] data = s.split(",");
                 int cnt = 0;
-                for (int m = 0; m < 8; m++) {
-                    StringBuilder sb = new StringBuilder();
-                    for (int n = 0; n < 4; n++) {
-                        sb.append(data[cnt]).append(",");
-                        cnt++;
+                try {
+                    for (int m = 0; m < 8; m++) {
+                        StringBuilder sb = new StringBuilder();
+                        for (int n = 0; n < 4; n++) {
+                            sb.append(data[cnt]).append(",");
+                            cnt++;
+                        }
+                        sb.setLength(sb.length() - 1);
+                        line.add(sb.toString());
                     }
-                    sb.setLength(sb.length() - 1);
-                    line.add(sb.toString());
+                }
+                catch (RuntimeException e){
+                    JOptionPane.showMessageDialog(chessboard,"错误类型：102\n"+"棋盘格式错误");
                 }
                 line.add(data[32]);
                 line.add(data[33]);
@@ -79,22 +87,20 @@ public class GameController {
                 line.add(data[49]);
                 line.add(data[50]);
                 line.add(data[51]);
+                System.out.println(data.length);
+                System.out.println(line.size());
+                if(data.length != 52){
+                    JOptionPane.showMessageDialog(chessboard,"错误类型：102\n"+"棋盘格式错误");
+                    return null;
+                }
                 chessboard.loadGame(line);
                 chessboard.stack.push(line);
-
-//                    List<String> chessDa = new ArrayList<>();
-//                    n = i - 1;
-//                    for (int j = m; j <= n; j++) {
-//                        chessDa.add(chessData.get(j));
-//                    }
-//                    chessDa.add("change");
-//                    m = i + 1;
-//                    chessboard.loadGame(chessDa);
-//                    chessboard.stack.push(chessDa);
             }
 
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
         return null;
     }

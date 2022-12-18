@@ -17,5 +17,11 @@
     <orderEntry type="library" name="Maven: com.googlecode.soundlibs:jorbis:0.0.17.4" level="project" />
     <orderEntry type="library" name="commons-beanutils-1.7.0" level="project" />
     <orderEntry type="library" name="commons-beanutils-1.7.01" level="project" />
+    <orderEntry type="library" name="commons-beanutils-1.7.02" level="project" />
+    <orderEntry type="library" name="commons-collections-3.1" level="project" />
+    <orderEntry type="library" name="commons-lang-2.5" level="project" />
+    <orderEntry type="library" name="commons-logging" level="project" />
+    <orderEntry type="library" name="ezmorph-1.0.3" level="project" />
+    <orderEntry type="library" name="json-lib-2.1-jdk15" level="project" />
   </component>
 </module>
