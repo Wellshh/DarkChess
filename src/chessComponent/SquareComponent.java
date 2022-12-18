@@ -1,12 +1,12 @@
 package chessComponent;
 
-//import Socket.*;
+import Socket.*;
 import UI.AudioPlayer;
 import controller.ClickController;
 import controller.ClickControllerCheat;
 import model.ChessColor;
 import model.ChessboardPoint;
-//import net.sf.json.JSONObject;
+import net.sf.json.JSONObject;
 import view.ChessGameFrame;
 import view.Chessboard;
 
@@ -183,6 +183,19 @@ public abstract class SquareComponent extends JComponent {
         super.processMouseEvent(e);
         if (e.getID() == MouseEvent.MOUSE_PRESSED) {
             System.out.printf("Click [%d,%d]\n", chessboardPoint.getX(), chessboardPoint.getY());
+            if (ChessGameFrame.getCheckCheat() == 0) {
+                JSONObject info = new JSONObject();
+                System.out.println();
+                System.out.printf("%d %d\n",getChessboardPoint().getX(),getChessboardPoint().getY());
+                System.out.println();
+                info.put("op",1);
+                info.put("x",this.getChessboardPoint().getX());
+                info.put("y",this.getChessboardPoint().getY());
+                Client.sendInfo(info);
+                clickController.onClick(this);
+            } else {
+                clickControllerCheat.onClick(this);
+            }
             Thread t = new Thread(() -> {
                 try {
                     Thread.sleep(0); //1000 milliseconds
@@ -192,16 +205,6 @@ public abstract class SquareComponent extends JComponent {
                 AudioPlayer.playSound("src/assets/类二/CLICK.WAV");
             });
             t.start();
-            if (ChessGameFrame.getCheckCheat() == 0) {
-                clickController.onClick(this);
-//                JSONObject info = new JSONObject();
-//                info.put("op",1);
-//                info.put("x",this.getChessboardPoint().getX());
-//                info.put("y",this.getChessboardPoint().getY());
-//                Client.sendInfo(info);
-            } else {
-                clickControllerCheat.onClick(this);
-            }
         }
     }
 
