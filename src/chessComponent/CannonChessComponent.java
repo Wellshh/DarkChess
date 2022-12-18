@@ -105,7 +105,8 @@ public class CannonChessComponent extends ChessComponent {
         }
         else{
             this.reversal = "0";
-            chessPicture.setVisible(false);
+            addlabel("src/assets/15.png",chessPicture);
+
         }
         if(isSelected()){
             addlabel("src/assets/rect_red.png",movePicture);

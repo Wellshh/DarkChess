@@ -36,6 +36,10 @@ public class GameController {
 
     public List<String> loadGameFromFile(String path) {
         try {
+//            String string = path.substring(path.length()-3);
+//            if(!string.equals("txt")){
+//                throw new Exception("输入非法");
+//            }
             List<String> chessData = Files.readAllLines(Path.of(path));
             for (int i = 0; i < chessData.size(); i++) {
                 List<String> line = new ArrayList<>();
@@ -77,6 +81,7 @@ public class GameController {
                 line.add(data[51]);
                 chessboard.loadGame(line);
                 chessboard.stack.push(line);
+
 //                    List<String> chessDa = new ArrayList<>();
 //                    n = i - 1;
 //                    for (int j = m; j <= n; j++) {

@@ -1,6 +1,6 @@
 package view;
 
-import Socket.Client;
+//import Socket.Client;
 import UI.AudioPlayer;
 import chessComponent.*;
 import controller.AIController;
@@ -8,7 +8,7 @@ import controller.ClickController;
 import controller.GameController;
 import model.ChessColor;
 import model.Player;
-import net.sf.json.JSONObject;
+//import net.sf.json.JSONObject;
 
 import javax.swing.*;
 import java.awt.*;
@@ -97,12 +97,12 @@ public class ChessGameFrame extends JFrame {
         addRevisionButton();
         addlabel("src/assets/0cf21f8122dc4d5b4697deed6b70df4f.jpeg",BgLabel);
 
-        new Client(chessboard);
-        JSONObject info = new JSONObject();
-        info.put("op",0);
-        System.out.println(GameController.convertToList(chessboard));
-        info.put("ini",GameController.convertToList(chessboard));
-        Client.sendInfo(info);
+//        new Client(chessboard);
+//        JSONObject info = new JSONObject();
+//        info.put("op",0);
+//        System.out.println(GameController.convertToList(chessboard));
+//        info.put("ini",GameController.convertToList(chessboard));
+//        Client.sendInfo(info);
     }
 
     /**
@@ -271,7 +271,10 @@ public class ChessGameFrame extends JFrame {
         button.addActionListener(e -> {
             System.out.println("Click load");
             String path = JOptionPane.showInputDialog(this, "Input Path here");
-            gameController.loadGameFromFile(path);
+            try{
+            gameController.loadGameFromFile(path);}
+            catch(Exception k){
+                JOptionPane.showMessageDialog(this,"101");}
             chessboard.stack.pop();
         });
     }
@@ -382,7 +385,7 @@ public class ChessGameFrame extends JFrame {
         JButton MusicButton = new JButton();
         MusicButton.setLocation(650,500);
         MusicButton.setSize(60,60);
-        ImageIcon icon = new ImageIcon("src/assets/类三/music.png");
+        ImageIcon icon = new ImageIcon(ChessGameFrame.class.getResource("/assets/类三/music.png"));
         Image temp = icon.getImage().getScaledInstance(75,75,icon.getImage().SCALE_AREA_AVERAGING);
 //        button.setOpaque(false);
         icon = new ImageIcon(temp);
