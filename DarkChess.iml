@@ -23,5 +23,6 @@
     <orderEntry type="library" name="commons-logging" level="project" />
     <orderEntry type="library" name="ezmorph-1.0.3" level="project" />
     <orderEntry type="library" name="json-lib-2.1-jdk15" level="project" />
+    <orderEntry type="library" name="commons-beanutils-1.7.03" level="project" />
   </component>
 </module>

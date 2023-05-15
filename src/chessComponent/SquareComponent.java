@@ -6,7 +6,7 @@ import controller.ClickController;
 import controller.ClickControllerCheat;
 import model.ChessColor;
 import model.ChessboardPoint;
-import net.sf.json.JSONObject;
+//import net.sf.json.JSONObject;
 import view.ChessGameFrame;
 import view.Chessboard;
 
@@ -184,14 +184,14 @@ public abstract class SquareComponent extends JComponent {
         if (e.getID() == MouseEvent.MOUSE_PRESSED) {
             System.out.printf("Click [%d,%d]\n", chessboardPoint.getX(), chessboardPoint.getY());
             if (ChessGameFrame.getCheckCheat() == 0) {
-                JSONObject info = new JSONObject();
+//                JSONObject info = new JSONObject();
                 System.out.println();
                 System.out.printf("%d %d\n",getChessboardPoint().getX(),getChessboardPoint().getY());
                 System.out.println();
-                info.put("op",1);
-                info.put("x",this.getChessboardPoint().getX());
-                info.put("y",this.getChessboardPoint().getY());
-                Client.sendInfo(info);
+//                info.put("op",1);
+//                info.put("x",this.getChessboardPoint().getX());
+//                info.put("y",this.getChessboardPoint().getY());
+//                Client.sendInfo(info);
                 clickController.onClick(this);
             } else {
                 clickControllerCheat.onClick(this);
